@@ -1,0 +1,581 @@
+
+.NewProjectLayoutHero{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+}
+
+.BackContainer{
+  display: flex;
+  align-items: center;
+  width: 300px;
+  height: 40px;
+}
+
+.BackContainer div p {
+  font-weight: 500;
+  font-size: 12px;
+  color: #31609A;
+  margin:0px;
+  width: 99px;
+  height: 16px;
+}
+
+.BackContainer div h6 {
+  font-weight: 700;
+  font-size: 24px;
+  color: #2A3D64;
+  width: 100%;
+  height: 21px;
+}
+
+
+.backIcon{
+  color: #505050;
+  font-size: 35px;
+}
+
+.cancelButton{
+  border: 1px solid #31609A;
+  background-color: #FFFFFF;
+  color: #31609A;
+  width: 78px;
+  height: 40px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 10px;
+}
+
+.saveDraftButton{
+  border: none;
+  width: 109px;
+  height: 40px;
+  color: #FFFFFF;
+  background-color: #31609A;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* save button modal */
+.modal_content {
+  background-color:#6FCF97;
+}
+
+.NewProjectLayout > header {
+  width: 627px;
+  height: 40px;
+  background-color: #FFFFFF;
+  padding: 10px 50px 10px 10px;
+  border-radius: 8px;
+  margin: 10px 0px;
+  display: flex;
+}
+
+
+.headerItems {
+  width: auto;
+  color: #505050;
+  font-size: 14px;
+  font-weight: 500;
+  opacity: 0.5;
+  margin-right: 15px;
+  /* background-color: red; */
+ 
+}
+.activeHeader {
+  width: 100px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding:5px 10px;
+  background-color: #436DA2;
+  color:#FFFFFF;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 500;
+  margin-top: -6px;
+  margin-right: 15px;
+}
+
+.pageTitle{
+  color: #505050;
+  font-weight: 700;
+  font-size: 18px;
+  width: 155px;
+  height: 15px;
+  margin: 0px 0px 15px 0px;
+}
+
+.NewProjectLayoutContent{
+  width: 627px;
+  max-height: 378px;
+  /* overflow-y: scroll; */
+  background-color: #FFFFFF;
+  padding: 20px 20px 0px 20px;
+  border-radius: 8px;
+  position: relative;
+}
+
+.stepOverLay{
+  background-color: #436DA2;
+  opacity: 0.2;
+  /* margin-top: -200px;  */
+}
+
+.stepOverLay,.stepButtonWrapper{
+  height: 60px;
+  width: 595px;
+  margin-left: -20px;
+  margin-right: -20px;
+  border-bottom-left-radius: 8px;
+  border-bottom-right-radius: 8px;
+  margin-top: 50px;
+  position: absolute;
+}
+
+
+
+.prevButton,.nextButton{
+  height: 40px;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.prevButton{
+  background-color: #ffffff;
+  width: 86px;
+  border: 1px solid #31609A;
+  color:#31609A; 
+}
+
+.nextButton{
+  background-color: #31609A;
+  width: 65px;
+  border: 1px #31609A;
+  color:#FFFFFF;
+  
+}
+
+.milestoneContainer > .nextButton{
+  width: 75px;
+}
+
+.modalbtn{
+  box-shadow: 0px 5px 9px rgb(0, 0, 0, 0.05);
+  position: relative;
+  display: flex;
+  background-color: #31609A;
+  
+  justify-content: space-between;
+}
+
+
+
+/* SDG Goals */
+
+.SDGWrapper{
+  width: 558px;
+  height: 278px;
+  display: grid;
+  grid-template-columns: 91px 91px 91px 91px 91px 91px;
+  grid-column-gap: 2px;
+  grid-row-gap: 2px;
+  margin-bottom: 23px;
+}
+
+[type='checkbox'] {
+ display: none;
+}
+
+[type='checkbox'] + label{
+  position: relative; 
+}
+
+[type='checkbox'] + label::before{
+  content: '';
+  position: absolute;
+  margin-left: 43px;
+  margin-top: 43px;
+}
+
+[type='checkbox']:checked + label::before{
+  content: '';
+  position: absolute;
+  width: 7px;
+  height: 15px;
+  border: solid white;
+  border-width: 0px 3px 3px 0px;
+  -webkit-transform: rotate(45deg);
+  -ms-transform: rotate(45deg);
+  transform: rotate(45deg);
+} 
+
+[type='checkbox']:checked + label::after{
+  content: '';
+  position: absolute;
+  width: 91px;
+  left: 0;
+  top: 0;
+  padding: 0px;
+  height: 91px;
+  background: rgba(0,0,0,0.4);
+}
+
+/* DETAILS */
+
+.detailsContainer > .NewProjectLayoutContent{
+  width: 600px;
+  max-height: 350px;
+  overflow-y: scroll;
+}
+
+.field{
+  width: 100%;
+}
+
+.field > div input {
+  width: 326px;
+}
+
+.formColumn{
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+
+.field > label, .detailsForm1 > div label, .detailsForm2 > div label {
+  color: #A8A8A8;
+  font-size: 12px;
+  font-weight: 700;
+  width: 192px;
+  height: 12px;
+  margin-bottom: 10px;
+}
+
+.field, .detailsForm1 > div, .detailsForm2 > div {
+  height: 68px;
+  margin-bottom: 15px;
+  display: grid;
+  grid-template-rows: auto 100%;
+}
+
+
+.detailsForm1 > div, .detailsForm2 > div  {
+  width: 260px;
+}
+
+.detailsForm1 > div div, .detailsForm2 > div div, .field > div {
+  height: 44px;
+  background-color: #F4F6F7;
+  border-radius: 8px;
+  border: 1px solid #DCDCDC;
+  font-size: 14px;
+  font-weight: 400;
+  
+  display: flex;
+  align-items: center;
+  padding: 0px 10px;
+
+}
+
+.detailsForm1 > div div input[type='text'] {
+  width: 100%;
+  height: 19px;
+  color: #505050;
+  border: none;
+  background-color: transparent;
+}
+
+.form1Option, .form2Option{
+  width: 100%;
+  font-size: 14px;
+  font-weight: 400;
+  color: #505050;
+  border: none;
+  background-color: transparent;
+}
+
+.form1Option:focus, .form2Option:focus{
+  outline: none;
+}
+
+/* CONTRACTOR */
+
+
+.contractorFieldWrapper{
+  width: 90%;
+  height: 68px;
+  margin-left: 27px;
+  margin-bottom: 232px;
+}
+
+.contractorFieldWrapper > label {
+  width: 197px;
+  height: 12px;
+  font-weight: 700;
+  font-size: 12px;
+  color: #A8A8A8;
+  margin-bottom: 10px;
+}
+
+.contractorFieldWrapper > div input {
+  width: 326px;
+  height: 19px;
+  color: #505050;
+  font-size: 14px;
+  font-weight: 400;
+}
+
+.contractorFieldWrapper > div {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0px 15px;
+  width: 100%;
+  height: 44px;
+  background-color: #F4F6F7;
+  border: 1px solid #DCDCDC;
+  border-radius: 8px;
+}
+
+/* location */
+
+.locationFieldWrapper{
+  display: flex;
+  justify-content: space-between;
+  padding: 15px;
+}
+
+.locationFieldArray{
+
+  width:100%;
+  height:266px;
+  margin-bottom: 34px;
+  overflow-y: scroll;
+}
+
+.locationFieldWrapper > div > div {
+  width: 237px;
+  height: 68px;
+  margin-bottom: 10px;
+
+}
+
+.locationFieldWrapper div div label {
+  width: 197px;
+  height: 12px;
+  color: #A8A8A8;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.locationFieldWrapper div div div {
+  width: 100%;
+  height: 44px;
+  border-radius: 8px;
+  background-color: #F4F6F7;
+  border: 1px solid #DCDCDC;
+  display: flex;
+  align-items: center;
+  padding: 15px;
+}
+
+.locationFieldWrapper div div div input, .locationSelectInput {
+  width: 274px;
+  height: 19px;
+  color: #505050;
+  font-size: 14px;
+  font-weight: 400;
+  border: none;
+  background-color: transparent;
+}
+
+.locationSelectInput:focus {
+  outline: none;
+
+}
+
+/* attachment */
+
+.attachmentContainer > .NewProjectLayoutContent {
+  height: 440px;
+  width: 627px;
+ 
+}
+
+.fileContainer {
+  display: grid;
+  grid-template-columns: 120px 120px 120px 120px;
+  grid-column-gap: 25px;
+  height: 293px;
+  margin-bottom: auto;
+}
+
+.fileWrapper{
+  width: 100%;
+  height: 176px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.FileEarmarkWrapper{
+
+  width: 100%; 
+  height: 120px;
+  background-color: #F3F4F5; 
+  border: 1px solid #DCDCDC;
+  margin-bottom: 15px; 
+  
+}
+
+.fileWrapper > div {
+  width: 120px;
+  height: 120px;
+  border: 1px solid #DCDCDC;
+  background-color: #F3F4F5;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 5px;
+}
+
+.fileWrapper > p {
+  width: 100%;
+  height: 36px;
+  font-weight: 400;
+  line-height: 15px;
+  font-size: 14px;
+  color: #505050;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  
+}
+
+/* milestones */
+
+.mileStonesFieldContainer {
+  width:100%;
+  height:210px;
+  display: flex;
+  margin-bottom: 16px;
+  padding: 10px;
+}
+
+.modal_dialog {
+  width: 368px;
+  height: 476px;
+  margin-top: 60px;
+}
+
+.modal_title{
+  color: #505050;
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.modal_body > div:nth-child(1){
+  font-size: 24px;
+  font-weight: 700;
+  color: #2A3D64;
+  line-height: 18.5px;
+  margin-top: 24px;
+  margin-bottom: 24px;
+  height: 26px;
+}
+.modal_body > div:nth-child(3){
+  font-size: 16px;
+  font-weight: 400;
+  color: #505050;
+ display: flex;
+ justify-content: center;
+  line-height: 23px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 24px;
+  width: 292px;
+  height: 45px;
+}
+
+.modal_body > img {
+  width: 142;
+  height: 142px;
+  margin-bottom: 24px;
+}
+
+.mileStonesFieldArrayContainer{
+
+  width:100%;
+  height:256px;
+  margin-bottom: 44px;
+  overflow-y: scroll;
+
+}
+
+.mileStonesFieldWrapper > div {
+  width: 487px;
+  display: grid;
+  grid-template-columns: 337px 120px;
+  grid-column-gap: 10px;
+  margin-bottom: 16px;
+  
+}
+
+.mileStonesFieldWrapper > div div {
+  height: 68px;
+  /* background-color: #31609A; */
+  /* margin-bottom: 10px; */
+}
+
+.mileStonesFieldWrapper > div > div > div {
+  width: 100%;
+  background-color: #F4F6F7;
+  height: 44px;
+  border-radius: 8px;
+  border: 1px solid #DCDCDC;
+  display: flex;
+  align-items: center;
+  padding: 5px;
+}
+
+.mileStonesFieldWrapper > div > div > div input, .description > div input {
+  width: 189px;
+  height: 19px;
+  font-size: 12px;
+  font-weight: 100;
+  background-color: transparent;
+}
+
+.mileStonesFieldWrapper > div label, .description label {
+  width: 97px;
+  height: 12px;
+  font-size: 12px;
+  font-weight: 700;
+  color: #A8A8A8;
+}
+
+.description{
+  width: 467px;
+  height:100px;
+}
+
+.description > div {
+  width: 100%;
+  height: 83px;
+  border: 1px solid #DCDCDC;
+  background-color: #F4F6F7;
+  border-radius: 8px;
+  padding: 5px;
+}
+
+
+
+ 

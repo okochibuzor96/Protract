@@ -1,0 +1,40 @@
+.image{
+    height:'48px';
+    width:'48px';
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.block{
+    display: grid;
+    grid-template-columns: 1fr 48px 20px;
+    justify-content: center;
+    align-items: center;
+
+    background-color:#FFFFFF;
+    height:60px;
+    margin-top: 10px;
+    margin-bottom: 15px;
+    padding-right: 10px;
+    padding-left: 10px;
+    border-radius: 10px;
+    
+}
+
+.input{
+   background-color: #FFFFFF; 
+}
+.input::placeholder{
+    font-size: 20px;
+    font-weight: 400;
+}
+
+.block1{
+    height:'100vh';
+    display:'grid';
+    grid-template-columns:'200px 1fr';
+    grid-column-gap:'25px';
+   
+   
+}

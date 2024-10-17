@@ -1,0 +1,135 @@
+.btnWrapper{
+    width: 174px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.btnWrapper > button:nth-child(1) {
+    background-color: #FFFFFF;
+    width: 78px;
+    color: #436DA2;
+    border: 1px solid #436DA2;
+    
+}
+
+.btnWrapper > button:nth-child(1), .btnWrapper > button:nth-child(2) {
+    height: 36px;
+    border-radius: 8px;
+    font-size: 12px;
+    font-weight: 600;
+}
+
+.btnWrapper > button:nth-child(2) {
+    width: 90px;
+    background-color: #436DA2;
+    color: #FFFFFF;
+    border: none;
+}
+
+
+.formWrapper{
+    width: 100%;
+    display: grid;
+    grid-template-columns: 270px 1fr;
+    grid-column-gap: 25px;
+    margin-top: 25px;
+}
+
+.imageWrapper {
+    height: 287px;
+    background-color: #436DA2;
+    border-radius: 8px;
+    box-shadow: 0px 5px 9px -5px #0000000D;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.imageWrapper > img {
+    width: 162px;
+    height: 162px;
+    margin-bottom: 10px;
+    border-radius: 81px;
+}
+
+.imageWrapper > button {
+    margin-top: 25px;
+    width: 112px;
+    height: 28px;
+    background-color: transparent;
+    border: none;
+    color: #FFFFFF;
+    font-size: 12px;
+    font-weight: 700;
+}
+
+.fieldWrapper{
+    background-color: #FFFFFF;
+    height: 367px;
+    padding: 30px 25px;
+    border-radius: 8px;
+    box-shadow: 0px 5px 9px -5px #0000000D;
+
+}
+
+.fieldWrapper > div:nth-child(1){
+    
+    grid-template-columns: 1fr 1fr;
+    margin-bottom: 20px;
+    grid-column-gap: 15px;
+}
+
+.fieldWrapper > div:nth-child(1), .fieldWrapper > div:nth-child(2) {
+    display: grid;
+    width: 100%;
+    
+}
+
+.fieldWrapper > div:nth-child(2) {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-column-gap: 15px;
+    
+}
+
+.fieldWrapper > div:nth-child(2) > div:nth-child(1), .fieldWrapper > div:nth-child(2) > div:nth-child(2), .fieldWrapper > div:nth-child(2) > div:nth-child(2){
+    margin-bottom: 20px;
+}
+
+
+.fieldWrapper > div:nth-child(1) div div, .fieldWrapper > div:nth-child(2) div div {
+    height: 50px;
+    border: 1px solid #DCDCDC;
+    background-color: #F3F4F5;
+    border-radius: 8px;
+    padding-left: 15px;
+    display: flex;
+    align-items: center;
+}
+
+.fieldWrapper > div:nth-child(1) div div input{
+    width: 290px;
+}
+
+.fieldWrapper > div:nth-child(1) div div input, .fieldWrapper > div:nth-child(2) div div input {
+    height: 19px;
+    opacity: 40%;
+    font-weight: 400;
+    font-size: 16px;
+    color: #505050;
+    line-height: 21px;
+}
+
+.fieldWrapper > div:nth-child(2) div div input {
+    width: 145px;
+}
+
+.fieldWrapper > div:nth-child(1) div label, .fieldWrapper > div:nth-child(2) div label {
+    width: 170px;
+    height: 12px;
+    font-size: 12px;
+    font-weight: 700;
+    line-height: 14.32px;
+    color: #505050;
+}

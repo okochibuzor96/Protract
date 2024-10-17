@@ -1,0 +1,150 @@
+.radioInput{ 
+    
+    height: 8px;
+    width: 8px;
+  
+}
+
+.completed, .inProgres, .notStarted, .notStarted2, .paid, .abandon, .pending, .high, .medium, .low, .resolved, .ongoing{
+    color: #ffffff; 
+    height: 18px; 
+    width: 73px; 
+    font-size: 10px; 
+    font-weight: 500;
+    border-radius: 12px;
+    /* padding-right: 4px; 
+    justify-content: center;
+    align-items: center;
+    grid-column-gap: 4px; */
+    display: grid;
+    grid-template-columns: 8px 1fr;
+    grid-column-gap: 3px;
+    align-items: center;
+    padding-left: 6px;
+    
+}
+
+.inProgres,.completed,.download{
+    display: grid;
+    grid-template-columns: 8px 48px;
+}
+
+.completed, .low, .resolved{
+    background: #31d067;
+}
+
+.inProgres{
+    background: #EF943B;
+}
+.notStarted{
+    display: grid;
+    grid-template-columns: 8px 48px;
+    
+    width: 75px; 
+    background: #A8A8A8; 
+}
+
+.notStarted2{
+    display: grid;
+    grid-template-columns: 8px 49.5px;
+    
+    width: 75px; 
+    background: #31609A;
+
+}
+
+.download{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #ffffff; 
+    background: #31609A;
+    font-size: 12px;
+    font-weight: 700;
+    width: 84px;
+    border-radius: 8px;
+    height: 28px;
+    border: none;
+}
+
+.paid{
+    display: grid;
+    grid-template-columns: 8px 17px;
+    background: #C4C4C4;
+    width: 44px;
+    
+}
+
+.ongoing{
+    display: grid;
+    grid-template-columns: 8px 36px;
+    background:#FFA349;
+    width: 63px;
+}
+
+.abandon{
+    display: grid;
+    grid-template-columns: 8px 44px;
+    background: #E5364E;
+    width: 76px;
+}
+
+.pending, .medium{
+    display: grid;
+    grid-template-columns: 8px 34px;
+
+    background: #EF943B;
+    width: 59px;
+}
+
+.resolved{
+    display: grid;
+    grid-template-columns: 8px 37px;
+   width: 64px;
+}
+
+.low{
+    display: grid;
+    grid-template-columns: 8px 17px;
+    width: 44px;
+}
+
+.high{
+    display: grid;
+    grid-template-columns: 8px 19px;
+    background: #E5364E;
+    width: 44px;
+}
+
+.active, .inactive, .pending{
+    height: 18px;
+    border-radius: 10px;
+    display: grid;
+    grid-template-columns: 8px 1fr;
+    grid-column-gap: 3px;
+    align-items: center;
+    padding-left: 6px;
+}
+
+.active > div, .inactive > div, .pending > div {
+    font-size:10px;
+    font-weight: 500;
+    color: #FFFFFF;
+}
+
+.active{
+    width: 53px;
+    background-color: #31D067;
+
+}
+
+.inactive{
+    width: 61px;
+    background-color: #EA523D;
+}
+
+.pending{
+    width: 59px;
+    background-color: #FFA349;
+}
+

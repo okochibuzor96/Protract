@@ -1,0 +1,19 @@
+import Status from '../Status/my-status.module.css';
+
+export function Abandoned() {
+
+  
+  return(
+      
+    <div className={Status.abandon}>
+      <input
+        className={Status.radioInput}
+        type="radio"
+        value=""
+        aria-label="Radio button for following text "
+      />
+     <div>Abandoned</div>
+    </div>
+      
+  )
+}

@@ -1,0 +1,28 @@
+.Dbtn{
+    width: 98px;
+    height: 36px;
+    border: 1px solid #31609A;
+    background: #FFFFFF;
+    border-radius: 8px;
+    color: #31609A;
+    font-size: 12px;
+    font-weight: 600;
+}
+
+.modalDialog{
+    width: 440px;
+    height: 237px;
+    margin-top: 200px;
+}
+.modalBody{
+    display: flex;
+    justify-content: center;
+    align-content: center;
+}
+
+.modalBody > h6 {
+    width: 280px;
+    height: 52px;
+    text-align: center;
+   
+}
