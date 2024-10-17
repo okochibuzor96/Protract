@@ -1,8 +1,10 @@
 import settings from '../../Styles/my-settings.module.css'
 import { LuPencil } from "react-icons/lu";
 import {Formik, Form, Field} from 'formik'
+import { useContext, useEffect } from 'react';
 import { useQuery, useQueryClient,useMutation } from 'react-query';
 import CRUDfunc from '../../../hooks/useQuery/useProject';
+import DataContext from '../../../Context API/Create_Context';
 
 const dropDownValue = [
 
@@ -28,43 +30,56 @@ const dropDownValue = [
 
 function Edit_Modal({Id,data,children, setShowInitialValue, showInitialValue}) {
 
-    const queryclient = useQueryClient()
+    const {category, setCategory} = useContext(DataContext)
 
-    
+    const data2 = category.find((item)=> item.id === parseInt(Id))
 
-   
+    // const queryclient = useQueryClient()
 
-    const {mutate,isLoading} = useMutation((value)=> CRUDfunc.update(`category/${value.id}`,value),{
-        onSuccess:()=>{
-            queryclient.invalidateQueries('settings_category')
-        }
-    })
+    // const {mutate,isLoading} = useMutation((value)=> CRUDfunc.update(`category/${value.id}`,value),{
+    //     onSuccess:()=>{
+    //         queryclient.invalidateQueries('settings_category')
+    //     }
+    // })
 
 
-    if(isLoading) <div>...loading</div>
+    // if(isLoading) <div>...loading</div>
 
     const initialValue = {
         attributeCategory:'',
         projectNature:''
     }
 
+    useEffect(()=>{
+        localStorage.setItem("category", JSON.stringify(category))
+    },[category])
+
 
     const onSubmit = (value) =>{
-    
 
-      const payload={
-        ...value,
-        id:""
-      }
+        //   const payload={
+        //     ...value,
+        //     id:""
+        //   }
 
-      payload.id = Id
+        //   payload.id = Id
 
-      
-       mutate(payload)
+        setCategory((prev)=>
+        prev.map((item)=> item.id === parseInt(Id)?
+        {
+            ...item,
+            attributeCategory:value.attributeCategory,
+            projectNature:value.projectNature
+
+        }:
+        item
+        )
+        )
+
+        //    mutate(payload)
 
        setShowInitialValue(!showInitialValue)
 
-       console.log('VE',Id)
     }
 
   return (
@@ -87,7 +102,7 @@ function Edit_Modal({Id,data,children, setShowInitialValue, showInitialValue}) {
     >
 
         <Formik
-         initialValues={showInitialValue?initialValue:data?.data}
+         initialValues={showInitialValue?initialValue:data2}
          enableReinitialize={true}
          onSubmit={onSubmit}
         >

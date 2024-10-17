@@ -10,6 +10,9 @@ import Impact from './Impact'
 import Compliance from './Compliance'
 import Contractor_Info from './Contractor_Info'
 import Project_Info from './Project_Info'
+import DataContext from '../../../Context API/Create_Context'
+import { useContext } from 'react'
+import { useNavigate } from 'react-router-dom'
 
 
 function New_Evaluation_2(props) {
@@ -133,6 +136,12 @@ function New_Evaluation_2(props) {
     FGtotal2:Yup.number().required('This field is required')
   })
 
+  const {evaluation, setEvaluation} = useContext(DataContext)
+
+  const navigate = useNavigate()
+
+  const id = evaluation.length? evaluation[evaluation.length-1].id + 1 : 1
+
   const onSubmit = (values) =>{
     // Next(values)
    
@@ -144,13 +153,24 @@ function New_Evaluation_2(props) {
 
     payload.projectFormId = Idvalue
     payload.contractorFormId = Idvalue2
-    payload.projectNo = projectNo
-    payload.SDGSector = projectSector
+    payload.projectReferenceNumber = projectNo
+    payload.projectSector = projectSector
     payload.contractorFormValue = filterValue2
     payload.projectFormValue = filterValue
+    payload.id = id
 
-    console.log('pr',payload)
-    return mutate(payload)
+    const newValue = [...evaluation,payload]
+
+    setEvaluation(newValue)
+
+    localStorage.setItem('evaluation', JSON.stringify(newValue))
+
+
+    // console.log('pr',payload)
+    // return mutate(payload)
+
+    navigate('/evaluation')
+
   }
   return (
 
@@ -184,15 +204,17 @@ function New_Evaluation_2(props) {
 
                   
                   <Contractor_Info
-                  contractordetails={contractordetails}
+                    // contractordetails={contractordetails}
+                    contractorFormId={Idvalue2}
                   />
 
                   <Project_Info
-                  project={project}
+                    // project={project}
+                    projectFormId={Idvalue}
                   />
 
                   <Project_Attributes
-                   fieldValue
+                  
                   />
 
                   <Compliance/>

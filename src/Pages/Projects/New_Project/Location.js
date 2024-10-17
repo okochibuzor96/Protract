@@ -5,39 +5,56 @@ import { FaCirclePlus, FaTruckFieldUn } from "react-icons/fa6";
 
 import project from './my-NewProject.module.css';
 import { useLocation, useParams } from 'react-router-dom';
+import DataContext from '../../Context API/Create_Context';
+import { useContext, useEffect } from 'react';
 
 function New_Project4({handleNext,handlePrev,fieldValues,locationInitialValues,data,editMutate}) {
 
   const locationRoute = useLocation()
   const {id} = useParams()
-  const showLocation = () => {
-   const show = data?.data.location.map((val,i) =>{
-      return val.locationFederalConsistuency
-    })
 
-   return show
-  }
+  // const showLocation = () => {
+  //  const show = data?.data.location.map((val,i) =>{
+  //     return val.locationFederalConsistuency
+  //   })
 
-  console.log('show', showLocation())
+  //  return show
+  // }
 
-  const geopoliticalZone = [
-    {key:data?.data && showLocation()?showLocation():'Select Sector', value:''},
-    {key:'key 1', value:'key1'},
-    {key:'key 2', value:'key2'},
-    {key:'key 3', value:'key3'}
-  ]
   // data?.data && data?.data.location[1].locationFederalConsistuency !==""?data?.data.location[1].locationFederalConsistuency
 
+  const {projects, setProjects} = useContext(DataContext)
+
+  const data2 = projects.find((item)=> item.id === parseInt(id))
+
+  useEffect(()=>{
+    localStorage.setItem('projects', JSON.stringify(projects))
+  },[projects])
+
   const onSubmit = (value) => {
+
     handleNext(value)
-    console.log('Form value', value)
-    return editMutate(value)
+   
+    // return editMutate(value)
+
+    if(`/projects/project-details/${id}/edit-project`){
+
+     setProjects((prev)=> prev.map((item,index)=> item.id === parseInt(id)?
+      {
+        ...item,
+        location : [
+          ...value?.location
+        ]
+      }:item
+     ))
+    }
+
   }
   return (
     <div> 
      
       <Formik
-        initialValues={locationRoute.pathname === `/projects/project-details/${id}/edit-project`?data?.data || fieldValues:fieldValues}
+        initialValues={locationRoute.pathname === `/projects/project-details/${id}/edit-project`? data2 ||fieldValues:fieldValues}
         enableReinitialize={true}
         onSubmit={onSubmit}
       >

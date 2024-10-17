@@ -1,11 +1,18 @@
 import {Field} from 'formik'
 import newEvaluation2 from '../../Styles/my-new_evaluation_2.module.css'
 import {useLocation, useParams} from 'react-router-dom'
+import DataContext from '../../../Context API/Create_Context'
+import { useContext } from 'react'
 
 function NinputType_PC({data}) {
 
   const location = useLocation()
   const {id} = useParams()
+
+  
+  const {evaluation} = useContext(DataContext)
+
+  const data2 = evaluation.find((evaluation)=> evaluation.id === parseInt(id))
 
   return (
     <div className={newEvaluation2.formContainer}>
@@ -42,9 +49,9 @@ function NinputType_PC({data}) {
                 
                           {
                             location.pathname === `/evaluation/evaluation-details/${id}`?
-                            <span>{data?.data[`TNSbefore${item}`]}</span>:
+                            <span>{data2[`TNSbefore${item}`]}</span>:
                             <div>
-                                <input type='number' placeholder='0' {...field}/>
+                              <input type='number' placeholder='0' {...field}/>
                             </div>
                           }
                                     
@@ -67,7 +74,7 @@ function NinputType_PC({data}) {
 
                           {
                             location.pathname === `/evaluation/evaluation-details/${id}`?
-                            <span className={newEvaluation2.fieldDetalValue}>{data?.data[`TNSafter${item}`]}</span>:
+                            <span className={newEvaluation2.fieldDetalValue}>{data2[`TNSafter${item}`]}</span>:
                             <div
 
                             >

@@ -1,6 +1,7 @@
 import {Field, ErrorMessage} from 'formik'
-import { useState } from 'react'
+import { useContext, useState } from 'react'
 import { useLocation, useParams } from 'react-router-dom'
+import DataContext from '../../../Context API/Create_Context'
 import newEvaluation2 from '../../Styles/my-new_evaluation_2.module.css'
 import Texterror from './Field_Error-Component'
 
@@ -10,6 +11,10 @@ function Project_Attributes({data}) {
 
     const location = useLocation()
     const {id} = useParams()
+
+    const {evaluation} = useContext(DataContext)
+
+    const data2 = evaluation.find((evaluation)=> evaluation.id === parseInt(id))
 
     const [itemValues, setItemValues]= useState([
         {
@@ -84,7 +89,7 @@ function Project_Attributes({data}) {
                                     location.pathname === `/evaluation/evaluation-details/${id}`?
                                     <>
                                       {
-                                        data?.data[`PRinput${i+1}`] === 'selected'?
+                                        data2[`PRinput${i+1}`] === 'selected'?
                                         <span className={newEvaluation2.yesDiv}>Yes</span>:
                                         <span className={newEvaluation2.noDiv}>No</span>
                                       }

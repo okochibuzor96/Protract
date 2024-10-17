@@ -4,32 +4,39 @@ import project from './my-NewProject.module.css';
 import { LiaSearchSolid } from "react-icons/lia";
 import { useLocation } from 'react-router-dom';
 import {useParams} from 'react-router-dom'
-function New_Project2({handleNext, fieldValues,handlePrev,data,editMutate}) {
+import DataContext from '../../Context API/Create_Context';
+import { useContext } from 'react';
+
+function New_Project2({handleNext, fieldValues,handlePrev,editMutate}) {
+ 
+   
+    const {projects} = useContext(DataContext)
 
     const location = useLocation()
     const {id} = useParams()
+    const data = projects.find((item)=> item.id === parseInt(id))
 
     const handleSubmit = (value) => {
         handleNext(value)
         console.log('Form12', value)
-        return editMutate(value)
+        // return editMutate(value)
     }
 
     return (
         <Formik
-        initialValues={location.pathname === `/projects/project-details/${id}/edit-project`?data?.data || fieldValues:fieldValues}
+        initialValues={location.pathname === `/projects/project-details/${id}/edit-project`? data? data :'' || fieldValues:fieldValues}
         enableReinitialize={true}
         onSubmit={handleSubmit}
         >
             {
                 ({isValid,values}) =>{ 
-                    console.log('c',values)
+                   
                     return(
                         <Form className={project.contractorContainer}>
 
                             <div className={project.NewProjectLayoutContent}>
 
-                                <Field name='projectContractor'>
+                                <Field name='contractor'>
                                     {
                                         ({field}) =>{
                                             return(

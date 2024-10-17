@@ -35,7 +35,7 @@ import style from '../styles/my-navbar.module.css';
       
       </div>
 
-      <div className=''>
+      <div className={style.block5}>
         
         <Header />
 

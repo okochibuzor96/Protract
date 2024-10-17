@@ -1,7 +1,18 @@
 import contractor from '../../styles/my-contractors.module.css';
+import { useContext } from "react";
+import DataContext from '../Context API/Create_Context';
+import { useParams } from 'react-router-dom';
 
 
-function CompanyDetails({id, data, isLoading}) {
+function CompanyDetails({isLoading}) {
+
+    const {id} = useParams()
+
+    const {contractors} = useContext(DataContext)
+
+    const data = contractors.find((contractor)=> contractor.id === parseInt(id))
+
+    console.log('d', data)
 
     if(isLoading){
         return <div>Loading...</div>
@@ -16,7 +27,7 @@ function CompanyDetails({id, data, isLoading}) {
             </div>
 
             <div className={contractor.dataContent}>
-                {data.companyName}
+                {data && data.companyName}
             </div>
 
         </div>
@@ -27,7 +38,7 @@ function CompanyDetails({id, data, isLoading}) {
             </div>
 
             <div className={contractor.dataContent}>
-                {data.mailAddress}
+                {data && data.mailAddress}
             </div>
 
         </div>
@@ -38,7 +49,7 @@ function CompanyDetails({id, data, isLoading}) {
             </div>
 
             <div className={contractor.dataContent}>
-                {data.phoneNumber}
+                {data && data.phoneNumber}
             </div>
 
         </div>
@@ -50,7 +61,7 @@ function CompanyDetails({id, data, isLoading}) {
             </div>
 
             <div className={contractor.dataContent}>
-                {data.companyAddress}
+                {data && data.companyAddress}
             </div>
 
         </div>
@@ -62,7 +73,7 @@ function CompanyDetails({id, data, isLoading}) {
             </div>
 
             <div className={contractor.dataContent}>
-                {data.rcNumber}
+                {data && data.rcNumber}
             </div>
 
         </div>
@@ -74,7 +85,7 @@ function CompanyDetails({id, data, isLoading}) {
             </div>
 
             <div className={contractor.dataContent}>
-               {data.specialization}
+               {data && data && data.specialization}
             </div>
 
         </div>
@@ -86,7 +97,7 @@ function CompanyDetails({id, data, isLoading}) {
             </div>
 
             <div className={contractor.dataContent}>
-               {data.contactPerson}
+               {data && data.contactPerson}
             </div>
 
         </div>
@@ -98,7 +109,7 @@ function CompanyDetails({id, data, isLoading}) {
             </div>
 
             <div className={contractor.dataContent}>
-               {data.contactNumber}
+               {data && data.contactNumber}
             </div>
 
         </div>
@@ -110,13 +121,126 @@ function CompanyDetails({id, data, isLoading}) {
             </div>
 
             <div className={contractor.dataContent}>
-               {data.contactEmailAddress}
+               {data && data.contactEmailAddress}
             </div>
 
         </div>
        
     </div>
   )
+
+//   return(
+//     data && datamap((data)=>(
+//         <div className={contractor.companyDetailsInfo}>
+
+//             <div className={contractor.dataTitle}> 
+//                 <div>
+//                     Company Name
+//                 </div>
+
+//                 <div className={contractor.dataContent}>
+//                     {data.companyName}
+//                 </div>
+
+//             </div>
+
+//             <div>
+//                 <div className={contractor.dataTitle}>
+//                     Mail Address
+//                 </div>
+
+//                 <div className={contractor.dataContent}>
+//                     {data.mailAddress}
+//                 </div>
+
+//             </div>
+
+//             <div>
+//                 <div className={contractor.dataTitle}>
+//                 Phone Number
+//                 </div>
+
+//                 <div className={contractor.dataContent}>
+//                     {data.phoneNumber}
+//                 </div>
+
+//             </div>
+            
+//             <div>
+
+//                 <div className={contractor.dataTitle}>
+//                     Company Address
+//                 </div>
+
+//                 <div className={contractor.dataContent}>
+//                     {data.companyAddress}
+//                 </div>
+
+//             </div>
+
+//             <div>
+
+//                 <div className={contractor.dataTitle}>
+//                     RC Number
+//                 </div>
+
+//                 <div className={contractor.dataContent}>
+//                     {data.rcNumber}
+//                 </div>
+
+//             </div>
+
+//             <div>
+
+//                 <div className={contractor.dataTitle}>
+//                 Speccialization
+//                 </div>
+
+//                 <div className={contractor.dataContent}>
+//                 {data.specialization}
+//                 </div>
+
+//             </div>
+
+//             <div>
+
+//                 <div className={contractor.dataTitle}>
+//                 Contact Person
+//                 </div>
+
+//                 <div className={contractor.dataContent}>
+//                 {data.contactPerson}
+//                 </div>
+
+//             </div>
+
+//             <div>
+
+//                 <div className={contractor.dataTitle}>
+//                 Contact Number
+//                 </div>
+
+//                 <div className={contractor.dataContent}>
+//                 {data.contactNumber}
+//                 </div>
+
+//             </div>
+
+//             <div>
+
+//                 <div className={contractor.dataTitle}>
+//                 Email Address
+//                 </div>
+
+//                 <div className={contractor.dataContent}>
+//                 {data.contactEmailAddress}
+//                 </div>
+
+//             </div>
+       
+//         </div>
+//     ))
+//   )
 }
 
 export default CompanyDetails

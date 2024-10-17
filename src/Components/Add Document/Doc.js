@@ -81,13 +81,13 @@ function Doc(props) {
               <>
                 
                 {
-                  values.document.map((document,index) =>{
+                  values?.document?.map((document,index) =>{
                    
                     
                     return(
                       <React.Fragment key={index}>
                         {
-                          values.document[index]?.docTitle?
+                          values?.document[index]?.docTitle?
                           <div>
                             
 
@@ -139,7 +139,7 @@ function Doc(props) {
 
 
                                       {
-                                      values.document[index]?.docName && (<p className={`${contractor.docTitle} text-center`}>{values.document[index].docName}</p>)}
+                                      values?.document[index]?.docName && (<p className={`${contractor.docTitle} text-center`}>{values?.document[index]?.docName}</p>)}
                                     
                                                         
                                     </div>
@@ -158,7 +158,7 @@ function Doc(props) {
                 }
 
                 <Doc_Modal
-                  index={values.document.length}
+                  index={values?.document?.length}
                   handleDocChange={handleDocChange}
                   setFieldValue={setFieldValue}
                   push={push}

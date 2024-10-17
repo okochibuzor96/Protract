@@ -1,10 +1,11 @@
 import {Formik,Form,Field,FieldArray} from 'formik'
 import { useLocation } from 'react-router-dom';
 import { BsFileEarmarkPlus } from "react-icons/bs";
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 
 import project from './my-NewProject.module.css';
 import Doc from '../../../Components/Add Document/Doc';
+import DataContext from '../../Context API/Create_Context';
 
 function New_Project5({handlePrev,handleNext,fieldValues,data,editMutate,id,docInitValue,deleteMutate}) {
 
@@ -58,15 +59,31 @@ function New_Project5({handlePrev,handleNext,fieldValues,data,editMutate,id,docI
     return initials;
   };
 
+  const {projects,setProjects} = useContext(DataContext)
+
+  const data2 = projects.find((item)=> item.id === parseInt(id))
+
   const onSubmit = (value) =>{
+
     handleNext(value)
-   console.log('Form value', value)
-    return editMutate(value)
+
+    //   return editMutate(value)
+
+  if(location.pathname === `/projects/project-details/${id}/edit-project`){
+
+    setProjects((prev)=> prev.map((item)=> item.id === parseInt(id)?
+     {
+        ...item,
+        mileStone:[...value.mileStone]
+      }:item
+    )
+    )
+}
   }
 
   return (
     <Formik
-      initialValues={location.pathname === `/projects/project-details/${id}/edit-project`?data?.data||fieldValues:fieldValues}
+      initialValues={location.pathname === `/projects/project-details/${id}/edit-project`? data2||fieldValues:fieldValues}
       enableReinitialize={true}
       onSubmit={onSubmit}
     >

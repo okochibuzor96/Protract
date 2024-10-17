@@ -17,7 +17,7 @@ function Dherosection() {
         </h6> */}
       </div>
 
-      <div className={dashboard.block4}>
+      {/* <div className={dashboard.block4}>
         
         <div className={dashboard.block5}>Duration</div>
 
@@ -44,7 +44,7 @@ function Dherosection() {
         </div>
 
       </div>
-       
+        */}
     </div>)
 }
 

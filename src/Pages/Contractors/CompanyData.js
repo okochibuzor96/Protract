@@ -4,6 +4,7 @@ import {InProgres} from "../../Components/Status/InProgres";
 import {NotStarted} from "../../Components/Status/NotStarted";
 import {ViewButtons} from '../../Components/viewButtons';
 
+
 /*import from styles*/
 import contractor from '../../styles/my-contractors.module.css';
 
@@ -13,6 +14,8 @@ import { useState } from "react";
 
 
 function CompanyData() {
+
+  
 
   const [data, setData] = useState([
     {
@@ -63,7 +66,9 @@ function CompanyData() {
             View: 'View'
         }
     }
-]);
+  ]);
+
+ 
 
   return (
     <section>
@@ -79,7 +84,7 @@ function CompanyData() {
       </div>
       
 
-      {data.map((data,index) =>(
+      {data && data.map((data,index) =>(
         <div className={contractor.companyData} key={index}>
           
           <div className={contractor.dataId}>

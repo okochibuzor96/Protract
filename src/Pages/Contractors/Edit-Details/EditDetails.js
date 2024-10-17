@@ -14,9 +14,13 @@ import {Formik,Form} from 'formik'
 import ComplianceDoc from './ComplianceDoc';
 
 import { BsArrowLeftShort } from "react-icons/bs";
-import { useRef, useState } from 'react';
+import { useRef, useState,useContext,useEffect } from 'react';
+import DataContext from '../../Context API/Create_Context';
 
 function EditDetails() {
+
+  const {contractors, setContractors} = useContext( DataContext)
+ 
 
   const [image, setImage] = useState("")
 
@@ -32,7 +36,6 @@ function EditDetails() {
 
     const file = event
 
-    console.log('file', file)
       
     const fileRender = new FileReader()
     fileRender.readAsDataURL(file)
@@ -51,52 +54,75 @@ function EditDetails() {
 
   const {id} = useParams()
 
-  const {data,isLoading} = useQuery(['editDetail', id], getContractorDetails, {
-    initialData: () => {
-      const contractorDetails = queryClient.getQueryData('contractorDetails')?.data?.find((details) => details.id === parseInt(id))
+  const data = contractors.find((item)=> item.id === parseInt(id))
 
-      if(contractorDetails){
-        return{data: contractorDetails}
-      }else{
-        return undefined
-      }
-    }
-  })
+  useEffect(() => {
+    localStorage.setItem("contractors", JSON.stringify(contractors));
+  }, [contractors])
 
-  console.log('final value', data?.data)
+  // const {data,isLoading} = useQuery(['editDetail', id], getContractorDetails, {
+  //   initialData: () => {
+  //     const contractorDetails = queryClient.getQueryData('contractorDetails')?.data?.find((details) => details.id === parseInt(id))
 
-  const {mutate,isLoading:isUpdating} = useMutation(upDateContractorDetails,{
-    onSuccess: ()=>{
-      queryClient.invalidateQueries('editDetail')
-    }
-  })
+  //     if(contractorDetails){
+  //       return{data: contractorDetails}
+  //     }else{
+  //       return undefined
+  //     }
+  //   }
+  // })
+
+  
+
+  // const {mutate,isLoading:isUpdating} = useMutation(upDateContractorDetails,{
+  //   onSuccess: ()=>{
+  //     queryClient.invalidateQueries('editDetail')
+  //   }
+  // })
 
   const onSubmit = (value) =>{
 
-    console.log('final value', value)
+    // const payload ={
+    //   ...value,
+    //   avarta:""
+    // }
 
-    const payload ={
-      ...value,
-      avarta:""
-    }
+    // payload.avarta = image? image:data?.data.avarta
 
-    payload.avarta = image? image:data?.data.avarta
+    // mutate(payload)
 
-    mutate(payload)
+    
+
+    setContractors((prev)=>
+      prev.map((item)=>
+      item.id === value.id?
+      {
+        ...item, 
+        companyName:value.companyName,
+        rcNumber:value.rcNumber,
+        contractorId:value.contractorId,
+        specialization:value.specialization,
+        mailAddress:value.mailAddress,
+        companyAddress:value.companyAddress,
+        contactPerson:value.contactPerson,
+        contactNumber:value.contactNumber,
+        contactEmailAddress:value.contactEmailAddress
+      } : item)
+    )
 
     navigate(`/contractors/contractor_details/${id}`)
-    // return mutate({route: `users/${value.id}`, payload})
+    
   }
 
-  if(isLoading || isUpdating){
-    return <div>Loading...</div>
-  }
+  // if(isLoading || isUpdating){
+  //   return <div>Loading...</div>
+  // }
 
 
   return (
 
     <Formik
-      initialValues={data?.data}
+      initialValues={data}
       onSubmit={onSubmit}
     >
       {
@@ -171,7 +197,7 @@ function EditDetails() {
                     />
                   
                     <div>
-                      <img onClick={handleRef} src={image?image:data?.data.avarta?data?.data.avarta:imageBadge} alt="" className={contractor.companyDetailsImage}/>
+                      <img onClick={handleRef} src={image?image:data?.avarta?data?.avarta:imageBadge} alt="" className={contractor.companyDetailsImage}/>
                     </div>
                     
                     <label onClick={handleRef}  className={contractor.upDateBtn}>
@@ -196,7 +222,7 @@ function EditDetails() {
                     data={data}
                     values={values}
                     setFieldValue={setFieldValue}
-                    mutate={mutate}
+                    // mutate={mutate}
                   />
 
                 </div>

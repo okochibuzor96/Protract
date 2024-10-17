@@ -3,7 +3,7 @@
 import {Field,Formik,Form} from 'formik'
 
 import project from './my-NewProject.module.css';
-import React, { useState } from 'react';
+import React, { useContext, useEffect, useState, useMemo } from 'react';
 
 import { FaCheck } from "react-icons/fa6";
 
@@ -22,6 +22,7 @@ import imagen from '../../../Images/SDGGoaln.svg'
 import imagep from '../../../Images/SDGGoalp.svg'
 import imageq from '../../../Images/SDGGoalq.svg'
 import { useLocation } from 'react-router-dom';
+import DataContext from '../../Context API/Create_Context';
 
 
 // const applyChecked = ({values, itemValues,handlePrev}) => {
@@ -99,18 +100,43 @@ function New_Project3(props) {
     
   ])
 
+  const {projects, setProjects} = useContext(DataContext)
+
+  const data2 = useMemo(()=>projects.find((item)=> item.id === parseInt(id)),[])
+
+  useEffect(()=>{
+    localStorage.setItem("projects", JSON.stringify(projects))
+  },[projects])
+
   const onSubmit = (value) =>{
+   
     handleNext(value)
-    return editMutate(value)
+
+    // return editMutate(value)
+
+    if(location.pathname === `/projects/project-details/${id}/edit-project`){
+      setProjects((prev)=>
+        prev.map((item)=> item.id === parseInt(id)?
+          {
+            ...item,
+            imageValues:[...value?.imageValues]
+          }:item
+        )
+      )
+    }
   }
 
+  // console.log('sd',data2.imageValues)
+
   // const validationSchema = Yup.object({})
+
+  
 
 
   return (
 
     <Formik
-    initialValues={location.pathname === `/projects/project-details/${id}/edit-project`?data?.data || fieldValues:fieldValues}
+    initialValues={location.pathname === `/projects/project-details/${id}/edit-project`? data2 || fieldValues:fieldValues}
     enableReinitialize={true}
     onSubmit={onSubmit}
     >
@@ -118,7 +144,7 @@ function New_Project3(props) {
       {
         ({values}) => {
           return(
-            <Form>
+            <Form className={project.SDGContainer}>
               
               <div className={project.NewProjectLayoutContent}>
 
@@ -131,13 +157,13 @@ function New_Project3(props) {
                     {
                       ({field}) => {
                         return(
-                            itemValues.map((item,index)=>{
+                            itemValues?.map((item,index)=>{
                               console.log('fieldvalues',field.values)
                               return(
                                   <div key={index}>
                                       
 
-                                    <input id={item.value} type='checkbox' {...field} value={item.value} defaultChecked={data?.data.imageValues.includes(item.value)}/>
+                                    <input id={item.value} type='checkbox' {...field} value={item.value} defaultChecked={location.pathname === `/projects/project-details/${id}/edit-project`? data2.imageValues.includes(item.value):''}/>
 
                                     <label  htmlFor={item.value}>
 

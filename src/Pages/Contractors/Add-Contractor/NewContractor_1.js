@@ -245,7 +245,7 @@ function NewContractor1({handleNext,fieldValues,image,handleChange,setFieldValue
 
                     </div>
 
-                    <Field name='emailAddress'>
+                    <Field name='mailAddress'>
                       {
                         ({field}) => {
                           return(

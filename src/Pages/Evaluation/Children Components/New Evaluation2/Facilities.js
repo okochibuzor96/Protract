@@ -1,11 +1,18 @@
 import {Field} from 'formik'
 import newEvaluation2 from '../../Styles/my-new_evaluation_2.module.css'
 import {useLocation, useParams} from 'react-router-dom'
+import DataContext from '../../../Context API/Create_Context'
+import { useContext } from 'react'
 
 function Facilities({data}) {
 
     const location = useLocation()
     const {id} = useParams()
+
+   
+    const {evaluation} = useContext(DataContext)
+
+    const data2 = evaluation.find((evaluation)=> evaluation.id === parseInt(id))
 
   return (
     <div className={newEvaluation2.formContainer}>
@@ -28,7 +35,7 @@ function Facilities({data}) {
 
                         {
                             location.pathname === `/evaluation/evaluation-details/${id}`?
-                            <span className={newEvaluation2.fieldDetalValue}>{data?.data.TNCbefore}</span>:
+                            <span className={newEvaluation2.fieldDetalValue}>{data2?.TNCbefore}</span>:
                             <div>
                             <input {...field} type='number' placeholder='0' />
                             </div>
@@ -51,7 +58,7 @@ function Facilities({data}) {
 
                         {
                             location.pathname === `/evaluation/evaluation-details/${id}`?
-                            <span className={newEvaluation2.fieldDetalValue}>{data?.data.TNCafter}</span>:
+                            <span className={newEvaluation2.fieldDetalValue}>{data2?.TNCafter}</span>:
                             <div>
                             <input type='number' placeholder='0' {...field}/>
                             </div>
@@ -89,7 +96,7 @@ function Facilities({data}) {
 
                                 {
                                     location.pathname === `/evaluation/evaluation-details/${id}`?
-                                    <span className={newEvaluation2.fieldDetalValue}>{item === 1?data?.data[`TNFSgood${item}`]:data?.data[`FGgood${item}`]}</span>:
+                                    <span className={newEvaluation2.fieldDetalValue}>{item === 1? data2[`TNFSgood${item}`]:data2[`FGgood${item}`]}</span>:
                                     <div>
                                     <input type='number' placeholder='0' {...field}/>
                                     </div>
@@ -113,7 +120,7 @@ function Facilities({data}) {
                                 {
                                     location.pathname === `/evaluation/evaluation-details/${id}`?
                                     <span className={newEvaluation2.fieldDetalValue}>
-                                        {item === 1?data?.data[`TNFSbad${item}`]:data?.data[`FGbad${item}`]}
+                                        {item === 1?data2[`TNFSbad${item}`]:data2[`FGbad${item}`]}
                                     </span>:
                                     <div>
                                     <input type='number' placeholder='0' {...field}/>
@@ -127,7 +134,7 @@ function Facilities({data}) {
                         }
                     </Field>
 
-                    <Field name={item === 1?`TNFStotal${item}`:`FGtotal${item}`}>
+                    <Field name={item === 1? `TNFStotal${item}`:`FGtotal${item}`}>
                         {
                         ({field})=>{
                             return(
@@ -138,7 +145,7 @@ function Facilities({data}) {
                                 {
                                     location.pathname === `/evaluation/evaluation-details/${id}`?
                                     <span className={newEvaluation2.fieldDetalValue}>
-                                        {item === 1?data?.data[`TNFStotal${item}`]:data?.data[`FGtotal${item}`]}
+                                        {item === 1? data2[`TNFStotal${item}`]:data2[`FGtotal${item}`]}
                                     </span>:
                                     <div>
                                     <input type='number' placeholder='0' {...field}/>

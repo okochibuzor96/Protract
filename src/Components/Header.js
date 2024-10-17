@@ -6,17 +6,19 @@ import { LiaSearchSolid } from "react-icons/lia";
 
 function Header() {
   return (
-    <div >
+   
 
       <div className={header.block}
       >
 
-        <div>
+        <div className='me-2'>
 
           <LiaSearchSolid size={30} color='#A8A8A8'/>
 
           <input 
-          type='test'          placeholder='Search' className={header.input}  style={{width:'500px', border:'none'}}
+            type='test' 
+            placeholder='Search' 
+            className={header.input}  
           />
 
         </div>
@@ -49,7 +51,7 @@ function Header() {
     
       </div>
       
-    </div>
+   
     
   )
 }

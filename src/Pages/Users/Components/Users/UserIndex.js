@@ -11,12 +11,29 @@ import {ViewButtons} from '../../../../Components/viewButtons'
 import {Active} from '../../../../Components/Status/Active'
 import {InActive} from '../../../../Components/Status/InActive'
 import {Pending} from '../../../../Components/Status/Pending'
+import Pagination from '../../../../Components/Pagination/Pagination';
+import { useContext, useState } from 'react';
+import GetUsers from '../../../../Components/Pagination/GetUsers';
+import DataContext from '../../../Context API/Create_Context';
 
 function UserIndex() {
 
+    const [page, setPage] = useState(1)
+    const [limit, setLimit] = useState(6)
+
     const navigate = useNavigate()
 
-    const {data} = useQuery("users", ()=>CRUDfunc.get("users"))
+    // const {data, isLoading} = useQuery("users", ()=>CRUDfunc.get("users"))
+
+    const {users} = useContext(DataContext)
+
+    const totalPage = users && Math.ceil(users?.length/limit)
+
+    const getUser = GetUsers.User({page,limit})
+
+    // const getUser = GetUsers.User({page,limit,data})
+
+    // if(isLoading) <div>...loading</div>
 
   return (
     <div className={userStyle.userLayoutContainer}>
@@ -122,45 +139,57 @@ function UserIndex() {
 
         <div className={userStyle.userTbodyWrapper}>
 
-            {
-                data?.data.map((item,i) =>(
+            <div>
 
-                    <div key={i} className={userStyle.userTbody}>
+                {
+                    getUser.map((item,i) =>(
 
-                        <div>{item.userId}</div>
+                        <div key={i} className={userStyle.userTbody}>
 
-                        <div>
+                            <div>{item.userId}</div>
 
-                            <div>{item.userFname}</div>
+                            <div>
 
-                            <div>{item.userLname}</div>
+                                <div>{item.userFname}</div>
+
+                                <div>{item.userLname}</div>
+
+                            </div>
+
+                            <div>{item.userEmail}</div>
+
+                            <div>{item.userNumber}</div>
+
+                            <div>{item.userDepartment}</div>
+
+                            <div>{item.userRole}</div>
+
+                            <div>
+                                {
+                                item.userStatus ==="Active"? <Active/>:
+                                item.userStatus ==="InActive"? <InActive/>:
+                                item.userStatus ==="Pending"? <Pending/>:""
+                                }
+                            
+                                <ViewButtons
+                                click={()=>navigate(`user-details/${item.id}`)}
+                                />
+                            
+
+                            </div>
 
                         </div>
+                    ))
+                }
 
-                        <div>{item.userEmail}</div>
+            </div>
 
-                        <div>{item.userNumber}</div>
-
-                        <div>{item.userDepartment}</div>
-
-                        <div>{item.userRole}</div>
-
-                        <div>
-                            {
-                            item.userStatus ==="Active"? <Active/>:
-                            item.userStatus ==="InActive"? <InActive/>:
-                            item.userStatus ==="Pending"? <Pending/>:""
-                            }
-                          
-                              <ViewButtons
-                               click={()=>navigate(`user-details/${item.id}`)}
-                              />
-                           
-
-                        </div>
-
-                    </div>
-                ))
+            {getUser &&  <Pagination
+                totalPage={totalPage}
+                page={page}
+                setPage={setPage}
+                siblings={1}
+                />
             }
 
         </div>

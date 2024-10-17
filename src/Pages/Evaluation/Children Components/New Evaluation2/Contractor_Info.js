@@ -1,6 +1,19 @@
+import { useContext } from 'react'
+import { useLocation, useParams } from 'react-router-dom'
+import DataContext from '../../../Context API/Create_Context'
 import paymentDetail from '../../../Payments/Payment_CSS_folder/my-paymentDetails.module.css'
 
-function Contractor_Info({contractordetails}) {
+function Contractor_Info({contractordetails,contractorFormId}) {
+
+    const {id} = useParams()
+
+    const location = useLocation()
+
+    const {contractors, evaluation} = useContext(DataContext)
+
+    const data2 = evaluation.find((evaluation)=> evaluation.id === parseInt(id))
+
+    const data = contractors.find((contractor)=> contractor.id === parseInt(data2.contractorFormId))
   return (
     <div className={paymentDetail.contractInfoWrapper}>
 
@@ -9,7 +22,7 @@ function Contractor_Info({contractordetails}) {
         <div  className={paymentDetail.contractInfo}>                    
 
         <div>
-            {contractordetails?.data.companyName}  
+            { data?.companyName}  
         </div>
 
         <div>
@@ -18,7 +31,7 @@ function Contractor_Info({contractordetails}) {
             
             <h6>Contractor ID</h6>
 
-            <div>{contractordetails?.data.contractorId}</div>
+            <div>{ data?.contractorId}</div>
                 
             </div>
 
@@ -26,7 +39,7 @@ function Contractor_Info({contractordetails}) {
             
                 <h6>Phone Number</h6>
 
-                <div>{contractordetails?.data.phoneNumber}</div>
+                <div>{ data?.phoneNumber}</div>
 
             </div>
 
@@ -34,7 +47,7 @@ function Contractor_Info({contractordetails}) {
             
                 <h6>Email Address</h6>
 
-                <div>{contractordetails?.data.mailAddress}</div>
+                <div>{ data?.mailAddress}</div>
 
             </div>
 

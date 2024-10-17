@@ -26,36 +26,43 @@ import Deny_Modal from './Deny_Modal'
 import { BsArrowLeftShort } from "react-icons/bs";
 import paymentDetail from '../Payment_CSS_folder/my-paymentDetails.module.css'
 import {DownLoad} from '../../../Components/Status/DownLoad'
+import DataContext from '../../Context API/Create_Context'
+import { useContext } from 'react'
 
 
 
 function Payment_Details() {
 
+    const {projects,contractors} = useContext(DataContext)
+
     const navigate = useNavigate()
     const {id} = useParams()
 
-    const queryClient = useQueryClient()
+    const data = projects.find((project)=>project.id === parseInt(id))
+    const contractordetails = contractors.find((contractor)=>contractor.id === parseInt(id))
+
+    // const queryClient = useQueryClient()
   
-    const {data} = useQuery(['details', id], getProjectDetails,{
-      initialData: () => {
+    // const {data} = useQuery(['details', id], getProjectDetails,{
+    //   initialData: () => {
         
-        const details = queryClient.getQueryData('project')?.data?.find((project) => project.id === parseInt(id))
+    //     const details = queryClient.getQueryData('project')?.data?.find((project) => project.id === parseInt(id))
   
-        if(details){
-          return{
-            data:details
-          }
-        }else{
-          return undefined
-        }
-      }
-    })
+    //     if(details){
+    //       return{
+    //         data:details
+    //       }
+    //     }else{
+    //       return undefined
+    //     }
+    //   }
+    // })
 
-    const contractorId = data?.data.id
+    // const contractorId = data?.data.id
 
-    const {data:contractordetails} = useQuery(["contractorPaymentInfo", contractorId], getContractorDetails,{
-        enabled:!!contractorId
-    })
+    // const {data:contractordetails} = useQuery(["contractorPaymentInfo", contractorId], getContractorDetails,{
+    //     enabled:!!contractorId
+    // })
   
     return (
   
@@ -75,7 +82,7 @@ function Payment_Details() {
                         </p>
 
                         <h6 className={contractor.backArrowText2}> 
-                        {data?.data.projectReferenceNumber}
+                        {data?.projectReferenceNumber}
                         </h6>
 
                     </div>
@@ -107,13 +114,13 @@ function Payment_Details() {
 
                 <div className={paymentDetail.contractInfoWrapper}>
 
-                    <img src={contractordetails?.data.avarta} alt='Company Image'/>
+                    <img src={contractordetails?.avarta} alt='Company Image'/>
 
                     
                     <div  className={paymentDetail.contractInfo}>                    
 
                         <div>
-                            {contractordetails?.data.companyName}  
+                            {contractordetails?.companyName}  
                         </div>
 
                         <div>
@@ -122,7 +129,7 @@ function Payment_Details() {
                             
                                 <h6>Contractor ID</h6>
 
-                                <div>{contractordetails?.data.contractorId}</div>
+                                <div>{contractordetails?.contractorId}</div>
                                 
                             </div>
 
@@ -130,7 +137,7 @@ function Payment_Details() {
                             
                                 <h6>Phone Number</h6>
 
-                                <div>{contractordetails?.data.phoneNumber}</div>
+                                <div>{contractordetails?.phoneNumber}</div>
 
                             </div>
 
@@ -138,7 +145,7 @@ function Payment_Details() {
                             
                                 <h6>Email Address</h6>
 
-                                <div>{contractordetails?.data.mailAddress}</div>
+                                <div>{contractordetails?.mailAddress}</div>
 
                             </div>
 
@@ -151,7 +158,7 @@ function Payment_Details() {
                 <div className={paymentDetail.projectContentWrapper}>
 
                     <p>
-                        {data?.data.projectTitle}
+                        {data?.projectTitle}
                     </p>
                 
                     <div className={`${paymentDetail.projectContent}`}>
@@ -162,7 +169,7 @@ function Payment_Details() {
                             
                             <h6>Project Number</h6>
                 
-                            <div >{data?.data.projectReferenceNumber}</div>
+                            <div >{data?.projectReferenceNumber}</div>
                 
                         </div>
             
@@ -170,7 +177,7 @@ function Payment_Details() {
                             
                             <h6>Project Value</h6>
                             
-                            <div>{data?.data.projectValue? 'N' : ''}{data?.data.projectValue}</div>
+                            <div>{data?.projectValue? 'N' : ''}{data?.projectValue}</div>
                             
                 
                         </div>
@@ -184,85 +191,85 @@ function Payment_Details() {
                                 <div>
                                     {
                     
-                                    data?.data.imageValues.includes("imagea") && <img src={imagea} alt=""/> 
+                                    data?.imageValues.includes("imagea") && <img src={imagea} alt=""/> 
                     
                                     }
                                
                                     {
                                     
-                                    data?.data.imageValues.includes("imagec") && <img src={imagec} alt=""/>
+                                    data?.imageValues.includes("imagec") && <img src={imagec} alt=""/>
                                     
                                     }
                                
                                     {
                                     
-                                    data?.data.imageValues.includes("imaged") && <img src={imaged} alt=""/>
+                                    data?.imageValues.includes("imaged") && <img src={imaged} alt=""/>
                                     
                                     }
                                 
                                     {
                                     
-                                    data?.data.imageValues.includes("imagef") && <img src={imagef} alt=""/>
+                                    data?.imageValues.includes("imagef") && <img src={imagef} alt=""/>
                                     
                                     }
                                 
                                     {
                                     
-                                    data?.data.imageValues.includes("imageg") && <img src={imageg} alt=""/>
+                                    data?.imageValues.includes("imageg") && <img src={imageg} alt=""/>
                     
                                     }
                                 
                                     { 
                                     
-                                    data?.data.imageValues.includes("imageh") && <img src={imageh} alt=""/>
+                                    data?.imageValues.includes("imageh") && <img src={imageh} alt=""/>
                                     
                                     }
                                 
                                     { 
                                     
-                                    data?.data.imageValues.includes("imagei") && <img src={imagei} alt=""/>
+                                    data?.imageValues.includes("imagei") && <img src={imagei} alt=""/>
                                     
                                     }
                                 
                                     {
                     
-                                    data?.data.imageValues.includes("imagej") && <img src={imagej} alt=""/>
+                                    data?.imageValues.includes("imagej") && <img src={imagej} alt=""/>
                     
                                     }
                                    
                                     { 
                     
-                                    data?.data.imageValues.includes("imagek") && <img src={imagek} alt=""/>
+                                    data?.imageValues.includes("imagek") && <img src={imagek} alt=""/>
                     
                                     }
                                 
                                     { 
                     
-                                    data?.data.imageValues.includes("imagel") && <img src={imagel} alt=""/>
+                                    data?.imageValues.includes("imagel") && <img src={imagel} alt=""/>
                     
                                     }
                                 
                                     { 
                     
-                                    data?.data.imageValues.includes("imagem") && <img src={imagem} alt=""/>
+                                    data?.imageValues.includes("imagem") && <img src={imagem} alt=""/>
                     
                                     }
                                 
                                     { 
                     
-                                    data?.data.imageValues.includes("imagen") && <img src={imagen} alt=""/>
+                                    data?.imageValues.includes("imagen") && <img src={imagen} alt=""/>
                     
                                     }
                                 
                                     { 
                     
-                                    data?.data.imageValues.includes("imagep") && <img src={imagep} alt=""/>
+                                    data?.imageValues.includes("imagep") && <img src={imagep} alt=""/>
                     
                                     }
                                
                                     { 
                     
-                                    data?.data.imageValues.includes("imageq") && <img src={imageq} alt=""/>
+                                    data?.imageValues.includes("imageq") && <img src={imageq} alt=""/>
                     
                                     }
 
@@ -276,7 +283,7 @@ function Payment_Details() {
                             
                             <h6>Project Year</h6>
                 
-                            <div>{data?.data.projectYear}</div>
+                            <div>{data?.projectYear}</div>
                 
                         </div>
                 
@@ -284,7 +291,7 @@ function Payment_Details() {
                             
                             <h6>Geopolitical Zone</h6>
                 
-                            <div>{data?.data.geopoliticalZone}</div>
+                            <div>{data?.geopoliticalZone}</div>
                 
                         </div>
                 
@@ -292,7 +299,7 @@ function Payment_Details() {
                             
                             <h6>State</h6>
                 
-                            <div>{data?.data.state}</div>
+                            <div>{data?.state}</div>
                 
                         </div>
                 
@@ -300,7 +307,7 @@ function Payment_Details() {
                             
                             <h6>Local Government</h6>
                 
-                            <div>{data?.data.GPSLocation}</div>
+                            <div>{data?.GPSLocation}</div>
                 
                         </div>
                 
@@ -308,7 +315,7 @@ function Payment_Details() {
                             
                             <h6>Federal Consistuency</h6>
                 
-                            <div>{data?.data.federalConsistuency}</div>
+                            <div>{data?.federalConsistuency}</div>
                 
                         </div>
                 
@@ -316,7 +323,7 @@ function Payment_Details() {
                             
                             <h6>GPS Location</h6>
                 
-                            <div>{data?.data.GPSLocation}</div>
+                            <div>{data?.GPSLocation}</div>
                     
                         </div>
                     
@@ -324,7 +331,7 @@ function Payment_Details() {
                             
                             <h6>Project Type</h6>
                 
-                            <div>{data?.data.projectType}</div>
+                            <div>{data?.projectType}</div>
                 
                         </div>
             
@@ -332,7 +339,7 @@ function Payment_Details() {
                             
                             <h6>Project Sector</h6>
                 
-                            <div>{data?.data.projectSector}</div>
+                            <div>{data?.projectSector}</div>
                 
                         </div>
                         
@@ -359,7 +366,7 @@ function Payment_Details() {
                     </div>
 
                     {
-                        data?.data.mileStone.map((item,index) =>(
+                        data?.mileStone.map((item,index) =>(
 
                             <div key={index} className={paymentDetail.adviceDetailContent}>
 
@@ -372,7 +379,7 @@ function Payment_Details() {
                                     <div>{}</div>
 
                                     <div>{item.payment}</div>
-                                    <div>{data?.data.projectValue}</div>
+                                    <div>{data?.projectValue}</div>
 
                                 </div>
                                 

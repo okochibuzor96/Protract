@@ -261,7 +261,7 @@ function NewProjectLayout() {
 
         {
           projectsHeader.map((item,i) =>(
-            <div key={i} onClick={() => setCurrentPage(i)}> 
+            <div key={i}> 
 
               {item}
               

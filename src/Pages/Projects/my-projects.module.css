@@ -53,7 +53,8 @@ main> {
     font-size: 12px;
     background: #31609A; 
     border-radius: 8px;
-    font-weight: 600; 
+    font-weight: 600;
+    margin-bottom: 15px; 
     
 
 }
@@ -81,16 +82,17 @@ main> {
 
 .block70{
     
-    height: 60px;
+    height: 40px;
     color: #505050;
     font-size: 14px;
     background-color: #FFFFFF;
-    margin-bottom: 18px;
-    padding: 11px;
+    margin-bottom: 10px;
+    padding-left: 11px;
+    padding-right: 11px;
     border-radius: 8px;
     font-size: 14px; 
     font-weight: 400;
-    margin-top: 20px;
+    /* margin-top: 20px; */
 
 }
 
@@ -104,17 +106,14 @@ main> {
 }
 
 .pageScroll{
-    height: 50vh;
+    height: 53.6vh;
 }
 
 .verticalScroll{
-    height: 50vh;
-    overflow-y: scroll;
+    height: 40vh;
+    margin-bottom: 50px;
 }
 
-.verticalScroll::-webkit-scrollbar{
-    display: none;
-}
 
 .paginationContainer{
     display: flex;

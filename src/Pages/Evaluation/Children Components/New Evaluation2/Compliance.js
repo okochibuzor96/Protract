@@ -1,10 +1,17 @@
-// import {ComplianceData} from './ComplianceData'
 import {ErrorMessage, Field} from 'formik'
+import { useContext } from 'react'
 import { useLocation, useParams } from 'react-router-dom'
+import DataContext from '../../../Context API/Create_Context'
 import newEvaluation2 from '../../Styles/my-new_evaluation_2.module.css'
 import Texterror from './Field_Error-Component'
 
 function Compliance({data}) {
+
+    const {id} = useParams()
+
+    const {evaluation} = useContext(DataContext)
+
+    const data2 = evaluation.find((evaluation)=> evaluation.id === parseInt(id))
 
     const ComplianceData = [
         {
@@ -46,7 +53,7 @@ function Compliance({data}) {
     ]
 
     const location = useLocation()
-    const {id} = useParams()
+   
 
   return (
     <div className={newEvaluation2.formContainer}>
@@ -84,9 +91,9 @@ function Compliance({data}) {
                                     location.pathname === `/evaluation/evaluation-details/${id}`?
                                     <>
                                         {
-                                        data?.data[`CRinput${i+1}`] === 'selected'?
+                                        data2[`CRinput${i+1}`] === 'selected'?
                                         <span className={newEvaluation2.yesDiv}>Yes</span>:
-                                        data?.data[`CRinput${i+1}`] === 'deselected'?
+                                        data2[`CRinput${i+1}`] === 'deselected'?
                                         <span className={newEvaluation2.noDiv}>No</span>:""
                                         }
                                       
@@ -104,14 +111,6 @@ function Compliance({data}) {
                                 }
                             }
                             </Field>
-
-                            {/* <Field name={`CRinputB${i}`}>
-                            {
-                                ()=>{
-                                return 
-                                }
-                            }
-                            </Field> */}
 
                         </div>
                     </main>

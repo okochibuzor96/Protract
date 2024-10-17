@@ -1,26 +1,44 @@
 import { HiOutlineTrash } from "react-icons/hi2";
 import settings from '../../Styles/my-settings.module.css'
+import {useMutation,useQueryClient} from 'react-query'
+import CRUDfunc from "../../../hooks/useQuery/useProject";
+import DataContext from "../../../Context API/Create_Context";
+import { useContext, useEffect } from "react";
 
-function Delete_Question_Modal() {
+function Delete_Question_Modal({children,Id}) {
+
+    const {questions, setQuestions} = useContext(DataContext)
+
+    useEffect(()=>{
+        localStorage.setItem("questions", JSON.stringify(questions))
+    },[questions])
+
+    const handleDelete = ()=>{
+
+        const newItem = questions.filter((item)=> item.id !== parseInt(Id))
+        setQuestions(newItem)
+    }
+
+    const queryClient = useQueryClient()
+
+    // const {mutate} = useMutation((Id)=>CRUDfunc.delete(`questions/${Id}`),{
+    //     onSuccess: ()=>{
+    //     queryClient.invalidateQueries('questions')
+    //  }
+    // })
 
   return (
 
     <>
 
-        <tr 
+        <div 
             type="button"  
             data-bs-toggle="modal" 
             data-bs-target="#staticBackdrop3" 
             className={settings.deleteIcon}
         >
-            <td>
-
-            <HiOutlineTrash 
-                size={16} 
-            />
-
-            </td>
-        </tr>
+          {children}
+        </div>
 
        
 
@@ -55,7 +73,12 @@ function Delete_Question_Modal() {
                     
                     <div className="d-flex justify-content-center mb-5">
                         
-                        <button type="button" className={`${settings.addButton} btn btn-primary text-white  me-3`}
+                        <button 
+                            type="button" 
+                            className={`${settings.addButton} btn btn-primary text-white  me-3`}
+                            data-bs-dismiss="modal"
+                            onClick={handleDelete}
+                            // onClick={()=>mutate(Id)}
                         >
                             Delete
                         </button>
