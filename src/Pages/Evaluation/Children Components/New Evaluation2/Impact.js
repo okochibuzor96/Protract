@@ -4,8 +4,10 @@ import {useLocation, useParams} from 'react-router-dom'
 import Field_Error_Component from './Field_Error-Component'
 
 function Impact({data}) {
+
     const location = useLocation()
     const {id} = useParams()
+
   return (
     <div className={newEvaluation2.formContainer}>
 
@@ -30,7 +32,7 @@ function Impact({data}) {
                             <>
                             {
                                 location.pathname === `/evaluation/evaluation-details/${id}`?
-                                <span className={newEvaluation2.fieldDetalValue}>{data?.data.NJC}</span>:
+                                <span className={newEvaluation2.fieldDetalValue}>{data?.NJC}</span>:
                                 <div><input {...field} type='number'  placeholder='Enter Number'/></div>
                             }
                             </>
@@ -60,7 +62,7 @@ function Impact({data}) {
                             <>
                                 {
                                     location.pathname === `/evaluation/evaluation-details/${id}`?
-                                    <span className={newEvaluation2.fieldDetalValue}>{data?.data.NPR}</span>:
+                                    <span >{data?.NPR}</span>:
                                     <div><input {...field} type='number'  placeholder='Enter Number'/></div>
                                 }
                             </>

@@ -10,6 +10,9 @@ import Impact from './Impact'
 import Compliance from './Compliance'
 import Contractor_Info from './Contractor_Info'
 import Project_Info from './Project_Info'
+import DataContext from '../../../Context API/Create_Context'
+import { useContext } from 'react'
+import { useNavigate } from 'react-router-dom'
 
 
 function New_Evaluation_2(props) {
@@ -62,40 +65,40 @@ function New_Evaluation_2(props) {
      
   }
   
-  const {mutate} = useMutation(postEvaluationDetails)
+  // const {mutate} = useMutation(postEvaluationDetails)
 
-  const queryClient = useQueryClient()
+  // const queryClient = useQueryClient()
 
-  const {data:project} = useQuery(['searchdetails', Idvalue], getProjectDetails,{
-    initialData: () => {
+  // const {data:project} = useQuery(['searchdetails', Idvalue], getProjectDetails,{
+  //   initialData: () => {
       
-      const details = queryClient.getQueryData('searchProject')?.data?.find((project) => project.id === parseInt(Idvalue))
+  //     const details = queryClient.getQueryData('searchProject')?.data?.find((project) => project.id === parseInt(Idvalue))
 
-      if(details){
-        return{
-          data:details
-        }
-      }else{
-        return undefined
-      }
-    }
-  })
+  //     if(details){
+  //       return{
+  //         data:details
+  //       }
+  //     }else{
+  //       return undefined
+  //     }
+  //   }
+  // })
 
-  const {data:contractordetails} = useQuery(["contractorPaymentInfo",Idvalue2], getContractorDetails,{
-    initialData: () =>{
+  // const {data:contractordetails} = useQuery(["contractorPaymentInfo",Idvalue2], getContractorDetails,{
+  //   initialData: () =>{
 
-      const details = queryClient.getQueryData('searchContractor')?.data?.find((project) => project.id === parseInt(Idvalue2))
+  //     const details = queryClient.getQueryData('searchContractor')?.data?.find((project) => project.id === parseInt(Idvalue2))
 
-      if(details){
-        return{
-          data:details
-        }
-      }else{
-        return undefined
-      }
+  //     if(details){
+  //       return{
+  //         data:details
+  //       }
+  //     }else{
+  //       return undefined
+  //     }
 
-    }
-  })
+  //   }
+  // })
 
   const validationSchema = Yup.object({
     PRinput1:Yup.string().required('This field is required'),
@@ -133,6 +136,14 @@ function New_Evaluation_2(props) {
     FGtotal2:Yup.number().required('This field is required')
   })
 
+  const {evaluation, setEvaluation,projects} = useContext(DataContext)
+
+  const navigate = useNavigate()
+
+  const id = evaluation.length? evaluation[evaluation.length-1].id + 1 : 1
+
+  const data = projects.find((project)=> project.id === parseInt(Idvalue))
+
   const onSubmit = (values) =>{
     // Next(values)
    
@@ -144,13 +155,24 @@ function New_Evaluation_2(props) {
 
     payload.projectFormId = Idvalue
     payload.contractorFormId = Idvalue2
-    payload.projectNo = projectNo
-    payload.SDGSector = projectSector
+    payload.projectReferenceNumber = projectNo
+    payload.projectSector = projectSector
     payload.contractorFormValue = filterValue2
     payload.projectFormValue = filterValue
+    payload.id = id
 
-    console.log('pr',payload)
-    return mutate(payload)
+    const newValue = [...evaluation,payload]
+
+    setEvaluation(newValue)
+
+    localStorage.setItem('evaluation', JSON.stringify(newValue))
+
+
+    // console.log('pr',payload)
+    // return mutate(payload)
+
+    navigate('/evaluation')
+
   }
   return (
 
@@ -168,7 +190,7 @@ function New_Evaluation_2(props) {
 
                 <header>
 
-                  <div>{project?.data.projectReferenceNumber}</div>
+                  <div>{data.projectReferenceNumber}</div>
 
                   <div>
 
@@ -182,26 +204,32 @@ function New_Evaluation_2(props) {
 
                 <div className={ newEvaluation2. newEvaluation2Wrapper}>
 
+                  <div>
+
                   
-                  <Contractor_Info
-                  contractordetails={contractordetails}
-                  />
+                    <Contractor_Info
+                      // contractordetails={contractordetails}
+                      contractorFormId={Idvalue2}
+                    />
 
-                  <Project_Info
-                  project={project}
-                  />
+                    <Project_Info
+                      // project={project}
+                      projectFormId={Idvalue}
+                    />
 
-                  <Project_Attributes
-                   fieldValue
-                  />
+                    <Project_Attributes
+                    
+                    />
 
-                  <Compliance/>
-                   
-                  <Impact/>
+                    <Compliance/>
+                    
+                    <Impact/>
 
-                  <NinputType_PC/>
+                    {/* <NinputType_PC/> */}
 
-                  <Facilities/>
+                    <Facilities/>
+
+                  </div>
 
                 </div>
 

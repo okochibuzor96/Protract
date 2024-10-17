@@ -7,8 +7,9 @@ import * as yup from 'yup'
 
 import {useQuery,useQueryClient} from 'react-query'
 import {getProjects,getContractors} from '../../../hooks/useQuery/useProject'
-import { useState, useRef } from "react";
+import { useState, useRef, useContext } from "react";
 import { useNavigate } from "react-router-dom";
+import DataContext from "../../../Context API/Create_Context";
 
 function New_Evaluation_1(props) {
 
@@ -37,15 +38,18 @@ function New_Evaluation_1(props) {
         id:""
     }]
 
-    const {data} = useQuery(
-        'searchProject',
-        getProjects
-    )
+    
+    const {contractors:Contractor,projects:data} = useContext(DataContext)
 
-    const {data:Contractor} = useQuery(
-        'searchContractor',
-        getContractors
-    )
+    // const {data} = useQuery(
+    //     'searchProject',
+    //     getProjects
+    // )
+
+    // const {data:Contractor} = useQuery(
+    //     'searchContractor',
+    //     getContractors
+    // )
 
     const handleChange = (e) =>{
         setInputValue(e.target.value)
@@ -88,20 +92,7 @@ function New_Evaluation_1(props) {
 
     const onSubmit = (value) =>{
 
-         Next(value)
-
-    //    const payload = {
-    //    }
-
-      
-    //    payload.projectFormId = Idvalue
-    //    payload.contractorFormId = Idvalue2
-    //    payload.projectNo = projectNo
-    //    payload.SDGSector = projectSector
-    //    payload.evluator = filterValue2
-    //    payload.projectTitle = filterValue
-
-    //    return setFormValues(payload)
+        Next(value)
     }
 
     const validationSchema = yup.object({
@@ -164,22 +155,25 @@ function New_Evaluation_1(props) {
 
                                                     <div className={newEvaluation.absolutePosition}> 
 
-                                                    <div className={inputValue? newEvaluation.absolutePosition2:newEvaluation.hideAbsolutePosition2 }>            
-                
-                                                        {
-                                                            data?.data.filter((value) =>{
-                                                            const Value = value.projectTitle.toLowerCase();
-                                                            const InputValue = inputValue.toLowerCase()
-                
-                                                            return InputValue && Value.includes(InputValue) && Value !== filterValue
-                                                            }).map((item,i) =>{
-                
-                                                                return <div  key={i} onClick={()=>searchItem(item)}>{item.projectTitle}</div>
-                                                                
-                                                            })
-                                                        }
-                
-                                                    </div>              
+                                                        <div className={inputValue? newEvaluation.absolutePosition2:newEvaluation.hideAbsolutePosition2 }>            
+                                                            
+                                                            <div>
+                                                                {
+                                                                    data?.filter((value) =>{
+                                                                    const Value = value.projectTitle.toLowerCase();
+                                                                    const InputValue = inputValue.toLowerCase()
+                        
+                                                                    return InputValue && Value.includes(InputValue) && Value !== filterValue
+                                                                    }).map((item,i) =>{
+                        
+                                                                        return <div  key={i} onClick={()=>searchItem(item)}>{item.projectTitle}</div>
+                                                                        
+                                                                    })
+                                                                }
+
+                                                            </div>
+                    
+                                                        </div>              
                 
                                                     </div>
 
@@ -225,21 +219,25 @@ function New_Evaluation_1(props) {
 
                                                     <div className={newEvaluation.absolutePosition}> 
 
-                                                    <div className={inputValue2?newEvaluation.absolutePosition2:newEvaluation.hideAbsolutePosition2}>            
+                                                    <div className={inputValue2?newEvaluation.absolutePosition2:newEvaluation.hideAbsolutePosition2}>   
 
-                                                        {
-                                                            Contractor?.data.filter((value) =>{
-                                                            const Value = value.companyName.toLowerCase();
-                                                            
-                                                            const InputValue = inputValue2.toLowerCase()
+                                                        <div>        
 
-                                                            return InputValue && Value.includes(InputValue) && Value !== InputValue
-                                                            }).map((item,i) =>{
-
-                                                                return <div  key={i} onClick={()=>searchItem2(item)}>{item.companyName}</div>
+                                                            {
+                                                                Contractor?.filter((value) =>{
+                                                                const Value = value.companyName.toLowerCase();
                                                                 
-                                                            })
-                                                        }
+                                                                const InputValue = inputValue2.toLowerCase()
+
+                                                                return InputValue && Value.includes(InputValue) && Value !== InputValue
+                                                                }).map((item,i) =>{
+
+                                                                    return <div  key={i} onClick={()=>searchItem2(item)}>{item.companyName}</div>
+                                                                    
+                                                                })
+                                                            }
+
+                                                        </div> 
 
                                                     </div> 
 

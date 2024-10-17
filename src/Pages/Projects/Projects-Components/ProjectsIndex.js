@@ -8,19 +8,35 @@ import NewProjectButton from "../New_Project/NewProjectButton"
 /*style module */
 import project from '../my-projects.module.css'
 
+
 /*react icons */
 import { IoMdArrowDropdown } from "react-icons/io";
 
 import contractor from '../../../styles/my-contractors.module.css'
-
+import {useQuery} from 'react-query'
+import {getProjects} from '../../hooks/useQuery/useProject'
 import {useNavigate} from 'react-router-dom'
-
+import {useContext, useState} from 'react'
+import Pagination from "../../../Components/Pagination/Pagination"
+import DataContext from "../../Context API/Create_Context"
 
 
 function ProjectIndex() {
+    const {projects} = useContext(DataContext)
+
+    const [page,setPage] = useState(1)
+
+    const [limit,setLimit] = useState(6)
+
     const navigate = useNavigate();
+
+    // const {data,isLoading} = useQuery('project', getProjects)
+
+    const totalPage = projects && Math.ceil(projects.length/limit)
+
   return (
-    <main>
+    
+    <div className={project.projectIndexContainer}>
 
         <div className={contractor.block54}> 
 
@@ -65,29 +81,38 @@ function ProjectIndex() {
                 </div>
 
             </div>
+
             <div>
              <DataHeader/>
             </div>
 
             <div className={project.pageScroll}>
 
-                <div className={project.verticalScroll}>
+                <div className={`${project.verticalScroll}`}>
 
-                    <ProjectData/>
+                    <ProjectData
+                        page={page}
+                        limit={limit}
+                        // data={data}
+                    />
 
-                    <div className={project.paginationContainer}></div>
                 </div>
+
+                {
+                    (totalPage > 1) && <Pagination
+                        totalPage={totalPage}
+                        page={page}
+                        setPage={setPage}
+                        siblings={1}
+                    />
+                }
+
+
             </div>
 
         </div>
 
-        
-
-        <div>
-
-        </div>
-
-    </main>
+    </div>
   )
 }
 

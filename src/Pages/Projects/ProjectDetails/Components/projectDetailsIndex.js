@@ -1,5 +1,5 @@
 import { Outlet,useNavigate, useParams } from "react-router-dom"
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import image from '../../../../Images/view-profile.svg'
 import { BsArrowLeftShort } from 'react-icons/bs';
 import {getContractorDetails, getProjectDetails,getProjectDetails2} from '../../../hooks/useQuery/useProject'
@@ -12,28 +12,33 @@ import Details from './Details'
 import Issues from './Issues'
 import Milestone from './Milestone'
 import {useQuery,useQueryClient} from 'react-query'
+import DataContext from "../../../Context API/Create_Context";
 
 function ProjectDetailsIndex() {
+
+  const {projects} = useContext(DataContext)
 
   const navigate = useNavigate();
   const {id} = useParams()
 
-  const queryClient = useQueryClient()
+  const data = projects.find((item)=> item.id === parseInt(id))
 
-  const {data} = useQuery(['details', id], getProjectDetails,{
-    initialData: () => {
+  // const queryClient = useQueryClient()
+
+  // const {data} = useQuery(['details', id], getProjectDetails,{
+  //   initialData: () => {
       
-      const details = queryClient.getQueriesData('project')?.data?.find((project) => project.id === parseInt(id))
+  //     const details = queryClient.getQueriesData('project')?.data?.find((project) => project.id === parseInt(id))
 
-      if(details){
-        return{
-          data:details
-        }
-      }else{
-        return undefined
-      }
-    }
-  })
+  //     if(details){
+  //       return{
+  //         data:details
+  //       }
+  //     }else{
+  //       return undefined
+  //     }
+  //   }
+  // })
  
   const {data:contractorImg, isLoading} = useQuery(['contractorImg', 5083], getContractorDetails)
 
@@ -110,17 +115,17 @@ function ProjectDetailsIndex() {
 
   const displayDetail = [
     <Details
-    data={data}
+    // data={data}
     />,
     <Milestone/>,
     <Attachment
-    data={data}
+    // data={data}
     />,
     <Issues/>
   ]
 
   return (
-    <div>
+    <div className={project.ProjectDetailsIndexContainer}>
 
       <div className={project.headerDiv}>
 
@@ -134,7 +139,7 @@ function ProjectDetailsIndex() {
             </p>
 
             <h6>
-            Strenthening governance of the Niger Delta <br/> biodiversity resources
+            Strenthening governance of the Niger Delta biodiversity resources
             </h6>
           </div>
 
@@ -161,15 +166,15 @@ function ProjectDetailsIndex() {
       <div className={project.contentWrapper}>
 
         <div className={project.profileImageWrapper}>
-          <img src={contractorImg?.data?contractorImg?.data?.avarta:image} />
+          <img src={image} />
 
           <h6>
             {
-              data?.data.contractor
+              data?.contractor
             }
           </h6>
 
-          <button onClick={()=>navigate('/contractors/contractor_details/5083')}>View Profile</button>
+          <button onClick={()=>navigate(`/contractors/contractor_details/${id}`)}>View Profile</button>
 
         </div>
         
@@ -191,11 +196,12 @@ function ProjectDetailsIndex() {
             {displayDetail[currentDetail]} 
             
           </div>
-          {/* <div><Outlet/> </div> */}
+          
 
         </div>
         
       </div>
+      
     </div>
   )
 }

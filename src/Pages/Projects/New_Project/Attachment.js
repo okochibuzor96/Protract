@@ -1,10 +1,11 @@
 import {Formik,Form,Field,FieldArray} from 'formik'
 import { useLocation } from 'react-router-dom';
 import { BsFileEarmarkPlus } from "react-icons/bs";
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 
 import project from './my-NewProject.module.css';
 import Doc from '../../../Components/Add Document/Doc';
+import DataContext from '../../Context API/Create_Context';
 
 function New_Project5({handlePrev,handleNext,fieldValues,data,editMutate,id,docInitValue,deleteMutate}) {
 
@@ -58,59 +59,76 @@ function New_Project5({handlePrev,handleNext,fieldValues,data,editMutate,id,docI
     return initials;
   };
 
+  const {projects,setProjects} = useContext(DataContext)
+
+  const data2 = projects.find((item)=> item.id === parseInt(id))
+
   const onSubmit = (value) =>{
+
     handleNext(value)
-   console.log('Form value', value)
-    return editMutate(value)
+
+    //   return editMutate(value)
+
+  if(location.pathname === `/projects/project-details/${id}/edit-project`){
+
+    setProjects((prev)=> prev.map((item)=> item.id === parseInt(id)?
+     {
+        ...item,
+        mileStone:[...value.mileStone]
+      }:item
+    )
+    )
+}
   }
 
   return (
-    <Formik
-      initialValues={location.pathname === `/projects/project-details/${id}/edit-project`?data?.data||fieldValues:fieldValues}
-      enableReinitialize={true}
-      onSubmit={onSubmit}
-    >
-      {
-        ({values,setFieldValue}) => {
-          console.log('att',values)
-          return(
-            <Form className={project.attachmentContainer}>
+    <div className={project.attachmentContainer}>
+      <Formik
+        initialValues={location.pathname === `/projects/project-details/${id}/edit-project`? data2||fieldValues:fieldValues}
+        enableReinitialize={true}
+        onSubmit={onSubmit}
+      >
+        {
+          ({values,setFieldValue}) => {
 
-              <div className={project.NewProjectLayoutContent}>
+            return(
+              <Form className={project.NewProjectLayoutContent}>
 
-               
+                <div >
+                    
+                  <Doc
+                  values={values}
+                  setFieldValue={setFieldValue}
+                  fileContainerClassName={project.fileContainer}
+                  fileWrapperClassName={project.fileWrapper}
+                  addButtonClassName={project.FileEarmarkWrapper}
+                  editMutate={editMutate}
+                  docInitValue={docInitValue}
+                  deleteMutate={deleteMutate}
+                  data={data}
+                  />
 
-                <Doc
-                values={values}
-                setFieldValue={setFieldValue}
-                fileContainerClassName={project.fileContainer}
-                fileWrapperClassName={project.fileWrapper}
-                addButtonClassName={project.FileEarmarkWrapper}
-                editMutate={editMutate}
-                docInitValue={docInitValue}
-                deleteMutate={deleteMutate}
-                data={data}
-                />
+                  <div className={`${project.stepOverLay}`}></div>
 
-                <div className={`${project.stepOverLay}`}></div>
+                  <div className={`d-flex justify-content-between align-items-center px-4 ${project.stepButtonWrapper}`}>
+                    <button className={`rounded-1 ${project.prevButton}`} onClick={handlePrev} type='button'>Previous</button>
+                    <button type='submit' className={`rounded-1 text-center ${project.nextButton}`} >Next</button>
+                  </div>
 
-                
-
-                <div className={`d-flex justify-content-between align-items-center px-4 ${project.stepButtonWrapper}`}>
-                  <button className={`rounded-1 ${project.prevButton}`} onClick={handlePrev} type='button'>Previous</button>
-                  <button type='submit' className={`rounded-1 text-center ${project.nextButton}`} >Next</button>
                 </div>
 
-              </div>
-
-            </Form>
-          )
+              </Form>
+            )
+          }
         }
-      }
-     
-            
+      
+              
 
-    </Formik>
+      </Formik>
+
+      
+
+    </div>
 
   )
 }

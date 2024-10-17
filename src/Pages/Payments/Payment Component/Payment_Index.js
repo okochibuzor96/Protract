@@ -2,29 +2,46 @@
 import Payment_Data from "./Payment_Data"
 
 import NewProjectButton from "../../Projects/New_Project/NewProjectButton"
+import Pagination from "../../../Components/Pagination/Pagination"
 
 /*style module */
 import project from '../../Projects/my-projects.module.css'
 import contractor from '../../../styles/my-contractors.module.css'
 import paymentDetail from '../Payment_CSS_folder/my-paymentDetails.module.css'
+import {useQuery} from 'react-query'
 
 /*react icons */
 import { IoMdArrowDropdown } from "react-icons/io";
 import { TbCaretUpDownFilled } from "react-icons/tb";
 
 import {useNavigate} from 'react-router-dom'
+import { useContext, useState } from "react"
+import CRUDfunc from "../../hooks/useQuery/useProject"
+import DataContext from "../../Context API/Create_Context"
 
 function ProjectIndex() {
+
+    // const {data, isLoading} = useQuery('payment',()=> CRUDfunc.get('projects'))
+
+    const {projects} = useContext(DataContext)
+
+    
+   const [page, setPage] = useState(1)
+   const [limit, setLimit] = useState(6)
+
+   const totalPage = projects && Math.ceil(projects.length/limit)
+
+//    const totalPage = data?.data && Math.ceil(data?.data.length/limit)
+
     const navigate = useNavigate();
+
+    // if(isLoading) <div>...loading</div>
+
   return (
     <main>
 
-        <div className={contractor.block54}> 
-        Payments Advice
-            {/* <div class={contractor.block55}>
-              Payments Advice
-            </div> */}
-
+        <div className={paymentDetail.pageTitle}> 
+            Payments Advice
         </div>
 
         <div>
@@ -58,6 +75,7 @@ function ProjectIndex() {
                 </div>
 
             </div>
+            
             <div className={project.DataHeader}>
 
                 <div>
@@ -90,21 +108,30 @@ function ProjectIndex() {
 
             </div>
 
-            <div className={project.pageScroll}>
+            <div className={`${paymentDetail.tableWrapper}`}>
 
-                <div className={project.verticalScroll}>
+                <div>
 
-                    <Payment_Data/>
+                    <Payment_Data
+                    page={page}
+                    // data={data}
+                    limit={limit}
+                    />
 
-                    {/* <div className={project.paginationContainer}><PagePagination/></div> */}
                 </div>
+
+                {  
+                
+                    <Pagination
+                        totalPage={totalPage}
+                        page={page}
+                        setPage={setPage}
+                        siblings={1}
+                    />
+                }
+
+                
             </div>
-
-        </div>
-
-        
-
-        <div>
 
         </div>
 

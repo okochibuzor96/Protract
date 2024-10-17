@@ -3,9 +3,22 @@ import { HiOutlineTrash } from "react-icons/hi2";
 import { useMutation,useQueryClient } from 'react-query';
 import CRUDfunc from '../../../hooks/useQuery/useProject';
 import {useMutaion} from 'react-query'
-import { Children } from 'react';
+import { useContext, useEffect } from 'react';
+import DataContext from '../../../Context API/Create_Context';
 
 function Delete_Modal({Id, children,data}) {
+
+    const {category,setCategory}= useContext(DataContext)
+
+    useEffect(()=>{
+        localStorage.setItem('category', JSON.stringify(category))
+    },[category])
+
+    const handleDele = ()=>{
+        
+        const deleteItem = category.filter((value)=>value.id !== parseInt(Id))
+        setCategory(deleteItem)
+    }
 
     const queryClient = useQueryClient()
 
@@ -68,7 +81,8 @@ console.log('de',Id)
                             type="button" 
                             className={`${settings.addButton} btn btn-primary text-white  me-3`}
                             data-bs-dismiss="modal"
-                            onClick={()=>mutate(Id)}
+                            onClick={handleDele}
+                            // onClick={()=>mutate(Id)}
                         >
                             Delete
                         </button>

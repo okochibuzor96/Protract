@@ -2,13 +2,14 @@ import userDetails from '../../Users_Style_Folder/my-userDetails.module.css'
 import addUser from '../../Users_Style_Folder/my-addUser.module.css'
 import contractor from '../../../../styles/my-contractors.module.css';
 import detailAvatar from '../../../../Images/userMainIcon.png'
-import {useRef, useState} from 'react'
+import {useContext, useRef, useState} from 'react'
 
 import { BsArrowLeftShort } from "react-icons/bs";
 import { useNavigate } from 'react-router-dom';
 import {Formik, Form, Field} from 'formik'
 import CRUDfunc from '../../../hooks/useQuery/useProject';
 import {useMutation} from 'react-query'
+import DataContext from '../../../Context API/Create_Context';
 
 function AddUser() {
 
@@ -16,7 +17,9 @@ function AddUser() {
     const [image, setImage] = useState('')
     const navigate = useNavigate()
 
-    const {mutate} = useMutation((payload)=>CRUDfunc.create(`users`,payload))
+    // const {mutate} = useMutation((payload)=>CRUDfunc.create(`users`,payload))
+
+    const {users,setUsers} = useContext(DataContext)
 
     const handleRef = () => {
         return inputRef.current.click()
@@ -51,19 +54,34 @@ function AddUser() {
         profileImg:''
     }
 
-
     const onSubmit = (value)=>{
-console.log('user',value)
-        const payload ={
+
+        const Id = users.length? (users[users.length-1].id) + 1 : 1
+
+        // const payload ={
+        //     ...value,
+        //     profileImg:''
+        // }
+
+        // payload.profileImg = image
+
+        // return mutate(payload)
+
+        const payload = {
             ...value,
-            profileImg:''
+            id:Id,
+            userId: "002",
+            userStatus: "InActive"
         }
 
-        payload.profileImg = image
+        const newValue = [...users,payload]
+        setUsers(newValue)
+        localStorage.setItem('users', JSON.stringify(newValue))
 
-        alert('sumbitted')
+       
 
-        return mutate(payload)
+        navigate('/users')
+
 
     }
 
@@ -78,7 +96,7 @@ console.log('user',value)
                 console.log('userV',values)
                 return(
                     <Form>
-                        <div>
+                        <div className={addUser.addUserContainer}>
 
                             <div className={userDetails.hWrappper}>
 
@@ -100,11 +118,11 @@ console.log('user',value)
                                         
                                 </div>
 
-                                <div className={`${addUser.btnWrapper}`}>
+                                <div className={addUser.btnWrapper}>
 
                                     <button>Cancel</button>
 
-                                    <button onClick={handleAddUser} type='submit'>
+                                    <button type='submit'>
                                         Add User
                                     </button>
                                     
@@ -125,10 +143,7 @@ console.log('user',value)
 
                                     <button type='button' onClick={handleRef}>Change Picture</button>
                                 
-
                                 </div>
-                            
-                            
 
                                 <div className={addUser.fieldWrapper}>
 
@@ -272,6 +287,7 @@ console.log('user',value)
                                 </div>
 
                             </div>
+
                         </div>
                     </Form>
                 )

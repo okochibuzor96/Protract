@@ -26,34 +26,34 @@ function Edit_ProjectLayout() {
   const {id} = useParams()
   const navigate = useNavigate()
 
-  const queryClient = useQueryClient()
+  // const queryClient = useQueryClient()
 
   
 
-  const {data,isLoading} = useQuery(['editProject', id],getProjectDetails,{
-    initialData: () =>{
-      const editValue = queryClient.getQueryData('project')?.data?.find((value) => value.id === parseInt(id))
+  // const {data,isLoading} = useQuery(['editProject', id],getProjectDetails,{
+  //   initialData: () =>{
+  //     const editValue = queryClient.getQueryData('project')?.data?.find((value) => value.id === parseInt(id))
 
-      if(editValue){
-        return{data:editValue}
-      }else{
-        return undefined
-      }
-    }
-  })
+  //     if(editValue){
+  //       return{data:editValue}
+  //     }else{
+  //       return undefined
+  //     }
+  //   }
+  // })
  
 
-  const {mutate:editMutate} = useMutation(updateProjectDetails,{
-    onSuccess: () =>{
-      queryClient.invalidateQueries('editProject')
-    }
-  })
+  // const {mutate:editMutate} = useMutation(updateProjectDetails,{
+  //   onSuccess: () =>{
+  //     queryClient.invalidateQueries('editProject')
+  //   }
+  // })
 
-  const {mutate:deleteMutate} = useMutation((value)=>CRUDfunc.update(`projects/${id}`,value),{
-    onSuccess: () =>{
-      queryClient.invalidateQueries('editProject')
-    }
-  })
+  // const {mutate:deleteMutate} = useMutation((value)=>CRUDfunc.update(`projects/${id}`,value),{
+  //   onSuccess: () =>{
+  //     queryClient.invalidateQueries('editProject')
+  //   }
+  // })
 
   const mileStoneInitialValues ={
     title:'',
@@ -83,7 +83,7 @@ function Edit_ProjectLayout() {
     GPSLocation:'',
     beneficiaryCommunities:'',
     projectYear:'',
-    imageValues:[],
+    imageValues:[''],
     mileStone:[mileStoneInitialValues],
     projectContractor:'',
     location:[locationInitialValues],
@@ -219,55 +219,55 @@ function Edit_ProjectLayout() {
     
   const displayPage = [
     <Details
-      data={data}
+      // data={data}
       handleNext={ handleNext}
       handlePrev={handlePrev}
-      editMutate={editMutate}
+      // editMutate={editMutate}
       id={id}
     />,
     <Contractor
-      data={data}
+      // data={data}
       handleNext={ handleNext}
       handlePrev={handlePrev}
-      editMutate={editMutate}
+      // editMutate={editMutate}
       id={id}
     />,
     <SDGGoals
-      data={data}
+      // data={data}
       handleNext={ handleNext}
       handlePrev={handlePrev}
-      editMutate={editMutate}
+      // editMutate={editMutate}
       id={id}
     />,
     <Location
-      data={data}
+      // data={data}
       handleNext={ handleNext}
      handlePrev={handlePrev}
-     editMutate={editMutate}
+    //  editMutate={editMutate}
      id={id}
     />,
     <Attachment
-    data={data}
+    // data={data}
       handleNext={ handleNext}
      handlePrev={handlePrev}
-     editMutate={editMutate}
+    //  editMutate={editMutate}
      id={id}
     //  deleteMutate={deleteMutate}
     />,
     <Milestones
-      data={data}
+      // data={data}
       handleNext={ handleNext}
       handlePrev={handlePrev}
-      editMutate={editMutate}
+      // editMutate={editMutate}
       id={id}
     />
   ]
 
   
   
-  if(isLoading){
-    return <div>...loading</div>
-  }
+  // if(isLoading){
+  //   return <div>...loading</div>
+  // }
   
   return(
     <div className={Newproject.NewProjectLayout}>
@@ -303,11 +303,11 @@ function Edit_ProjectLayout() {
 
       <hr/>
 
-      <header style={{display:'flex'}}>
+      <header>
 
         {
           projectsHeader.map((item,i) =>(
-            <div key={i} onClick={() => setCurrentPage(i)}> 
+            <div key={i}> 
 
               {item}
               

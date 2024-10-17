@@ -1,6 +1,7 @@
 import {Field} from 'formik'
 import newEvaluation2 from '../../Styles/my-new_evaluation_2.module.css'
 import {useLocation, useParams} from 'react-router-dom'
+import React from 'react'
 
 function NinputType_PC({data}) {
 
@@ -19,7 +20,7 @@ function NinputType_PC({data}) {
         {
           [1,2,3,4].map((item) =>(
 
-            <div key={item}>
+            <React.Fragment key={item}>
               {
                 item === 1? <div>Total Number of Students/clients</div> :
                 item === 2? <div>Total Number of Teachers in School/Health Workers in PHC/Others</div>:
@@ -36,15 +37,15 @@ function NinputType_PC({data}) {
                       return(
                         <div>
                           {
-                            item === 1 || item === 2? <label>Before</label>: ""
+                            <label>Before</label>
                           }
 
                 
                           {
                             location.pathname === `/evaluation/evaluation-details/${id}`?
-                            <span>{data?.data[`TNSbefore${item}`]}</span>:
+                            <span>{data[`TNSbefore${item}`]}</span>:
                             <div>
-                                <input type='number' placeholder='0' {...field}/>
+                              <input type='number' placeholder='0' {...field}/>
                             </div>
                           }
                                     
@@ -62,12 +63,12 @@ function NinputType_PC({data}) {
                         <div>
 
                           {   
-                            item === 1 || item === 2?  <label>After</label>: ""
+                            <label>After</label>
                           }
 
                           {
                             location.pathname === `/evaluation/evaluation-details/${id}`?
-                            <span className={newEvaluation2.fieldDetalValue}>{data?.data[`TNSafter${item}`]}</span>:
+                            <span className={newEvaluation2.fieldDetalValue}>{data[`TNSafter${item}`]}</span>:
                             <div
 
                             >
@@ -84,7 +85,7 @@ function NinputType_PC({data}) {
 
               </div>
 
-            </div>
+            </React.Fragment>
 
           ))
         }

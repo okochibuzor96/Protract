@@ -6,31 +6,37 @@ import Delete_Question_Modal from './Delete_Question_Modal';
 import { useQuery, useQueryClient } from 'react-query';
 import CRUDfunc from '../../../hooks/useQuery/useProject';
 import { LuPencil } from "react-icons/lu";
-import { useState } from 'react';
+import { useContext, useState } from 'react';
+import { HiOutlineTrash } from "react-icons/hi2";
+import DataContext from '../../../Context API/Create_Context';
+import { IoChevronBackOutline } from "react-icons/io5";
+import { IoChevronForward } from "react-icons/io5";
 
 // import Delete from './Delete_Modal'
 // import Edit from './Edit_Modal';
 
-function Attribute_Question() {
+function Attribute_Question({setPage, page}) {
+
+    const {questions, setQuestions} = useContext(DataContext)
 
     const [Id, setId] = useState('')
     const [showInitialValue, setShowInitialValue] = useState(true)
 
-    const queryClient = useQueryClient()
+    // const queryClient = useQueryClient()
 
-    const {data, isLoading} = useQuery('questions',()=> CRUDfunc.get('questions'))
+    // const {data, isLoading} = useQuery('questions',()=> CRUDfunc.get('questions'))
 
-    const {data:getDataById} = useQuery(['question-Edit',Id],()=> CRUDfunc.get(`questions/${Id}`),{
-        initialData:()=>{
-            const details = queryClient.getQueryData('questions')?.data.find((Value)=> Value.id === parseInt(Id))
+    // const {data:getDataById} = useQuery(['question-Edit',Id],()=> CRUDfunc.get(`questions/${Id}`),{
+    //     initialData:()=>{
+    //         const details = queryClient.getQueryData('questions')?.data.find((Value)=> Value.id === parseInt(Id))
 
-            if(details){
-                return {
-                    data:details
-                }
-            }
-        }
-    })
+    //         if(details){
+    //             return {
+    //                 data:details
+    //             }
+    //         }
+    //     }
+    // })
 
     const handleEdit = (id)=>{
         setId(id)
@@ -41,7 +47,7 @@ function Attribute_Question() {
         setId(id)
     }
 
-    if(isLoading){
+    if(!questions){
         return <div>...Loading</div>
     }
 
@@ -67,22 +73,22 @@ function Attribute_Question() {
                     </td>
                 </tr>
 
-                <tr>
+                <tr className={settings.trmobile}>
                     <td>
                        Question
                     </td>
                 </tr>
 
-                <tr>
+                <tr className={settings.trmobile}>
                     <td>
                         Answer Type
                     </td>
                 </tr>
             </thead>
             
-<div>
+            <div className={settings.scroll}>
                 {
-                    data?.data.map((value,i) =>(
+                    questions.map((value,i) =>(
                         <tbody key={i}>
                             <tr>
                                 <td>
@@ -90,25 +96,25 @@ function Attribute_Question() {
                                 </td>
                             </tr>
 
-                            <tr>
+                            <tr className={settings.trmobile}>
                                 <td>
                                 {value.qstn}
                                 </td>
                             </tr>
 
-                            <tr>
+                            <tr className={settings.trmobile}>
                                 <td>
                                 {value.answerType}
                                 </td>
                             </tr>
 
-                            <tr className={settings.addNewButton}>
+                            <tr className={settings.editButton}>
 
                                 <td>
 
                                     <Edit_Question_Modal
                                       Id={Id}
-                                      data={getDataById}
+                                    //   data={getDataById}
                                       showInitialValue={showInitialValue}
                                       setShowInitialValue={setShowInitialValue}
                                     >
@@ -128,17 +134,37 @@ function Attribute_Question() {
 
                             </tr>
 
-                            {/* <Edit_Question_Modal/> */}
+                            <tr>
 
-                            <Delete_Question_Modal/>
+                                <td>
+
+                                <Delete_Question_Modal
+                                    Id={Id}
+                                    // data={getDataById}
+                                >
+
+                                    <button className={settings.deleteIcon} onClick={()=> handleDelete(value.id)}>
+                                        <HiOutlineTrash size={16}/>
+                                    </button>
+
+                                </Delete_Question_Modal>
+                                    
+                                </td>
+
+                            </tr>
+
 
                         </tbody>
                     ))
                 }
 
-</div>
+            </div>
 
         </table>
+
+        
+
+        
     </div>
   )
 }

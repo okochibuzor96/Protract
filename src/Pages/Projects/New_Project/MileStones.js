@@ -10,11 +10,16 @@ import project from './my-NewProject.module.css';
 import {addProject} from '../../hooks/useQuery/useProject'
 import {useMutation} from 'react-query'
 import Finish_Button_Modal from "./Finish-Button-Modal";
-import { useState } from "react";
+import { useContext, useState, useEffect } from "react";
+import DataContext from "../../Context API/Create_Context";
 
 
 function MileStones(props) {
-    const {fieldValues, handlePrev, handleNext,mileStoneInitialValues,id,data,editMutate, ...rest} = props
+    const {fieldValues, handlePrev, handleNext,mileStoneInitialValues,id,editMutate, ...rest} = props
+
+    const {projects, setProjects} = useContext(DataContext)
+
+    const data = projects.find((item)=> item.id === parseInt(id))
 
     const location = useLocation()
     const navigate = useNavigate()
@@ -23,24 +28,56 @@ function MileStones(props) {
 
     const [nav, setNav] = useState(false)
 
-    
+    useEffect(()=>{
+        localStorage.setItem('projects', JSON.stringify(projects))
+    },[projects])
 
     // const title = fieldValues.mileStone.title
     
     const onSubmit = (value) =>{
+
+        console.log('final', value)
+
         handleNext(value)
 
-        console.log('Gd',value)
+        if(location.pathname === `/projects/project-details/${id}/edit-project`){
+
+            setProjects((prev)=> prev.map((item)=> item.id === parseInt(id)?
+             {
+                ...item,
+                mileStone:[...value.mileStone]
+              }:item
+            )
+            )
+        }else{
+
+            const id = projects.length? projects[projects.length-1].id + 1 : 1
+
+            const payload={
+              id,
+              ...value,
+            }
+
+            const newValue = [...projects,payload]
+
+            setProjects(newValue)
+            console.log('finals', id)
+            // localStorage.removeItem('projects')
+
+            // localStorage.setItem('projects', JSON.stringify(newValue))
+        }
+
+        // navigate(`/projects/project-details/${id}`)
         
-        return location.pathname === `/projects/project-details/${id}/edit-project`?
-        editMutate(value):
-        mutate(value) 
+        // return location.pathname === `/projects/project-details/${id}/edit-project`?
+        // editMutate(value):
+        // mutate(value) 
     }
 
     return (
 
         <Formik
-            initialValues={location.pathname === `/projects/project-details/${id}/edit-project`?data?.data || fieldValues:fieldValues}
+            initialValues={location.pathname === `/projects/project-details/${id}/edit-project`?data || fieldValues:fieldValues}
             enableReinitialize={true}
             onSubmit={onSubmit}
         >
@@ -60,6 +97,7 @@ function MileStones(props) {
 
                                                 {
                                                     values.mileStone.map((_, index) =>(
+                                                        
                                                         <div key={index} className={project.mileStonesFieldContainer}>
 
                                                             <div>
@@ -102,7 +140,7 @@ function MileStones(props) {
                                                                                         return(
 
                                                                                             <div>
-                                                                                                <input id="2" placeholder="enter percentage" type="text" {...field}/>
+                                                                                                <input id="2" placeholder="enter percentage" type="number" {...field}/>
                                                                                             </div>
                                                                                             
                                                                                         )
@@ -130,7 +168,12 @@ function MileStones(props) {
                                                                                 return( 
 
                                                                                     <div>
-                                                                                        <input id="3" placeholder="Enter Description" type="describe" {...field}/>
+
+                                                                                        <textarea
+                                                                                            placeholder="Enter Description"
+                                                                                            {...field}
+                                                                                        />
+                                                                                        
                                                                                     </div>
                                                                                     
                                                                                 )
@@ -143,7 +186,7 @@ function MileStones(props) {
 
                                                             </div>
 
-                                                            <MdOutlineCancel onClick={() => remove(index)} style={{marginTop:"27px", width:'38px', height:'38px', backgroundColor:'#FFFFFF',color:'#436DA2',border:"1px"}}/>
+                                                            <MdOutlineCancel onClick={() => remove(index)} style={{marginTop:"27px", width:'100%', height:'38px', backgroundColor:'#FFFFFF',color:'#436DA2',border:"1px"}}/>
 
                                                         </div>
                                                     ))
@@ -157,13 +200,17 @@ function MileStones(props) {
 
                                                         <hr/>
 
-                                                        <div style={{width:'113px',height:'24px', backgroundColor:'#FFFFFF', position:'absolute', marginTop:'-30px', marginLeft:'230px',paddingLeft:"10px"}}>  
-                                                            
-                                                            <FaCirclePlus onClick={() => push(mileStoneInitialValues)} style={{color:'#436DA2', fontSize:'20px',backgroundColor:"white", borderRadius:'20px'}}/>
+                                                        <div style={{width:'100%',display:"flex",alignItems:"center",justifyContent:'center',height:'24px', position:'absolute', marginTop:'-30px'}}>
 
-                                                            <span style={{fontSize:'12px', fontWeight:"400", color:'#505050',marginLeft:'5px'}}>Add Location</span>
-                                                            
-                                                        </div> 
+                                                            <div style={{width:'113px',display:"flex",alignItems:"center",justifyContent:'center',height:'24px', backgroundColor:'#FFFFFF',paddingLeft:"10px"}}>  
+                                                                
+                                                                <FaCirclePlus onClick={() => push(mileStoneInitialValues)} style={{color:'#436DA2', fontSize:'20px',backgroundColor:"white", borderRadius:'20px'}}/>
+
+                                                                <span style={{fontSize:'12px', fontWeight:"400", color:'#505050',marginLeft:'5px'}}>Add Location</span>
+                                                                
+                                                            </div> 
+
+                                                        </div>
 
                                                     </div>
 

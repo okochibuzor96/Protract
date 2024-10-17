@@ -1,3 +1,20 @@
+main{
+
+    padding-right: 5px;
+    height: 70vh;
+    overflow-y: scroll;
+
+}
+
+.pageTitle{
+    width: 100%;
+    height: auto;
+    color:#2A3D64;
+    height: 40px;  
+    font-size:26px;
+    font-weight: 700;
+}
+
 .block57{
 
     display: flex;
@@ -15,58 +32,88 @@
 
 }
 
+.tableWrapper{
+    height: 54.5vh;
+    margin-top: -7px;
+}
+
+.tableWrapper > div:nth-child(1) {
+    height: 40vh;
+    margin-bottom: 54px;
+}
+
 
 /* payment Details */
-.herosection2{
+
+.herosectionWrapper{
     display: grid;
-    grid-template-columns: 85px 68px 94px;
+    grid-template-columns: 1fr 356px;
+    
+}
+
+.herosection2{
+    
+    display: flex;
     grid-column-gap: 10px;
     align-items: center;
     justify-content: end;
+   
 }
 
 .paymentDetailContentWrapper{
     width: 100%;
-    max-height: 430px;
-    overflow-y: scroll;
+    height: 430px;
     margin-top: 20px;
     border-radius: 12px;
     background-color: #FFFFFF;
-    padding: 40px 15px 20px 15px;
+    box-sizing:border-box;
+    padding: 20px 15px 20px 15px;
     box-shadow: 0px 4px 7px 0px #00000008;
 
 }
 
+
+
 .contractInfoWrapper{
+    width: 100%;
+    height: auto;
     display: grid;
-    grid-template-columns: 80px 1fr;
-    grid-column-gap: 20px;
+    grid-template-columns: 60px 1fr;
+    grid-column-gap: 15px;
+  
 }
 
-.contractInfoWrapper > img {
-    width: 80px;
-    height: 80px;
+.contractInfoWrapper > div:nth-child(1) {
+    width: 60px;
+    height: 60px;
+}
+
+.contractInfoWrapper > img{
+    width: 100%;
+    height: 100%;
 }
 
 .contractInfo{
-    height: 85px;
+    height: auto;
 }
 
 .contractInfo > div:nth-child(1) {
-    width: 675px;
-    height: 15px;
+    width: 100%;
+    height: auto;
     color: #31609A;
     font-size: 18px;
     font-weight: 700;
     line-height: 22px;
-    margin-bottom: 20px;
+    margin-bottom: 15px;
 
 }
 
 .contractInfo > div:nth-child(2) {
     display: grid;
-    grid-template-columns: 197px 197px 1fr;
-    grid-column-gap: 20px;
+    grid-template-columns: repeat(auto-fit, 177px);
+    /* grid-template-columns: repeat(auto-fit, 187px); */
+    height: auto;
+    /* width: calc(76vw - 30px); */
 }
 
 .contractInfo > div:nth-child(2) div h6 {
@@ -74,18 +121,17 @@
     height: 12px;
     font-size: 12px;
     font-weight: 700;
-    line-height: 14.32px;
     color: #A8A8A8;
 }
 
 .contractInfo > div:nth-child(2) div div {
-   width: 100%;
-   height: 17px;
+    width: 100%;
+   height: auto;
    font-size: 16px;
    font-weight: 400;
-   line-height: 17px;
    color: #505050;
 }
+
 
 .projectContentWrapper{
     width: 100%;
@@ -94,12 +140,12 @@
     border-radius: 12px;
     margin-top: 30px;
     opacity: 70%;
-    padding: 15px 8px 15px 15px;
+    padding: 15px 15px 15px 15px;
 }
 
 .projectContentWrapper p {
     width: 100%;
-    height: 26px;
+    height: auto;
     color: #2A3D64;
     font-size: 24px;
     font-weight: 700;
@@ -110,26 +156,21 @@
     width:100%;
     height: auto;
     display:grid;
-    grid-template-columns: 265px 265px 232px 265px;
+    grid-template-columns: repeat(auto-fit, 212px);
     grid-column-gap: 10px;
-    margin-top: 15px;
-    /* padding:20px 30px 30px 20px */
-}
-
-.projectContent > div:nth-child(1), .projectContent > div:nth-child(2), .projectContent > div:nth-child(3), .projectContent > div:nth-child(4){
-    width: 100%;
-    height: auto;
-    margin-bottom: 20px;
+    grid-row-gap: 10px;
+   
 }
 
 .projectContent > div {
-    margin-bottom: 20px;
-    
+    width: 100%;
+    height: auto;
+   
 }
 
-.imageWrapper >div{
+.imageWrapper > div {
     display: grid;
-    grid-template-columns: 40px 40px 40px 40px;
+    grid-template-columns: repeat(auto-fit, 40px);
     grid-column-gap: 8px;
    
     
@@ -161,13 +202,16 @@
 
 /* Advice Detail */
 
-.adviceDetailWrapper > p{
+
+
+.adviceDetailWrapper{
     margin-top: 35px;
+    width: 100%;
 }
 
 .adviceDetailWrapper > p, .totalAmount > div:nth-child(2) {
     width: 100%;
-    height: 26px;
+    height: auto;
     color: #2A3D64;
     font-weight: 700;
     font-size: 24px;
@@ -195,10 +239,14 @@
 }
 
 .adviceDetailContent > div {
-    height: 40px;
+    height: auto;
+   box-sizing: border-box;
+    margin-bottom: 10px;
     font-weight: 400;
     font-size: 16px;
     color:#505050;
+
+   
 }
 
 
@@ -208,7 +256,9 @@
 }
 
 .adviceDetailContent{
-    height: 50px;
+    height: auto;
+    
+    border-bottom: 1px solid #a8a8a8;
     margin-top: 10px;
 }
 
@@ -223,15 +273,17 @@
     height: 91px;
     display: flex;
     justify-content: flex-end;
-    margin-top: -6px;
+    margin-top: -1px;
     
     
 }
 .totalAmount{
-    width: 280px;
-    height: 91px;
+   
+    /* width: 235px; */
+    height: 81px;
     background: #F3F3F3;
-    padding: 12px;   
+    padding: 12px; 
+    margin-top: 10px;  
 }
 
 .totalAmount > div:nth-child(1){
@@ -245,4 +297,103 @@
 
 .totalAmount > div:nth-child(2) {
     margin-top: 10px;
+}
+
+
+
+@media (max-width:600px){
+
+    /* payment index */
+
+    .tableWrapper > div:nth-child(1){
+       margin-bottom: 20px;
+       height: auto;
+    }
+
+    /* payment details */
+
+    .detailsContainer{
+        height: 70vh;
+        padding-bottom: 40px;
+        overflow-y: scroll;
+    }
+
+    .herosectionWrapper{
+        display: block;
+    }
+
+    .herosection2{
+        justify-content: center;
+        background-color: #FFFFFF;
+        padding-left: 13px;
+        padding-right: 13px;
+        border-radius: 5px;
+        height: 60px;
+    }
+
+
+    @media (min-width:452px){
+
+        .herosectionWrapper{
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .herosection2{
+            justify-content: end;
+            width: 60%;
+            padding-right: 0px;
+            background-color: transparent;
+        }
+
+    }
+
+   
+
+    .contractInfoWrapper{
+        display: block;
+    }
+
+    .contractInfoWrapper > div:nth-child(1) {
+        width: 100%;
+        height: calc(65vw - 30px);
+        margin-bottom: 10px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .contractInfo > div:nth-child(2) div div {
+        margin-top: -4px;
+        margin-bottom: 8px;
+    }
+
+    .paymentDetailContentWrapper {
+        height: auto;
+    }
+
+    @media (min-width:452px){
+        .paymentDetailContentWrapper {
+            height: calc(64vh);
+        }
+    }
+    
+    .adviceDetailWrapper{
+        width: calc(100vw - 78px);
+        overflow-x: scroll;
+    }
+
+    .overFlowContainer{
+        width: 700px;
+    }
+
+}
+
+@media (min-width:1024px){
+    
+    .paymentDetailContentWrapper >div{
+        overflow-y: scroll;
+        height: 100%;
+        min-width: 20px;
+    }
 }

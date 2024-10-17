@@ -1,7 +1,18 @@
 import contractor from '../../styles/my-contractors.module.css';
+import { useContext } from "react";
+import DataContext from '../Context API/Create_Context';
+import { useParams } from 'react-router-dom';
 
 
-function CompanyDetails({id, data, isLoading}) {
+function CompanyDetails({isLoading}) {
+
+    const {id} = useParams()
+
+    const {contractors} = useContext(DataContext)
+
+    const data = contractors.find((contractor)=> contractor.id === parseInt(id))
+
+    
 
     if(isLoading){
         return <div>Loading...</div>
@@ -10,13 +21,13 @@ function CompanyDetails({id, data, isLoading}) {
   return (
     <div className={contractor.companyDetailsInfo}>
 
-        <div className={contractor.dataTitle}> 
-            <div>
+        <div> 
+            <div className={contractor.dataTitle}>
                 Company Name
             </div>
 
             <div className={contractor.dataContent}>
-                {data.companyName}
+                {data && data.companyName}
             </div>
 
         </div>
@@ -27,7 +38,7 @@ function CompanyDetails({id, data, isLoading}) {
             </div>
 
             <div className={contractor.dataContent}>
-                {data.mailAddress}
+                {data && data.mailAddress}
             </div>
 
         </div>
@@ -38,7 +49,7 @@ function CompanyDetails({id, data, isLoading}) {
             </div>
 
             <div className={contractor.dataContent}>
-                {data.phoneNumber}
+                {data && data.phoneNumber}
             </div>
 
         </div>
@@ -50,7 +61,7 @@ function CompanyDetails({id, data, isLoading}) {
             </div>
 
             <div className={contractor.dataContent}>
-                {data.companyAddress}
+                {data && data.companyAddress}
             </div>
 
         </div>
@@ -62,7 +73,7 @@ function CompanyDetails({id, data, isLoading}) {
             </div>
 
             <div className={contractor.dataContent}>
-                {data.rcNumber}
+                {data && data.rcNumber}
             </div>
 
         </div>
@@ -74,7 +85,7 @@ function CompanyDetails({id, data, isLoading}) {
             </div>
 
             <div className={contractor.dataContent}>
-               {data.specialization}
+               {data && data && data.specialization}
             </div>
 
         </div>
@@ -86,7 +97,7 @@ function CompanyDetails({id, data, isLoading}) {
             </div>
 
             <div className={contractor.dataContent}>
-               {data.contactPerson}
+               {data && data.contactPerson}
             </div>
 
         </div>
@@ -98,7 +109,7 @@ function CompanyDetails({id, data, isLoading}) {
             </div>
 
             <div className={contractor.dataContent}>
-               {data.contactNumber}
+               {data && data.contactNumber}
             </div>
 
         </div>
@@ -110,7 +121,7 @@ function CompanyDetails({id, data, isLoading}) {
             </div>
 
             <div className={contractor.dataContent}>
-               {data.contactEmailAddress}
+               {data && data.contactEmailAddress}
             </div>
 
         </div>

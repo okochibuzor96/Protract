@@ -7,7 +7,8 @@ import {useQuery, useQueryClient,useMutation} from 'react-query'
 import CRUDfunc from '../../../hooks/useQuery/useProject'
 import DeactiveBtn from './Modal/DeactiveBtn';
 import { useParams } from 'react-router-dom'
-import {useRef, useState} from 'react'
+import {useContext, useRef, useState} from 'react'
+import DataContext from '../../../Context API/Create_Context';
 
 function User_Details_Index() {
 
@@ -17,17 +18,21 @@ function User_Details_Index() {
   const {id} = useParams()
   const queryClient = useQueryClient()
 
-  const {data} = useQuery(["user-details", id],()=> CRUDfunc.get(`users/${id}`),{
-    initialData: () =>{
-      const details = queryClient.getQueryData("users")?.data?.find((detail) => detail.id === parseInt(id))
+  const {users} = useContext(DataContext)
 
-      if(details){
-        return{
-          data:details
-        }
-      }
-    }
-  })
+  const data = users.find((user)=>user.id === parseInt(id))
+
+  // const {data} = useQuery(["user-details", id],()=> CRUDfunc.get(`users/${id}`),{
+  //   initialData: () =>{
+  //     const details = queryClient.getQueryData("users")?.data?.find((detail) => detail.id === parseInt(id))
+
+  //     if(details){
+  //       return{
+  //         data:details
+  //       }
+  //     }
+  //   }
+  // })
 
   const {mutate, isLoading:isUpdating} = useMutation((image) => CRUDfunc.update(`users/${id}`,image),
   {
@@ -68,7 +73,7 @@ function User_Details_Index() {
 
   return (
 
-    <div>
+    <div className={userDetails.userDetailsContainer}>
 
       <div className={userDetails.hWrappper}>
 
@@ -84,7 +89,7 @@ function User_Details_Index() {
 
             <h6 className={userDetails.backArrowText2}> 
 
-              {data?.data.userFname} <span>{data?.data.userLname}</span>
+              {data?.userFname} <span>{data?.userLname}</span> 
 
             </h6>
 
@@ -95,13 +100,13 @@ function User_Details_Index() {
         <div className={userDetails.btnWrapper}>
 
           <DeactiveBtn 
-            fName={data?.data.userFname}
-            lName={data?.data.userLname}
-            status={data?.data.userStatus}
+            fName={data?.userFname}
+            lName={data?.userLname}
+            status={data?.userStatus}
             mutate={mutate}
           />
 
-          <button disabled={data?.data.userStatus ==="InActive"} onClick={() => navigate("edit_user")} className={data?.data.userStatus ==="InActive"? userDetails.editDetailsBtnInActive : userDetails.editDetailsBtn}>
+          <button disabled={data?.userStatus ==="InActive"} onClick={() => navigate("edit_user")} className={data?.userStatus ==="InActive"? userDetails.editDetailsBtnInActive : userDetails.editDetailsBtn}>
             Edit Details
           </button>
           
@@ -118,10 +123,10 @@ function User_Details_Index() {
 
           <div className={userDetails.imageWrapper}>
 
-            <img className={data?.data.userStatus ==="Active"? userDetails.active: userDetails.InactiveDiv} onClick={handleRef} src={!image? data?.data.profileImg? data?.data.profileImg: detailAvatar: image} alt="User"/>
+            <img className={data?.userStatus ==="Active"? userDetails.active: userDetails.InactiveDiv} onClick={handleRef} src={!image? data?.profileImg? data?.profileImg: detailAvatar: image} alt="User"/>
 
             {
-              data?.data.userStatus ==="Active"?
+              data?.userStatus ==="Active"?
               <div className={userDetails.activeDiv}>active</div>:
               <div className={userDetails.InactiveDiv}>Inactive</div>
             }
@@ -129,10 +134,10 @@ function User_Details_Index() {
             
 
             <div>
-              {data?.data.userFname} <span className='ms-1'>{data?.data.userLname}</span>
+              {data?.userFname} <span className='ms-1'>{data?.userLname}</span>
             </div>
 
-            <div>{data?.data.userEmail}</div>
+            <div>{data?.userEmail}</div>
 
             <input type="file" accept='image/' ref={inputRef} hidden onChange={handleChange}/>
 
@@ -148,52 +153,56 @@ function User_Details_Index() {
 
           <div>
 
-            <h6>Phone</h6>
+            <div>
 
-            <div>{data?.data.userNumber}</div>
+              <h6>Phone</h6>
 
+              <div>{data?.userNumber}</div>
+
+            </div>
+
+            <div>
+
+              <h6>Alternate Phone</h6>
+
+              <div>{data?.userAltNumber}</div>
+
+            </div>
+
+            <div>
+
+              <h6>Email</h6>
+
+              <div>{data?.userEmail}</div>
+
+            </div>
+
+            <div>
+
+              <h6>Department</h6>
+
+              <div>{data?.userDepartment}</div>
+
+            </div>
+
+            <div>
+
+              <h6>Role</h6>
+
+              <div>{data?.userRole}</div>
+
+            </div>
+
+            <div>
+
+              <h6>Location</h6>
+
+              <div>{data?.userLocation}</div>
+
+            </div>
+            
           </div>
 
-          <div>
-
-            <h6>Alternate Phone</h6>
-
-            <div>{data?.data.userAltNumber}</div>
-
-          </div>
-
-          <div>
-
-            <h6>Email</h6>
-
-            <div>{data?.data.userEmail}</div>
-
-          </div>
-
-          <div>
-
-            <h6>Department</h6>
-
-            <div>{data?.data.userDepartment}</div>
-
-          </div>
-
-          <div>
-
-            <h6>Role</h6>
-
-            <div>{data?.data.userRole}</div>
-
-          </div>
-
-          <div>
-
-            <h6>Location</h6>
-
-            <div>{data?.data.userLocation}</div>
-
-          </div>
-          
         </div>
 
       </div>

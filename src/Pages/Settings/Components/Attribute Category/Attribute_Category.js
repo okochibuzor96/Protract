@@ -7,18 +7,23 @@ import CRUDfunc from '../../../hooks/useQuery/useProject';
 import { HiOutlineTrash } from "react-icons/hi2";
 import { useMutation, useQuery,useQueryClient } from 'react-query';
 import { LuPencil } from "react-icons/lu";
-import { useState } from 'react';
+import { useContext, useState } from 'react';
+import DataContext from '../../../Context API/Create_Context';
+import { IoChevronBackOutline } from "react-icons/io5";
+import { IoChevronForward } from "react-icons/io5";
 
 
-function Attribute_Category() {
+function Attribute_Category({setPage, page}) {
 
     const [Id, setId] = useState('')
     const [showInitialValue, setShowInitialValue] = useState(true)
     const queryclient = useQueryClient()
 
-    const {data,isLoading} = useQuery('settings_category', ()=>CRUDfunc.get("category"))
+    const {category,setCategory} = useContext(DataContext)
 
-//  const {mutate} = useMutation((id)=> CRUDfunc.delete(`category${id}`))
+    // const {data,isLoading} = useQuery('settings_category', ()=>CRUDfunc.get("category"))
+
+    //  const {mutate} = useMutation((id)=> CRUDfunc.delete(`category${id}`))
 
     const {data:getDataById} = useQuery(['settings-category-details',Id], ()=>CRUDfunc.get(`category/${Id}`),{
         initialData:()=>{
@@ -32,9 +37,9 @@ function Attribute_Category() {
         }
     })
 
-    if(isLoading){
-        return <div>...isLoading</div>
-    }
+    // if(isLoading){
+    //     return <div>...isLoading</div>
+    // }
 
     const handleEdit = (id)=>{
         setId(id)
@@ -46,14 +51,14 @@ function Attribute_Category() {
     }
 
   return (
-    <div>
+    <>
 
         <header>
 
             <div>Attribute Categories</div>
 
             
-            <Modal/>
+           <div><Modal/></div> 
 
         </header>
 
@@ -66,29 +71,29 @@ function Attribute_Category() {
                     </td>
                 </tr>
 
-                <tr>
+                <tr className={settings.trmobile}>
                     <td>
                      Attribute Category
                     </td>
                 </tr>
 
-                <tr>
+                <tr className={settings.trmobile}>
                     <td>
                      
                     </td>
                 </tr>
 
-                <tr>
+                <tr className={settings.trmobile}>
                     <td>
                      
                     </td>
                 </tr>
             </thead>
 
-            <div>
+            <div className={settings.scroll }>
 
                 {
-                    data?.data.map((value,i) =>(
+                    category.map((value,i) =>(
                         <tbody key={i}>
                             <tr>
                                 <td>
@@ -96,7 +101,7 @@ function Attribute_Category() {
                                 </td>
                             </tr>
 
-                            <tr>
+                            <tr className={settings.trmobile}>
                                 <td>
                                 {value.attributeCategory}
                                 </td>
@@ -108,10 +113,10 @@ function Attribute_Category() {
                                     
 
                                     <Edit
-                                    Id={Id}
-                                    data={getDataById}
-                                    setShowInitialValue={setShowInitialValue}
-                                    showInitialValue={showInitialValue}
+                                        Id={Id}
+                                        data={getDataById}
+                                        setShowInitialValue={setShowInitialValue}
+                                        showInitialValue={showInitialValue}
                                     >
                                         <button className={settings.attributeCategoryThirdRow} onClick={()=> handleEdit(value.id)}> <LuPencil size={16} /></button>
 
@@ -149,7 +154,11 @@ function Attribute_Category() {
             </div>
 
         </table>
-    </div>
+
+        
+
+        
+    </>
   )
 }
 

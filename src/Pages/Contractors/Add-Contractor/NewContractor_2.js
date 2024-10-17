@@ -7,10 +7,14 @@ import {useMutation} from 'react-query'
 import {postContractors} from '../../hooks/useQuery/useProject'
 import AddContractorCard from '../../../Images/AddContractorCard.svg';
 import Add_doc_modal from "./Add_doc_modal";
-import {useRef,useState} from 'react';
+import {useRef,useState, useContext} from 'react';
 import Doc from "../../../Components/Add Document/Doc";
+import DataContext from "../../Context API/Create_Context";
+import {useEffect} from 'react'
 
 function NewContractors2(props) {
+
+  const {contractors, setContractors} = useContext(DataContext)
 
   const {handlePrev,handleNext,fieldValues,image,handleChange} = props
 
@@ -64,24 +68,39 @@ function NewContractors2(props) {
     return initials;
   };
 
-  // console.log('docfile', docFile)
+  // useEffect(()=>{
+  //   localStorage.setItem('contractors', JSON.stringify(contractors))
+  // },[contractors])
 
   const onSubmit = (value) =>{
 
+    console.log('con', value)
+
     handleNext(value)
+    const id = contractors.length? (contractors[contractors.length-1].id) + 1 : 1
 
     const payload={
-      ...fieldValues,
+      id,
       ...value,
       avarta:"",
     }
 
-    payload.avarta=image
+    // payload.avarta=image
+
    
+
+    const newContractor = [...contractors,payload]
+
+    setContractors(newContractor)
+    localStorage.setItem('contractors', JSON.stringify(newContractor))
     navigate("/contractors")
 
-    return mutate(payload)
+    // return mutate(payload)
   }
+
+  console.log('fcon', contractors)
+
+  
 
   return (
 
@@ -149,7 +168,7 @@ function NewContractors2(props) {
 
                     <button onClick={handlePrev} className={` ${contractor.previousBtn} rounded-1 text-center border border-light`} >Previous</button>
                       
-                    <button type="submit" className={` ${contractor.nextBtn} rounded-1`}>Next</button>
+                    <button type="submit" className={` ${contractor.nextBtn} rounded-1`}>Submit</button>
 
                   </div>
 

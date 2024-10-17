@@ -73,7 +73,7 @@ function Doc(props) {
   return (
     <div className={fileContainerClassName}>
 
-     <FieldArray name='document'>
+      <FieldArray name='document'>
         {
           ({push,remove}) =>{
 
@@ -81,13 +81,13 @@ function Doc(props) {
               <>
                 
                 {
-                  values.document.map((document,index) =>{
+                  values?.document?.map((document,index) =>{
                    
                     
                     return(
                       <React.Fragment key={index}>
                         {
-                          values.document[index]?.docTitle?
+                          values?.document[index]?.docTitle?
                           <div>
                             
 
@@ -139,7 +139,7 @@ function Doc(props) {
 
 
                                       {
-                                      values.document[index]?.docName && (<p className={`${contractor.docTitle} text-center`}>{values.document[index].docName}</p>)}
+                                      values?.document[index]?.docName && (<p className={`${contractor.docTitle} text-center`}>{values?.document[index]?.docName}</p>)}
                                     
                                                         
                                     </div>
@@ -158,7 +158,7 @@ function Doc(props) {
                 }
 
                 <Doc_Modal
-                  index={values.document.length}
+                  index={values?.document?.length}
                   handleDocChange={handleDocChange}
                   setFieldValue={setFieldValue}
                   push={push}
@@ -172,14 +172,461 @@ function Doc(props) {
                   addButtonClassName={addButtonClassName}
                   docInitValue={docInitValue}
                   Id={id}
-                />
-                 
+                /> 
+                <Doc_Modal
+                  index={values?.document?.length}
+                  handleDocChange={handleDocChange}
+                  setFieldValue={setFieldValue}
+                  push={push}
+                  documentTitle={documentTitle}
+                  setDocumentTitle={setDocumentTitle}
+                  values={values}
+                  docValue={ docValue}
+                  initials={initials}
+                  setDocValue={setDocValue}
+                  setInitials={setInitials}
+                  addButtonClassName={addButtonClassName}
+                  docInitValue={docInitValue}
+                  Id={id}
+                /> 
+                <Doc_Modal
+                  index={values?.document?.length}
+                  handleDocChange={handleDocChange}
+                  setFieldValue={setFieldValue}
+                  push={push}
+                  documentTitle={documentTitle}
+                  setDocumentTitle={setDocumentTitle}
+                  values={values}
+                  docValue={ docValue}
+                  initials={initials}
+                  setDocValue={setDocValue}
+                  setInitials={setInitials}
+                  addButtonClassName={addButtonClassName}
+                  docInitValue={docInitValue}
+                  Id={id}
+                /> 
+                <Doc_Modal
+                  index={values?.document?.length}
+                  handleDocChange={handleDocChange}
+                  setFieldValue={setFieldValue}
+                  push={push}
+                  documentTitle={documentTitle}
+                  setDocumentTitle={setDocumentTitle}
+                  values={values}
+                  docValue={ docValue}
+                  initials={initials}
+                  setDocValue={setDocValue}
+                  setInitials={setInitials}
+                  addButtonClassName={addButtonClassName}
+                  docInitValue={docInitValue}
+                  Id={id}
+                /> 
+                <Doc_Modal
+                  index={values?.document?.length}
+                  handleDocChange={handleDocChange}
+                  setFieldValue={setFieldValue}
+                  push={push}
+                  documentTitle={documentTitle}
+                  setDocumentTitle={setDocumentTitle}
+                  values={values}
+                  docValue={ docValue}
+                  initials={initials}
+                  setDocValue={setDocValue}
+                  setInitials={setInitials}
+                  addButtonClassName={addButtonClassName}
+                  docInitValue={docInitValue}
+                  Id={id}
+                /> 
+                <Doc_Modal
+                  index={values?.document?.length}
+                  handleDocChange={handleDocChange}
+                  setFieldValue={setFieldValue}
+                  push={push}
+                  documentTitle={documentTitle}
+                  setDocumentTitle={setDocumentTitle}
+                  values={values}
+                  docValue={ docValue}
+                  initials={initials}
+                  setDocValue={setDocValue}
+                  setInitials={setInitials}
+                  addButtonClassName={addButtonClassName}
+                  docInitValue={docInitValue}
+                  Id={id}
+                /> 
+                <Doc_Modal
+                  index={values?.document?.length}
+                  handleDocChange={handleDocChange}
+                  setFieldValue={setFieldValue}
+                  push={push}
+                  documentTitle={documentTitle}
+                  setDocumentTitle={setDocumentTitle}
+                  values={values}
+                  docValue={ docValue}
+                  initials={initials}
+                  setDocValue={setDocValue}
+                  setInitials={setInitials}
+                  addButtonClassName={addButtonClassName}
+                  docInitValue={docInitValue}
+                  Id={id}
+                /> 
+                <Doc_Modal
+                  index={values?.document?.length}
+                  handleDocChange={handleDocChange}
+                  setFieldValue={setFieldValue}
+                  push={push}
+                  documentTitle={documentTitle}
+                  setDocumentTitle={setDocumentTitle}
+                  values={values}
+                  docValue={ docValue}
+                  initials={initials}
+                  setDocValue={setDocValue}
+                  setInitials={setInitials}
+                  addButtonClassName={addButtonClassName}
+                  docInitValue={docInitValue}
+                  Id={id}
+                /> 
+                <Doc_Modal
+                  index={values?.document?.length}
+                  handleDocChange={handleDocChange}
+                  setFieldValue={setFieldValue}
+                  push={push}
+                  documentTitle={documentTitle}
+                  setDocumentTitle={setDocumentTitle}
+                  values={values}
+                  docValue={ docValue}
+                  initials={initials}
+                  setDocValue={setDocValue}
+                  setInitials={setInitials}
+                  addButtonClassName={addButtonClassName}
+                  docInitValue={docInitValue}
+                  Id={id}
+                /> 
+                <Doc_Modal
+                  index={values?.document?.length}
+                  handleDocChange={handleDocChange}
+                  setFieldValue={setFieldValue}
+                  push={push}
+                  documentTitle={documentTitle}
+                  setDocumentTitle={setDocumentTitle}
+                  values={values}
+                  docValue={ docValue}
+                  initials={initials}
+                  setDocValue={setDocValue}
+                  setInitials={setInitials}
+                  addButtonClassName={addButtonClassName}
+                  docInitValue={docInitValue}
+                  Id={id}
+                /> 
+                <Doc_Modal
+                  index={values?.document?.length}
+                  handleDocChange={handleDocChange}
+                  setFieldValue={setFieldValue}
+                  push={push}
+                  documentTitle={documentTitle}
+                  setDocumentTitle={setDocumentTitle}
+                  values={values}
+                  docValue={ docValue}
+                  initials={initials}
+                  setDocValue={setDocValue}
+                  setInitials={setInitials}
+                  addButtonClassName={addButtonClassName}
+                  docInitValue={docInitValue}
+                  Id={id}
+                /> 
+                <Doc_Modal
+                  index={values?.document?.length}
+                  handleDocChange={handleDocChange}
+                  setFieldValue={setFieldValue}
+                  push={push}
+                  documentTitle={documentTitle}
+                  setDocumentTitle={setDocumentTitle}
+                  values={values}
+                  docValue={ docValue}
+                  initials={initials}
+                  setDocValue={setDocValue}
+                  setInitials={setInitials}
+                  addButtonClassName={addButtonClassName}
+                  docInitValue={docInitValue}
+                  Id={id}
+                /> 
+                <Doc_Modal
+                  index={values?.document?.length}
+                  handleDocChange={handleDocChange}
+                  setFieldValue={setFieldValue}
+                  push={push}
+                  documentTitle={documentTitle}
+                  setDocumentTitle={setDocumentTitle}
+                  values={values}
+                  docValue={ docValue}
+                  initials={initials}
+                  setDocValue={setDocValue}
+                  setInitials={setInitials}
+                  addButtonClassName={addButtonClassName}
+                  docInitValue={docInitValue}
+                  Id={id}
+                /> 
+                <Doc_Modal
+                  index={values?.document?.length}
+                  handleDocChange={handleDocChange}
+                  setFieldValue={setFieldValue}
+                  push={push}
+                  documentTitle={documentTitle}
+                  setDocumentTitle={setDocumentTitle}
+                  values={values}
+                  docValue={ docValue}
+                  initials={initials}
+                  setDocValue={setDocValue}
+                  setInitials={setInitials}
+                  addButtonClassName={addButtonClassName}
+                  docInitValue={docInitValue}
+                  Id={id}
+                /> 
+                <Doc_Modal
+                  index={values?.document?.length}
+                  handleDocChange={handleDocChange}
+                  setFieldValue={setFieldValue}
+                  push={push}
+                  documentTitle={documentTitle}
+                  setDocumentTitle={setDocumentTitle}
+                  values={values}
+                  docValue={ docValue}
+                  initials={initials}
+                  setDocValue={setDocValue}
+                  setInitials={setInitials}
+                  addButtonClassName={addButtonClassName}
+                  docInitValue={docInitValue}
+                  Id={id}
+                /> 
+                <Doc_Modal
+                  index={values?.document?.length}
+                  handleDocChange={handleDocChange}
+                  setFieldValue={setFieldValue}
+                  push={push}
+                  documentTitle={documentTitle}
+                  setDocumentTitle={setDocumentTitle}
+                  values={values}
+                  docValue={ docValue}
+                  initials={initials}
+                  setDocValue={setDocValue}
+                  setInitials={setInitials}
+                  addButtonClassName={addButtonClassName}
+                  docInitValue={docInitValue}
+                  Id={id}
+                /> 
+                <Doc_Modal
+                  index={values?.document?.length}
+                  handleDocChange={handleDocChange}
+                  setFieldValue={setFieldValue}
+                  push={push}
+                  documentTitle={documentTitle}
+                  setDocumentTitle={setDocumentTitle}
+                  values={values}
+                  docValue={ docValue}
+                  initials={initials}
+                  setDocValue={setDocValue}
+                  setInitials={setInitials}
+                  addButtonClassName={addButtonClassName}
+                  docInitValue={docInitValue}
+                  Id={id}
+                /> 
+                <Doc_Modal
+                  index={values?.document?.length}
+                  handleDocChange={handleDocChange}
+                  setFieldValue={setFieldValue}
+                  push={push}
+                  documentTitle={documentTitle}
+                  setDocumentTitle={setDocumentTitle}
+                  values={values}
+                  docValue={ docValue}
+                  initials={initials}
+                  setDocValue={setDocValue}
+                  setInitials={setInitials}
+                  addButtonClassName={addButtonClassName}
+                  docInitValue={docInitValue}
+                  Id={id}
+                /> 
+                <Doc_Modal
+                  index={values?.document?.length}
+                  handleDocChange={handleDocChange}
+                  setFieldValue={setFieldValue}
+                  push={push}
+                  documentTitle={documentTitle}
+                  setDocumentTitle={setDocumentTitle}
+                  values={values}
+                  docValue={ docValue}
+                  initials={initials}
+                  setDocValue={setDocValue}
+                  setInitials={setInitials}
+                  addButtonClassName={addButtonClassName}
+                  docInitValue={docInitValue}
+                  Id={id}
+                /> 
+                <Doc_Modal
+                  index={values?.document?.length}
+                  handleDocChange={handleDocChange}
+                  setFieldValue={setFieldValue}
+                  push={push}
+                  documentTitle={documentTitle}
+                  setDocumentTitle={setDocumentTitle}
+                  values={values}
+                  docValue={ docValue}
+                  initials={initials}
+                  setDocValue={setDocValue}
+                  setInitials={setInitials}
+                  addButtonClassName={addButtonClassName}
+                  docInitValue={docInitValue}
+                  Id={id}
+                /> 
+                <Doc_Modal
+                  index={values?.document?.length}
+                  handleDocChange={handleDocChange}
+                  setFieldValue={setFieldValue}
+                  push={push}
+                  documentTitle={documentTitle}
+                  setDocumentTitle={setDocumentTitle}
+                  values={values}
+                  docValue={ docValue}
+                  initials={initials}
+                  setDocValue={setDocValue}
+                  setInitials={setInitials}
+                  addButtonClassName={addButtonClassName}
+                  docInitValue={docInitValue}
+                  Id={id}
+                /> 
+                <Doc_Modal
+                  index={values?.document?.length}
+                  handleDocChange={handleDocChange}
+                  setFieldValue={setFieldValue}
+                  push={push}
+                  documentTitle={documentTitle}
+                  setDocumentTitle={setDocumentTitle}
+                  values={values}
+                  docValue={ docValue}
+                  initials={initials}
+                  setDocValue={setDocValue}
+                  setInitials={setInitials}
+                  addButtonClassName={addButtonClassName}
+                  docInitValue={docInitValue}
+                  Id={id}
+                /> 
+                <Doc_Modal
+                  index={values?.document?.length}
+                  handleDocChange={handleDocChange}
+                  setFieldValue={setFieldValue}
+                  push={push}
+                  documentTitle={documentTitle}
+                  setDocumentTitle={setDocumentTitle}
+                  values={values}
+                  docValue={ docValue}
+                  initials={initials}
+                  setDocValue={setDocValue}
+                  setInitials={setInitials}
+                  addButtonClassName={addButtonClassName}
+                  docInitValue={docInitValue}
+                  Id={id}
+                /> 
+                <Doc_Modal
+                  index={values?.document?.length}
+                  handleDocChange={handleDocChange}
+                  setFieldValue={setFieldValue}
+                  push={push}
+                  documentTitle={documentTitle}
+                  setDocumentTitle={setDocumentTitle}
+                  values={values}
+                  docValue={ docValue}
+                  initials={initials}
+                  setDocValue={setDocValue}
+                  setInitials={setInitials}
+                  addButtonClassName={addButtonClassName}
+                  docInitValue={docInitValue}
+                  Id={id}
+                /> 
+                <Doc_Modal
+                  index={values?.document?.length}
+                  handleDocChange={handleDocChange}
+                  setFieldValue={setFieldValue}
+                  push={push}
+                  documentTitle={documentTitle}
+                  setDocumentTitle={setDocumentTitle}
+                  values={values}
+                  docValue={ docValue}
+                  initials={initials}
+                  setDocValue={setDocValue}
+                  setInitials={setInitials}
+                  addButtonClassName={addButtonClassName}
+                  docInitValue={docInitValue}
+                  Id={id}
+                /> 
+                <Doc_Modal
+                  index={values?.document?.length}
+                  handleDocChange={handleDocChange}
+                  setFieldValue={setFieldValue}
+                  push={push}
+                  documentTitle={documentTitle}
+                  setDocumentTitle={setDocumentTitle}
+                  values={values}
+                  docValue={ docValue}
+                  initials={initials}
+                  setDocValue={setDocValue}
+                  setInitials={setInitials}
+                  addButtonClassName={addButtonClassName}
+                  docInitValue={docInitValue}
+                  Id={id}
+                /> 
+                <Doc_Modal
+                  index={values?.document?.length}
+                  handleDocChange={handleDocChange}
+                  setFieldValue={setFieldValue}
+                  push={push}
+                  documentTitle={documentTitle}
+                  setDocumentTitle={setDocumentTitle}
+                  values={values}
+                  docValue={ docValue}
+                  initials={initials}
+                  setDocValue={setDocValue}
+                  setInitials={setInitials}
+                  addButtonClassName={addButtonClassName}
+                  docInitValue={docInitValue}
+                  Id={id}
+                /> 
+                <Doc_Modal
+                  index={values?.document?.length}
+                  handleDocChange={handleDocChange}
+                  setFieldValue={setFieldValue}
+                  push={push}
+                  documentTitle={documentTitle}
+                  setDocumentTitle={setDocumentTitle}
+                  values={values}
+                  docValue={ docValue}
+                  initials={initials}
+                  setDocValue={setDocValue}
+                  setInitials={setInitials}
+                  addButtonClassName={addButtonClassName}
+                  docInitValue={docInitValue}
+                  Id={id}
+                /> 
+                <Doc_Modal
+                  index={values?.document?.length}
+                  handleDocChange={handleDocChange}
+                  setFieldValue={setFieldValue}
+                  push={push}
+                  documentTitle={documentTitle}
+                  setDocumentTitle={setDocumentTitle}
+                  values={values}
+                  docValue={ docValue}
+                  initials={initials}
+                  setDocValue={setDocValue}
+                  setInitials={setInitials}
+                  addButtonClassName={addButtonClassName}
+                  docInitValue={docInitValue}
+                  Id={id}
+                /> 
                 
               </>
             )
           }
         }
-    </FieldArray>   
+      </FieldArray>   
 
     </div>
   )

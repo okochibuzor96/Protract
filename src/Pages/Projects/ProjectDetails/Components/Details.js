@@ -20,15 +20,21 @@ import imageq from '../../../../Images/SDGGoalq.svg'
 
 import { useParams, } from 'react-router-dom'
 import {getProjectDetails} from '../../../hooks/useQuery/useProject'
+import DataContext from '../../../Context API/Create_Context'
+import { useContext } from 'react'
 
 
 
-function Details({data}) {
+function Details({}) {
 
   // const location = useLocation();
   // console.log(location.pathname)
 
+  const {projects} = useContext(DataContext)
+
   const {id} = useParams()
+
+  const data = projects.find((item)=> item.id === parseInt(id))
 
   
 
@@ -47,7 +53,7 @@ function Details({data}) {
             
           <div>Project Number</div>
 
-          <h6 >{data?.data.projectReferenceNumber}</h6>
+          <h6 >{data?.projectReferenceNumber}</h6>
 
         </div>
 
@@ -55,7 +61,7 @@ function Details({data}) {
             
           <div>Project Value</div>
           
-          <h6>{data?.data.projectValue? 'N' : ''}{data?.data.projectValue}</h6>
+          <h6>{data?.projectValue? 'N' : ''}{data?.projectValue}</h6>
           
 
         </div>
@@ -69,84 +75,84 @@ function Details({data}) {
             
             {
 
-              data?.data.imageValues.includes("imagea") && <img src={imagea} alt="" style={{width:"40px",height:"40px"}}/> 
+              data?.imageValues.includes("imagea") && <img src={imagea} alt="" style={{width:"40px",height:"40px"}}/> 
 
             }
           
             {
             
-              data?.data.imageValues.includes("imagec") && <img src={imagec} alt="" style={{width:"40px",height:"40px"}}/>
+              data?.imageValues.includes("imagec") && <img src={imagec} alt="" style={{width:"40px",height:"40px"}}/>
               
             }
           
             {
             
-              data?.data.imageValues.includes("imaged") && <img src={imaged} alt="" style={{width:"40px",height:"40px"}}/>
+              data?.imageValues.includes("imaged") && <img src={imaged} alt="" style={{width:"40px",height:"40px"}}/>
               
             }
           
             {
             
-              data?.data.imageValues.includes("imagef") && <img src={imagef} alt="" style={{width:"40px",height:"40px"}}/>
+              data?.imageValues.includes("imagef") && <img src={imagef} alt="" style={{width:"40px",height:"40px"}}/>
               
             }
             {
             
-              data?.data.imageValues.includes("imageg") && <img src={imageg} alt="" style={{width:"40px",height:"40px"}}/>
+              data?.imageValues.includes("imageg") && <img src={imageg} alt="" style={{width:"40px",height:"40px"}}/>
 
             }
           
             { 
             
-              data?.data.imageValues.includes("imageh") && <img src={imageh} alt="" style={{width:"40px",height:"40px"}}/>
+              data?.imageValues.includes("imageh") && <img src={imageh} alt="" style={{width:"40px",height:"40px"}}/>
               
             }
           
             { 
             
-              data?.data.imageValues.includes("imagei") && <img src={imagei} alt="" style={{width:"40px",height:"40px"}}/>
+              data?.imageValues.includes("imagei") && <img src={imagei} alt="" style={{width:"40px",height:"40px"}}/>
               
             }
           
             {
 
-              data?.data.imageValues.includes("imagej") && <img src={imagej} alt="" style={{width:"40px",height:"40px"}}/>
+              data?.imageValues.includes("imagej") && <img src={imagej} alt="" style={{width:"40px",height:"40px"}}/>
 
               }
           
             { 
 
-              data?.data.imageValues.includes("imagek") && <img src={imagek} alt="" style={{width:"40px",height:"40px"}}/>
+              data?.imageValues.includes("imagek") && <img src={imagek} alt="" style={{width:"40px",height:"40px"}}/>
 
             }
           
             { 
 
-            data?.data.imageValues.includes("imagel") && <img src={imagel} alt="" style={{width:"40px",height:"40px"}}/>
+            data?.imageValues.includes("imagel") && <img src={imagel} alt="" style={{width:"40px",height:"40px"}}/>
 
             }
           
             { 
 
-              data?.data.imageValues.includes("imagem") && <img src={imagem} alt="" style={{width:"40px",height:"40px"}}/>
+              data?.imageValues.includes("imagem") && <img src={imagem} alt="" style={{width:"40px",height:"40px"}}/>
 
             }
           
             { 
 
-              data?.data.imageValues.includes("imagen") && <img src={imagen} alt="" style={{width:"40px",height:"40px"}}/>
+              data?.imageValues.includes("imagen") && <img src={imagen} alt="" style={{width:"40px",height:"40px"}}/>
 
             }
           
             { 
 
-            data?.data.imageValues.includes("imagep") && <img src={imagep} alt="" style={{width:"40px",height:"40px"}}/>
+            data?.imageValues.includes("imagep") && <img src={imagep} alt="" style={{width:"40px",height:"40px"}}/>
 
             }
           
             { 
 
-            data?.data.imageValues.includes("imageq") && <img src={imageq} alt="" style={{width:"40px",height:"40px"}}/>
+            data?.imageValues.includes("imageq") && <img src={imageq} alt="" style={{width:"40px",height:"40px"}}/>
 
             }
             
@@ -159,7 +165,7 @@ function Details({data}) {
             
           <div>Geopolitical Zone</div>
 
-          <h6>{data?.data.geopoliticalZone}</h6>
+          <h6>{data?.geopoliticalZone}</h6>
 
         </div>
 
@@ -167,7 +173,7 @@ function Details({data}) {
             
           <div>State</div>
 
-          <h6>{data?.data.state}</h6>
+          <h6>{data?.state}</h6>
 
         </div>
 
@@ -175,7 +181,7 @@ function Details({data}) {
           
           <div>Local Government</div>
 
-          <h6>{data?.data.GPSLocation}</h6>
+          <h6>{data?.GPSLocation}</h6>
 
         </div>
 
@@ -183,7 +189,7 @@ function Details({data}) {
             
           <div>Federal Consistuency</div>
 
-          <h6 >{data?.data.federalConsistuency}</h6>
+          <h6 >{data?.federalConsistuency}</h6>
 
         </div>
 
@@ -191,7 +197,7 @@ function Details({data}) {
             
           <div>GPS Location</div>
 
-          <h6>{data?.data.GPSLocation}</h6>
+          <h6>{data?.GPSLocation}</h6>
   
         </div>
   
@@ -199,7 +205,7 @@ function Details({data}) {
             
           <div>Project Type</div>
 
-          <h6>{data?.data.projectType}</h6>
+          <h6>{data?.projectType}</h6>
 
         </div>
 
@@ -207,7 +213,7 @@ function Details({data}) {
             
           <div>Project Sector</div>
 
-          <h6>{data?.data.projectSector}</h6>
+          <h6>{data?.projectSector}</h6>
 
         </div>
 
@@ -215,25 +221,11 @@ function Details({data}) {
             
           <div>Project Year</div>
 
-          <h6>{data?.data.projectYear}</h6>
+          <h6>{data?.projectYear}</h6>
 
         </div>
           
       </div>
-
-      {/* 
-
-      <div className="d-flex mb-2 mt-2 bg-white  rounded justify-content-between align-items-center">
-      
-        
-
-        <div className="ps-3 pt-3">
-              
-            
-          </div>
-          
-
-      </div> */}
 
     </div>
 

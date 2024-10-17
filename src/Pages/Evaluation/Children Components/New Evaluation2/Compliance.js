@@ -1,10 +1,11 @@
-// import {ComplianceData} from './ComplianceData'
 import {ErrorMessage, Field} from 'formik'
 import { useLocation, useParams } from 'react-router-dom'
 import newEvaluation2 from '../../Styles/my-new_evaluation_2.module.css'
 import Texterror from './Field_Error-Component'
 
 function Compliance({data}) {
+
+    const {id} = useParams()
 
     const ComplianceData = [
         {
@@ -46,7 +47,7 @@ function Compliance({data}) {
     ]
 
     const location = useLocation()
-    const {id} = useParams()
+   
 
   return (
     <div className={newEvaluation2.formContainer}>
@@ -69,7 +70,7 @@ function Compliance({data}) {
                       
                         <ErrorMessage name={`CRinput${i+1}`} component={Texterror}/>
 
-                        <div className={newEvaluation2.RinputWrapper} key={i}>
+                        <div className={location.pathname === `/evaluation/evaluation-details/${id}`?newEvaluation2.RinputWrapperDetails:newEvaluation2.RinputWrapper} key={i}>
 
                         
 
@@ -84,9 +85,9 @@ function Compliance({data}) {
                                     location.pathname === `/evaluation/evaluation-details/${id}`?
                                     <>
                                         {
-                                        data?.data[`CRinput${i+1}`] === 'selected'?
+                                        data[`CRinput${i+1}`] === 'selected'?
                                         <span className={newEvaluation2.yesDiv}>Yes</span>:
-                                        data?.data[`CRinput${i+1}`] === 'deselected'?
+                                        data[`CRinput${i+1}`] === 'deselected'?
                                         <span className={newEvaluation2.noDiv}>No</span>:""
                                         }
                                       
@@ -104,14 +105,6 @@ function Compliance({data}) {
                                 }
                             }
                             </Field>
-
-                            {/* <Field name={`CRinputB${i}`}>
-                            {
-                                ()=>{
-                                return 
-                                }
-                            }
-                            </Field> */}
 
                         </div>
                     </main>

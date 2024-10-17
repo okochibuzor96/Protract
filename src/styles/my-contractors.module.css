@@ -9,17 +9,15 @@
 
 .block54{
 
-  display: grid;
-  grid-template-columns:289px 122px;
+  display: flex;
+  /* grid-template-columns:289px 122px; */
   align-items: center;
   justify-content: space-between;
-  margin-top: 20px;
  
 }
 
 
 .block55, .block54{
-
     color:#2A3D64;
     height: 40px;  
     font-size:26px;
@@ -31,6 +29,7 @@
 
     
     height: 40px; 
+    width: 107px;
     background-color:#31609A;
     font-weight: 600; 
     font-size: 12px; 
@@ -49,7 +48,9 @@
     border: 1px solid #A8A8A8;
     color:#A8A8A8; 
     background-color: #FFFFFF;
-    padding: 20px;
+    padding-left: 20px;
+    padding-right: 20px;
+    /* padding: 20px; */
     border-radius: 10px;
     height: 60px;
     margin-top: 20px;
@@ -134,7 +135,7 @@
     grid-column-gap: 20px;
     align-items: center;
     
-    height: 60px; 
+    height: 50px; 
     color: #FFFFFF; 
     font-size: 14px;
     background: #31609A; 
@@ -144,6 +145,15 @@
     font-weight: 600; 
     
 
+}
+
+.contractorTable{
+    height: 50.6vh;
+}
+
+.contractorTable > div:nth-child(1){
+    width: 100%;
+    height: auto;
 }
 
 .block66{
@@ -176,12 +186,12 @@
     color: #505050;
     font-size: 14px;
     background-color: #FFFFFF;
-    margin-bottom: 18px;
+    margin-bottom: 10px;
     padding: 10px;
     border-radius: 8px;
     font-size: 12px; 
     font-weight: 600;
-    margin-top: 20px;
+    margin-top: 10px;
 
 }
 
@@ -290,14 +300,18 @@
 .herosection1{
     display: grid;
     grid-template-columns: 40px 1fr ;
+    grid-column-gap: 5px;
     align-items: center;
     justify-content: center;
 }
 
+
+
 .backArrow{
     color: #505050;
     font-size: 35px;
-    margin-top: -10px;
+    padding: 0px;
+    margin-left: -8px;
 }
 .backArrowText1{
     color: #31609a; 
@@ -335,30 +349,29 @@
     
     background: #31d067;
     border: #31d067; 
-    
+    width: 100%;
 }
 
 .editDetailsBtn{
     background: #31609a; 
     border: #31609a;
-    
+    width: 100%;
 }
 .denyBtn{ 
     background: #e5364e;  
     border: #e5364e;
+    width: 100%;
 }
 
-.companyDetailsWrapper{
+.companyDetailsWrapper > div{
     display: grid;
     grid-template-columns: 245px 1fr;
     grid-column-gap: 31px;
-    
-    
 }
 
 .companyDetailsWrapper> .NewContractor1{
     max-height: 343px;
-    overflow-y: scroll;
+    /* overflow-y: scroll; */
     border-radius: 8px;
     margin-bottom: 0px;
     padding:20px 20px 0px 20px;
@@ -403,11 +416,12 @@
 }
 
 .ScrollWrapper, .verticalScroll{
-    height: 66vh;
+    height: 65vh;
 }
 
 .verticalScroll{
     overflow-y: scroll;
+   
 }
 
 .companyDetailsInfoWrapper p{
@@ -420,18 +434,21 @@
 
 .companyDetailsInfo{
     background-color: #FFFFFF;
-    height: 239px;
+    height: auto;
     border-radius: 4px;
     padding: 20px 20px;
     align-items: center;
+    width: 100%;
 
     display: grid;
-    grid-template-columns: 1fr 235px 184px;
+    grid-template-columns: repeat(auto-fit, minmax(184px, 1fr));
+    /* grid-template-columns: 1fr 235px 184px; */
     grid-column-gap: 10px;
 }
 
 .companyDetailsInfo > div {
-    height: 40px;
+    height: auto;
+    margin-bottom: 15px;
 }
 
 .companyData{
@@ -524,26 +541,6 @@
     width: 828px;
 }
 
-.NewContractor1 > .complianceDocWrapper{
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr 1fr ;
-    grid-column-gap: 20px;
-    height: auto;
-    padding-right: 5px;
-    margin-bottom: auto;
-    /* background-color: #436DA2; */
-}
-.NewContractor1 > .complianceDocWrapper {
-
-    width: 100%; 
-    height: 150px;
-    background-color: #F3F4F5; 
-    border: 1px solid #DCDCDC;
-    margin-bottom: 15px; 
-   
-    
-}
-
 .herosectionContainer{
     display: grid;
     grid-template-columns: 1fr 168px;
@@ -606,16 +603,17 @@
 .AddContractorContainer1{
     display: grid;
     grid-template-columns: 1fr 80px;
+    grid-column-gap: 20px;
     justify-content: center;
     align-items: center;
-    
 }
 
 .AddContractorContainer2{
     display: grid;
     grid-template-columns: 270px 1fr;
     grid-column-gap: 30px;
-    height: 430px;
+    height: auto;
+    margin-bottom: 25px;
 }
 
 .AddContractorWrapper{
@@ -630,11 +628,12 @@
 /* new contractor1 */
 
 .NewContractor1{
-    max-height: 343px;
+    height: auto;
     border-radius: 8px;
     margin-bottom: 0px;
-    padding:20px 0px 0px 20px;
+    padding:20px 20px 0px 20px;
     background-color: #FFFFFF;
+   
     
 }
 
@@ -642,19 +641,12 @@
     height: 303px;
     overflow-y: scroll;
     overflow-x: hidden;
-    /* padding-left: 10px; */
-    /* background-color: #31d067; */
     margin-bottom: 30px;
 }
 
-/* ::-webkit-scrollbar{
-
-
-} */
-
 .inputFieldWrapper{
     display: grid;
-    grid-template-columns: 370px 370px;
+    grid-template-columns: 1fr 1fr;
     grid-column-gap: 20px;
 }
 .inputLabel{
@@ -670,7 +662,7 @@
     height: 44px;
     font-size: 14px; 
     font-weight: 400;
-    margin-left: 4px;
+    /* margin-left: 4px; */
     border: 1px solid #DCDCDC;
     margin-bottom: 10px;
     
@@ -781,11 +773,15 @@
     background-color: #FFFFFF;
 }
 
+.NewContractor2 > div:nth-child(1){
+    margin-bottom: 20px;
+}
+
 .complianceDocWrapper{
     display: grid;
-    grid-template-columns: 90px 90px 90px 90px 90px 90px 90px;
+    grid-template-columns: repeat(auto-fit,minmax(80px,80px));
     grid-column-gap: 20px;
-    height: 293px;
+    height: auto;
     margin-bottom: auto;
     margin-top: 5px;
 }
@@ -835,134 +831,6 @@
     opacity: 0.7;  
 }
 
-/* .NewContractor2 > .positionRelative {
-    margin-top: -70px;
-} */
-
-
-
-/*.block76{
-
-    width: 232px; 
-    font-size: 14px; 
-    font-weight: 400;
-
-}
-
-.block77{
-
-    width: 97px; 
-    font-size: 14px; 
-    font-weight: 400;
-
-}
-
-.block78{
-
-    width: 184px;
-
-}
-
-.block79{
-
-    color: #ffffff;  
-    width: 53px ; 
-    height: 18px; 
-    
-}
-
-.block80{
-
-    width: 8px; 
-    height: 8px; 
-    margin-left: 6px;
-    
-}
-
-.block81{
-
-    font-size: 10px; 
-    font-weight: 500; 
-    margin-right: 8px; 
-    margin-left: 3px; 
-    margin-top: -1.5px;
-    
-}
-
-.block82{
-
-    font-size: 12px; 
-    font-weight: 700; 
-    background-color: #31609a; 
-    width: 56px; 
-    height: 28px; 
-    margin-left: 51px; 
-    padding-top: 3.5px; 
-    color: #ffffff
-
-}
-
-.block83{
-
-    color: #ffffff;  
-    width: 59px ; 
-    height: 18px; 
-    background:  #EA523D
-}
-
-.block84{
-
-    color: #ffffff;  
-    width: 61px ; 
-    height: 18px; 
-    background:  #FFA349
-
-}
-
-.block85{
-
-    font-size: 10px; 
-    font-weight: 500; 
-    margin-right: 8px; 
-    margin-left: 3px;
-    margin-top: -1.5px;
-
-}
-
-
-.block86{
-
-    font-size: 12px; 
-    font-weight: 700; 
-    background-color: #31609a; 
-    width: 56px; height: 28px; 
-    margin-left: 46px; 
-    padding-top: 3.5px; 
-    color: #ffffff
-
-}
-
-.block87{
-
-    font-size: 10px; 
-    font-weight: 500; 
-    margin-right: 8px; 
-    margin-left: 3px; 
-    margin-top: -1.5px;
-
-}
-
-.block88{
-
-    font-size: 12px; 
-    font-weight: 700; 
-    background-color: #31609a; 
-    width: 56px; height: 28px; 
-    margin-left: 43px; 
-    padding-top: 3.5px; 
-    color: #ffffff
-
-} */
 
 .block89{
 
@@ -1066,4 +934,194 @@
     color: #505050;
 
     
+}
+
+@media (max-width:600px) {
+
+    .contractIndexContainer{
+        height: 70vh;
+        padding-right: 5px;
+        overflow-y: scroll;
+    }
+
+    .block55{
+        display: flex;
+        align-items: center;
+        font-size:20px;
+        font-weight: 500;
+    }
+
+    .contractorTable{
+        height: auto;
+        width: 100%;
+        overflow-y: scroll;
+    }
+    
+
+    .block57{
+        align-items: center;
+    }
+
+    .block57 > div:nth-child(2){
+        display: none;
+    }
+
+    .block70, .block65 {
+        display: none;
+    }
+
+    /* contractor details */
+
+    .herosectionWrapper, .companyDetailsWrapper{
+        display: block;
+    }
+
+    .companyDetailsWrapper{
+        /* overflow-y: scroll; */
+        height: auto;
+        /* height: 47.5vh; */
+    }
+
+    .detailsContainer {
+        height: 70vh;
+        overflow-y: scroll;
+    }
+
+    .companyDetailsWrapper > div{
+        height: auto;
+        width: 100%;
+        display: block;
+    }
+    
+    .herosection2{
+        grid-template-columns: 2fr 1fr 73px 3fr;
+    }
+
+    .companyDetailsImageWrapper{
+        width: 100%;
+        margin-bottom: 15px;
+    }
+
+    .verticalScroll{
+        overflow-y: hidden;
+        height: auto;
+    }
+    
+    .companyDetailsInfo{
+        width: 100%;
+        height: auto;
+        padding-bottom: 40px;
+        /* display: block; */
+    }
+    
+    .companyDetailsInfo > div {
+        height: auto;
+        margin-bottom: 15px;
+    }
+    
+    .companyData{
+        display: none;
+    }
+   
+    /* Edit Details */
+
+    .editContainer{
+        height: 70vh;
+        overflow-y: scroll;
+    }
+        
+    .herosectionContainer{
+        display: block;
+        height: auto;
+        margin-bottom: -20px;
+    }
+
+    .btnContainer{
+        display: flex;
+        justify-content: space-between;
+        /* margin-top: 20px; */
+    }
+
+    .cancelBtn{
+        width: 78px;
+    }
+
+    .updateBtn{
+        width: 80px;
+    }
+
+    
+    .editInputFieldWrapper {
+        margin-top: -19px;
+    }
+    
+    .editInputFieldWrapper > .inputFieldWrapper, .inputFieldWrapper{
+       display: block;
+    }
+    
+    .editcompanyAddressInputField{
+        width: 828px;
+    }
+    
+    .NewContractor1{
+        height: auto;
+        margin-top: 20px;
+    }
+
+    .NewContractor1 > .formContainer {
+        height: auto;
+    }
+    
+    /* Add Contractor */
+
+    main{
+        height: 70vh;
+        overflow-y: scroll;
+    }
+
+    .AddContractorContainer1 > .herosection1 div .backArrowText2{
+        font-size: 18px; 
+        font-weight: 700;
+    }
+    
+    .AddContractorContainer2{
+        display: block;
+        height: 65vh;
+        margin-bottom: 0px;
+    }
+    
+    .AddContractorWrapper{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        height: 322px;
+        border-radius: 8px;
+    }
+
+    .inputFieldWrapper{
+        display: block;
+    }
+
+    .NewContractor2{
+      margin-top: 20px;
+      height: auto;
+    }
+    
+}
+
+
+@media (min-width:1024px){
+
+    /* edit contractor */
+    .NewContractor1 > .formContainer {
+        overflow-y: scroll;
+    }
+
+    /* add contractor new2 */
+
+    .NewContractor2 > div:nth-child(1){
+        overflow-y: scroll;
+        height: 280px;
+    }
 }

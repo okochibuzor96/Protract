@@ -3,6 +3,8 @@ import settings from '../../Styles/my-settings.module.css'
 import {Formik, Form, Field} from 'formik'
 import CRUDfunc from '../../../hooks/useQuery/useProject'
 import {useMutation, useQueryClient} from 'react-query'
+import DataContext from '../../../Context API/Create_Context'
+import { useContext } from 'react'
 
 const answerType = [
 
@@ -52,19 +54,40 @@ const dropDownValue = [
 
 function Add_New_Modal() {
 
-    const queryClient = useQueryClient()
+    const {questions,setQuestions} = useContext(DataContext)
 
-    const {mutate} = useMutation((value)=> CRUDfunc.create('questions',value),{
-        onSuccess:()=>{
-            queryClient.invalidateQueries('question')
+    // const queryClient = useQueryClient()
+
+    // const {mutate} = useMutation((value)=> CRUDfunc.create('questions',value),{
+    //     onSuccess:()=>{
+    //         queryClient.invalidateQueries('questions')
+    //     }
+    // })
+
+    const onSubmit = (value)=>{
+
+        const Id = questions.length?questions[questions.length-1].id +1 : 1
+
+        const payload ={
+            ...value,
+            id:Id
         }
-    })
+
+        const newValue = [...questions,payload]
+
+        setQuestions(newValue)
+
+        localStorage.setItem("questions", JSON.stringify(newValue))
+
+        // mutate(value)
+        
+    }
 
   return (
 
     <Formik
     initialValues={initialValues}
-    onSubmit={(value)=> mutate(value)}
+    onSubmit={onSubmit}
     >
 
         {
@@ -132,7 +155,7 @@ function Add_New_Modal() {
                                         </div>
 
 
-                                        <Field name='question'>
+                                        <Field name='qstn'>
                                                 {
                                                     ({field}) =>{
                                                         return(

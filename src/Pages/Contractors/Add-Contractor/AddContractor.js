@@ -82,7 +82,6 @@ function AddContractor() {
     <main>
 
       <div className={contractor.AddContractorContainer1}>
-
         
         <div className={contractor.herosection1}>
 

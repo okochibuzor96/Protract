@@ -12,80 +12,89 @@ import CompanyData from "./CompanyData";
 import contractor from '../../styles/my-contractors.module.css';
 import { useMutation, useQuery, useQueryClient } from 'react-query';
 import {getContractorDetails, upDateContractorDetails} from '../hooks/useQuery/useProject'
-import { useState } from 'react';
+import { useState,useContext } from 'react';
 
 import {Formik,Form} from 'formik'
 import Deny_Modal from '../Payments/Payment Details/Deny_Modal';
 import Approve_Modal from '../Payments/Payment Details/Approve_Modal';
+import DataContext from '../Context API/Create_Context';
 
 
 
 
 function ContractorDetailsIndex() {
+  
+  const {contractors,setContractors} = useContext(DataContext)
 
   const {id} = useParams()
 
   const [preveiw, setPreveiw] = useState('')
+  const [isLoadingImage, setIsLoadingImage] = useState(false)
 
   const navigate = useNavigate();
 
-  const queryClient = useQueryClient()
+  // const queryClient = useQueryClient()
 
-    const {data, isLoading} = useQuery(['contractorDetails', id], getContractorDetails, {
-        
-      initialData: () => {
-          const contractorDetails = queryClient.getQueryData('contractors')?.data?.find((contractors) => contractors.id === parseInt(id))
+  // const {data, isLoading} = useQuery(['contractorDetails', id], getContractorDetails, {
       
-          if(contractorDetails){
-          return{data: contractorDetails}
-          }else{
-          return undefined
-          }
-      }
-    })
+  //   initialData: () => {
+  //       const contractorDetails = queryClient.getQueryData('contractors')?.data?.find((contractors) => contractors.id === parseInt(id))
+    
+  //       if(contractorDetails){
+  //       return{data: contractorDetails}
+  //       }else{
+  //       return undefined
+  //       }
+  //   }
+  // })
 
-    const {mutate,isSuccess,isLoading:isLoadingImage} = useMutation(upDateContractorDetails,{
-      onSuccess: ()=>{
-        queryClient.invalidateQueries('contractorDetails')
-      }
-    })
+  // const {mutate,isSuccess,isLoading:isLoadingImage} = useMutation(upDateContractorDetails,{
+  //   onSuccess: ()=>{
+  //     queryClient.invalidateQueries('contractorDetails')
+  //   }
+  // })
 
-    const handleImageChange = (e) =>{
-      const File = e.target.files[0]
+  const data = contractors.find((contractor)=> contractor.id === id)
 
-      if(File){
-        const fileReader = new FileReader()
-        fileReader.readAsDataURL(File)
-        fileReader.onload = () =>{
-          setPreveiw(fileReader.result)
-        }
+  const handleImageChange = (e) =>{
+    const File = e.target.files[0]
+
+    if(File){
+      const fileReader = new FileReader()
+      fileReader.readAsDataURL(File)
+      fileReader.onload = () =>{
+        setPreveiw(fileReader.result)
       }
     }
+  }
 
-    const handleImageUpdate = ()=>{
+  const handleImageUpdate = ()=>{
 
-      const payload ={
-        avarta:''
-      }
-      payload.avarta=preveiw
-      payload.id=id
-
-      console.log('p',payload)
-      mutate(payload)
-
-      setTimeout(()=>setPreveiw(""),1000)
-      
-    }
-
-    // if(isSuccess){
-    //   setPreveiw('')
+    // const payload ={
+    //   avarta:''
     // }
+    // payload.avarta=preveiw
+    // payload.id=id
+     
+    // mutate(payload)
 
-  
+    const image = contractors.map((item)=>
+     item.id === id?
+     {...item,avarta:preveiw} : item
+    )
+
+    setContractors(image)
+    setTimeout(()=>setPreveiw(""),1000)
+    // localStorage.setItem('contractors', JSON.stringify(image))
+    
+  }
+
+  console.log('lo',  JSON.parse(localStorage.getItem('contractor')))
   
 
   return (
-    <>
+    <div className={contractor.detailsContainer}>
+      
       <div className={contractor.herosectionWrapper}>
 
         <div className={contractor.herosection1}>
@@ -192,66 +201,60 @@ function ContractorDetailsIndex() {
       <hr/>
 
       <div className={contractor.companyDetailsWrapper}>
-        
-        <>
-          
 
-                
-          
-          {
-            isLoadingImage?
+        <div>
+        
+          <>    
             
-            <div class={`${contractor.companyDetailsImageWrapper} d-flex justify-content-center`}>
-            <div className="spinner-border" role="status">
-              <span className="visually-hidden">Loading...</span>
-            </div>
-          </div>:
+            {
+            //   isLoadingImage || !data?.avarta?
+              
+            //   <div class={`${contractor.companyDetailsImageWrapper} d-flex justify-content-center`}>
+            //   <div className="spinner-border" role="status">
+            //     <span className="visually-hidden">Loading...</span>
+            //   </div>
+            // </div>:
               preveiw?
               <div className={contractor.companyDetailsImageWrapper}>
-            <img className={contractor.companyDetailsImage} src={preveiw}/>
-            <label onClick={handleImageUpdate} className={contractor.upDateBtn}>Update Logo</label>
-            </div>:
-             <div className={contractor.companyDetailsImageWrapper}>
-             <img className={contractor.companyDetailsImage} src={data?.data.avarta||imageBadge}/>
-             <label htmlFor="actual-btn" className={contractor.upDateBtn}>Change Logo</label>
-             </div>
+                <img className={contractor.companyDetailsImage} src={preveiw}/>
+                <label onClick={handleImageUpdate} className={contractor.upDateBtn}>Update Logo</label>
+              </div>:
+              <div className={contractor.companyDetailsImageWrapper}>
+                <img className={contractor.companyDetailsImage} src={imageBadge}/>
+                <label htmlFor="actual-btn" className={contractor.upDateBtn}>Change Logo</label>
+              </div>
             
-          
+            }
+
+            <input id="actual-btn" type="file" onChange={handleImageChange}  hidden />
 
           
-          }
+            
+          </>
 
-          <input id="actual-btn" type="file" onChange={handleImageChange}  hidden />
+          <div className={contractor.ScrollWrapper}>
 
-         
-          
-        </>
+            <p>Company Details</p>
 
-        <div className={contractor.ScrollWrapper}>
+            <div className={contractor.verticalScroll}>
 
-          <div className={contractor.verticalScroll}>
+              <CompanyDetails 
+                id={id}
+                data={data}
+                // isLoading={isLoading}
+              />
 
-            <div className={contractor.companyDetailsInfoWrapper}>
-
-              <p>Company Details</p>
-              
-                <CompanyDetails 
-                  id={id}
-                  data={data?.data}
-                  isLoading={isLoading}
-                />
-
-                <CompanyData />
-              
+              <CompanyData />
+                
             </div>
-
+            
           </div>
-          
-        </div>
 
+        </div>
       
       </div>
-    </>
+      
+    </div>
   )
 }
 

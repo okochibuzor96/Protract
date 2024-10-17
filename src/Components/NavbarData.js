@@ -45,11 +45,11 @@ export const NavbarData = [
         title:'User Management',
         path:'/users'
     },
-    {
-        icon:<CiPercent/>,
-        title:'Reports',
-        path:'/reports'
-    },
+    // {
+    //     icon:<CiPercent/>,
+    //     title:'Reports',
+    //     path:'/reports'
+    // },
     {
         icon:<CiSettings/>,
         title:'Settings',

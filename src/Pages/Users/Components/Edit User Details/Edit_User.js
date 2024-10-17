@@ -2,7 +2,7 @@ import userDetails from '../../Users_Style_Folder/my-userDetails.module.css'
 import addUser from '../../Users_Style_Folder/my-addUser.module.css'
 import contractor from '../../../../styles/my-contractors.module.css';
 import detailAvatar from '../../../../Images/userMainIcon.png'
-import {useRef, useState} from 'react'
+import {useContext, useEffect, useRef, useState} from 'react'
 import { useQuery, useMutation, useQueryClient } from 'react-query';
 import CRUDfunc from '../../../hooks/useQuery/useProject';
 import Update from './Modal/updateBtn'
@@ -10,6 +10,7 @@ import Update from './Modal/updateBtn'
 import { BsArrowLeftShort } from "react-icons/bs";
 import { useNavigate, useParams } from 'react-router-dom';
 import {Formik, Form, Field} from 'formik'
+import DataContext from '../../../Context API/Create_Context';
 
 function Edit_User() {
 
@@ -19,23 +20,27 @@ function Edit_User() {
     const navigate = useNavigate()
     const queryClient = useQueryClient()
 
-    const {data, isLoading} = useQuery(['edit-user-details', id], (payload)=>CRUDfunc.update(`users/${id}`,payload),{
-        initialData: () => {
-            const userDetails = queryClient.getQueryData('user')?.data?.find((details) => details.id === parseInt(id))
+    const {users, setUsers} = useContext(DataContext)
 
-            if(userDetails){
-                return{data: userDetails}
-            }else{
-                return undefined
-            }
-        }
-    } )
+    const data = users.find((item)=> item.id === parseInt(id))
 
-    const {mutate} = useMutation((value)=> CRUDfunc.update(`users/${id}`,value),{
-        onSuccess: () =>{
-            queryClient.invalidateQueries('user-details')
-        }
-    })
+    // const {data, isLoading} = useQuery(['edit-user-details', id], (payload)=>CRUDfunc.update(`users/${id}`,payload),{
+    //     initialData: () => {
+    //         const userDetails = queryClient.getQueryData('user')?.data?.find((details) => details.id === parseInt(id))
+
+    //         if(userDetails){
+    //             return{data: userDetails}
+    //         }else{
+    //             return undefined
+    //         }
+    //     }
+    // } )
+
+    // const {mutate} = useMutation((value)=> CRUDfunc.update(`users/${id}`,value),{
+    //     onSuccess: () =>{
+    //         queryClient.invalidateQueries('user-details')
+    //     }
+    // })
 
     const handleRef = () => {
         return inputRef.current.click()
@@ -54,27 +59,48 @@ function Edit_User() {
         
     }
 
+    useEffect(()=>{
+        localStorage.setItem("users", JSON.stringify(users))
+    },[users])
+
     const handleSubmit = (values) =>{
+
+        setUsers((prev)=>
+          prev.map((item)=>
+            item.id === parseInt(id)?
+            {
+                ...item,
+                userFname: values.userFname,
+                userLname: values.userLname,
+                userEmail: values.userEmail,
+                userNumber: values.userNumber,
+                userDepartment: values.userDepartment,
+                userRole: values.userRole,
+                // profileImg: image
+            }:
+            item
+          )
+        )
         
         navigate(`/users/user-details/${id}`)
-       return mutate(values)
+    //    return mutate(values)
     }
 
-    if(isLoading){
-        return <div>Loading...</div>
-      }
+    // if(isLoading){
+    //     return <div>Loading...</div>
+    //   }
 
   return (
    
     <Formik
-       initialValues={data?.data}
+       initialValues={data}
        onSubmit={handleSubmit}
     >
         {
             () => {
                 return(
                     <Form>
-                        <div>
+                        <div className={addUser.addUserContainer}>
 
                             <div className={userDetails.hWrappper}>
 
@@ -105,8 +131,8 @@ function Edit_User() {
                                     </button>
 
                                     <Update
-                                      fName={data?.data.userFname}
-                                      lName={data?.data.userLname}
+                                      fName={data?.userFname}
+                                      lName={data?.userLname}
                                     />
 
                                     {/* <button type='submit'>
@@ -131,8 +157,8 @@ function Edit_User() {
                                                         onClick={handleRef} 
                                                         src={
                                                             image?image:
-                                                            data?.data.profileImg?
-                                                            data?.data.profileImg:
+                                                            data?.profileImg?
+                                                            data?.profileImg:
                                                             detailAvatar
                                                         } 
                                                         alt="User"/>

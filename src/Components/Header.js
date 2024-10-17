@@ -3,53 +3,63 @@ import header from '../styles/my-header.module.css';
 import Inputimage from '../Images/Inputimage.svg';
 import { IoMdArrowDropdown } from "react-icons/io";
 import { LiaSearchSolid } from "react-icons/lia";
+import { useNavigate } from 'react-router-dom';
+import { CgMenuBoxed } from "react-icons/cg";
 
 function Header() {
+
+  const navigate = useNavigate()
+
+  const handleClick = ()=>{
+    localStorage.removeItem("pwd")
+    localStorage.removeItem("users")
+    navigate('/login')
+  }
+
   return (
-    <div >
+  
+    <div className={header.block}>
 
-      <div className={header.block}
-      >
+      <div className='me-2'>
 
-        <div>
+        <LiaSearchSolid size={30} color='#A8A8A8'/>
 
-          <LiaSearchSolid size={30} color='#A8A8A8'/>
+        <input 
+          type='test' 
+          placeholder='Search' 
+          className={header.input}  
+        />
 
-          <input 
-          type='test'          placeholder='Search' className={header.input}  style={{width:'500px', border:'none'}}
-          />
-
-        </div>
-        
-        
-        
-
-        <div >
-        
-          <input type='image' src={Inputimage} className={header.image}/>
-        </div>
-
-        <div className={header.image}>
-          
-          <a className="btn border border-0 e-2" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-
-            <IoMdArrowDropdown color='#A8A8A8' size={20}/>
-
-          </a>
-        
-          <ul className="dropdown-menu" >
-            <li><a className="dropdown-item" href="#">Action</a></li>
-            <li><a className="dropdown-item" href="#">Another action</a></li>
-            <li><a className="dropdown-item" href="#">Something else here</a></li>
-          </ul>
-    
-        </div>
-      
-      
-    
       </div>
       
+      
+      
+
+      <div >
+      
+        <input type='image' src={Inputimage} className={header.image}/>
+      </div>
+
+      <div className={header.image}>
+        
+        <a className="btn border border-0 e-2" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+
+          <IoMdArrowDropdown color='#A8A8A8' size={20}/>
+
+        </a>
+      
+        <ul className="dropdown-menu" >
+          <li><button className="dropdown-item" onClick={handleClick}>Logout</button></li>
+          {/* <li><a className="dropdown-item" href="#">Another action</a></li>
+          <li><a className="dropdown-item" href="#">Something else here</a></li> */}
+        </ul>
+  
+      </div>
+    
+    
+  
     </div>
+   
     
   )
 }

@@ -3,17 +3,21 @@ import settings from '../../Styles/my-settings.module.css'
 import {Formik, Form, Field} from 'formik'
 import { useQueryClient, useMutation } from 'react-query'
 import CRUDfunc from '../../../hooks/useQuery/useProject'
+import DataContext from '../../../Context API/Create_Context'
+import { useContext } from 'react'
 
 
 function Add_New_Modal() {
 
-    const queryClient =useQueryClient()
+    const {category, setCategory} = useContext(DataContext) 
 
-   const {mutate} = useMutation((value)=>CRUDfunc.create('category',value),{
-    onSuccess: ()=>{
-        queryClient.invalidateQueries('settings_category')
-    }
-   })
+//     const queryClient =useQueryClient()
+
+//    const {mutate} = useMutation((value)=>CRUDfunc.create('category',value),{
+//     onSuccess: ()=>{
+//         queryClient.invalidateQueries('settings_category')
+//     }
+//    })
 
     const dropDownValue = [
 
@@ -40,11 +44,28 @@ function Add_New_Modal() {
         projectNature:''
     }
 
+    const onSubmit = (value)=>{
+
+        const Id = category.length?category[category.length-1].id +1 : 1
+
+        const payload ={
+            ...value,
+            id:Id
+        }
+
+        const newValue = [...category,payload]
+
+        setCategory(newValue)
+
+        localStorage.setItem("category", JSON.stringify(newValue))
+        
+    }
+
   return (
 
     <Formik
      initialValues={initialValues}
-     onSubmit={(value)=>mutate(value)}
+     onSubmit={onSubmit}
     >
 
         {

@@ -11,8 +11,8 @@ const CRUDfunc = {
   },
 
   // Read (GET)
-  get: (endpoint,config) => {
-    return axios.get(`${BASE_URL}/${endpoint}`,{config});
+  get: async(endpoint,config) => {
+    return await axios.get(`${BASE_URL}/${endpoint}`,{config});
   },
 
   // Update (PUT)

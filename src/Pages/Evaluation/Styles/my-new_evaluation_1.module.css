@@ -18,6 +18,7 @@
 }
 
 .relativePosition{
+    margin-top: 20px;
     position: relative;
     z-index: 20;
 }
@@ -25,33 +26,35 @@
 .absolutePosition{
     position: absolute;
     display: flex;
-    
-    /* padding: 10px; */
-   
-    
+    width: 100%;  
 }
 
 
 .absolutePosition2 {
-    /* background-color: #FFFFFF; */
-   
-    /* box-shadow: 0px 0px 0px 4px #505050; */
-    /* border: 1px solid #DCDCDC; */
-    /* border-top: none; */
-    /* border-bottom: none; */
-
-    /* margin-top: -50px; */
     background-color: #FFFFFF;
     border: 1px solid #DCDCDC;
     border-radius: 8px;
     border-top-color: transparent;
     border-bottom: none; 
     box-shadow: 0px 0px 17px 0px #505050;
-    width: 839px;
+    width: 100%;
+    height: auto;
     padding: 20px;
-    /* padding: 10px; */
     
     
+}
+
+.absolutePosition2 > div{
+    overflow-y: scroll;
+    height: 35vh;
+    font-size: 16px;
+    font-weight: 700;
+    color: #505050;
+    line-height: 16px;
+}
+
+.absolutePosition2 > div div{
+    margin-bottom: 8px;
 }
 
 .hideAbsolutePosition2{
@@ -71,7 +74,7 @@
     align-items: center;
     justify-content: space-between;
     padding: 0px 20px 0px 20px;
-    width: 840px;
+    width: 100%;
     height: 50px;
     border-radius: 8px;
     background-color: #F3F4F5;
@@ -80,7 +83,7 @@
 
 .formWrapper > div div input {
     height: 19px;
-    width: 700px;
+    width: 88%;
 }
 
 .formWrapper > div .searchIcon {

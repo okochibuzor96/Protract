@@ -245,11 +245,11 @@ function NewContractor1({handleNext,fieldValues,image,handleChange,setFieldValue
 
                     </div>
 
-                    <Field name='emailAddress'>
+                    <Field name='mailAddress'>
                       {
                         ({field}) => {
                           return(
-                            <div style={{width:'375px',marginBottom:'20px'}}>
+                            <div style={{width:'100%',marginBottom:'20px'}}>
 
                               <label className={`${contractor.inputLabel}`}  >
                                 
@@ -270,9 +270,7 @@ function NewContractor1({handleNext,fieldValues,image,handleChange,setFieldValue
 
                   <div className={contractor.positionAbsolute}></div>
 
-                  <div className={contractor.positionRelative}>
-
-                    <button disabled className={` ${contractor.previousBtn} rounded-1 text-center border border-light`} >Previous</button>
+                  <div className={`${contractor.positionRelative} d-flex justify-content-end`}>
                       
                     <button type='submit' className={` ${contractor.nextBtn} rounded-1`}>Next</button>
 

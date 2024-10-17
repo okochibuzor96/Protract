@@ -70,7 +70,7 @@ function Project_Attributes({data}) {
                       
                         <ErrorMessage name={`PRinput${i+1}`} component={Texterror}/>
 
-                        <div className={newEvaluation2.RinputWrapper} key={i}>
+                        <div className={location.pathname === `/evaluation/evaluation-details/${id}`?newEvaluation2.RinputWrapperDetails:newEvaluation2.RinputWrapper} key={i}>
 
                             <div>{item.label}</div>
 
@@ -84,7 +84,7 @@ function Project_Attributes({data}) {
                                     location.pathname === `/evaluation/evaluation-details/${id}`?
                                     <>
                                       {
-                                        data?.data[`PRinput${i+1}`] === 'selected'?
+                                        data[`PRinput${i+1}`] === 'selected'?
                                         <span className={newEvaluation2.yesDiv}>Yes</span>:
                                         <span className={newEvaluation2.noDiv}>No</span>
                                       }

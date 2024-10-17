@@ -12,27 +12,34 @@ import {ViewButtons} from "../../../../Components/viewButtons"
 import { useQuery, useQueryClient } from 'react-query';
 import { useParams } from 'react-router-dom';
 import {getProjectDetails} from '../../../hooks/useQuery/useProject'
+import DataContext from '../../../Context API/Create_Context';
+import { useContext } from 'react';
 
 function MilestonesData() {
 
+  const {projects} = useContext(DataContext)
+
     const {id} = useParams()
 
-    const queryClient = useQueryClient()
+    const data = projects.find((item)=> item.id === id)
+
+    // const queryClient = useQueryClient()
   
-    const {data} = useQuery(['milestone', id], getProjectDetails,{
-      initialData: () => {
+    // const {data} = useQuery(['milestone', id], getProjectDetails,{
+    //   initialData: () => {
         
-        const Milestone = queryClient.getQueriesData('project')?.data?.find((project) => project.id === parseInt(id))
+    //     const Milestone = queryClient.getQueriesData('project')?.data?.find((project) => project.id === parseInt(id))
   
-        if(Milestone){
-          return{
-            data:Milestone
-          }
-        }else{
-          return undefined
-        }
-      }
-    })
+    //     if(Milestone){
+    //       return{
+    //         data:Milestone
+    //       }
+    //     }else{
+    //       return undefined
+    //     }
+    //   }
+    // })
+
   return (
     <div>
         <div className={project.mileStonethead}>
@@ -49,7 +56,7 @@ function MilestonesData() {
             
         </div>
        
-        {data?.data.mileStone.map((data,i) =>(
+        {data.mileStone.map((data,i) =>(
                 <div key={i} className={project.mileStonetbody}>
                     <div>{i+1}</div>
                     <div>{data.description}</div>

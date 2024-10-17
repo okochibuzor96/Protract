@@ -224,6 +224,7 @@ function NewProjectLayout() {
  
   
   return(
+    
     <div className={Newproject.NewProjectLayout}>
 
       <div  className={Newproject.NewProjectLayoutHero}>
@@ -257,11 +258,11 @@ function NewProjectLayout() {
 
       <hr/>
 
-      <header style={{display:'flex'}}>
+      <header>
 
         {
           projectsHeader.map((item,i) =>(
-            <div key={i} onClick={() => setCurrentPage(i)}> 
+            <div key={i}> 
 
               {item}
               

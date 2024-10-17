@@ -84,8 +84,6 @@
   font-weight: 500;
   opacity: 0.5;
   margin-right: 15px;
-  /* background-color: red; */
- 
 }
 .activeHeader {
   width: 100px;
@@ -114,7 +112,8 @@
 
 .NewProjectLayoutContent{
   width: 627px;
-  max-height: 378px;
+  height: auto;
+  /* max-height: 378px; */
   /* overflow-y: scroll; */
   background-color: #FFFFFF;
   padding: 20px 20px 0px 20px;
@@ -122,15 +121,18 @@
   position: relative;
 }
 
+/* .attachmentContainer > .NewProjectLayoutContent{
+  max-height: 372px;
+} */
+
 .stepOverLay{
   background-color: #436DA2;
   opacity: 0.2;
-  /* margin-top: -200px;  */
 }
 
 .stepOverLay,.stepButtonWrapper{
   height: 60px;
-  width: 595px;
+  width: 100%;
   margin-left: -20px;
   margin-right: -20px;
   border-bottom-left-radius: 8px;
@@ -138,6 +140,26 @@
   margin-top: 50px;
   position: absolute;
 }
+
+.detailsContainer > .NewProjectLayoutContent .stepOverLay,.detailsContainer > .NewProjectLayoutContent .stepButtonWrapper{
+   width: 100%;
+}
+
+.contractorContainer > .NewProjectLayoutContent .stepOverLay,.contractorContainer > .NewProjectLayoutContent .stepButtonWrapper, .SDGContainer > .NewProjectLayoutContent .stepOverLay,.SDGContainer > .NewProjectLayoutContent .stepButtonWrapper, .detailsContainer > .NewProjectLayoutContent .stepOverLay,.detailsContainer > .NewProjectLayoutContent .stepButtonWrapper{
+   margin-top: -59px;
+   width: 100%; 
+}
+
+.locationContainer > .NewProjectLayoutContent .stepOverLay,.locationContainer > .NewProjectLayoutContent .stepButtonWrapper, .attachmentContainer > .NewProjectLayoutContent .stepOverLay, .attachmentContainer > .NewProjectLayoutContent .stepButtonWrapper, .milestoneContainer > .NewProjectLayoutContent .stepOverLay, .milestoneContainer > .NewProjectLayoutContent .stepButtonWrapper{
+  margin-top: -59px;
+  
+  width:100%; 
+}
+
+/* .attachmentContainer > .NewProjectLayoutContent .stepOverLay, .attachmentContainer > .NewProjectLayoutContent .stepButtonWrapper{
+  margin-top: -1px;
+  width: 627px; 
+} */
 
 
 
@@ -180,13 +202,14 @@
 /* SDG Goals */
 
 .SDGWrapper{
-  width: 558px;
-  height: 278px;
+  width: 100%;
+  height: auto;
   display: grid;
-  grid-template-columns: 91px 91px 91px 91px 91px 91px;
-  grid-column-gap: 2px;
-  grid-row-gap: 2px;
-  margin-bottom: 23px;
+  grid-template-columns: repeat(auto-fit, 95.02px);
+  /* grid-template-columns: 91px 91px 91px 91px 91px 91px; */
+  grid-column-gap: 3px;
+  grid-row-gap: 5px;
+  padding-bottom: 80px;
 }
 
 [type='checkbox'] {
@@ -219,7 +242,7 @@
 [type='checkbox']:checked + label::after{
   content: '';
   position: absolute;
-  width: 91px;
+  width: 100%;
   left: 0;
   top: 0;
   padding: 0px;
@@ -229,18 +252,20 @@
 
 /* DETAILS */
 
-.detailsContainer > .NewProjectLayoutContent{
-  width: 600px;
-  max-height: 350px;
-  overflow-y: scroll;
+.Scroll{
+  /* width: 627px; */
+  height: 270px;
+  margin-bottom: 80px;
+ 
 }
 
 .field{
   width: 100%;
 }
 
+
 .field > div input {
-  width: 326px;
+  width: 100%;
 }
 
 .formColumn{
@@ -309,9 +334,8 @@
 
 
 .contractorFieldWrapper{
-  width: 90%;
+  width: 100%;
   height: 68px;
-  margin-left: 27px;
   margin-bottom: 232px;
 }
 
@@ -325,7 +349,7 @@
 }
 
 .contractorFieldWrapper > div input {
-  width: 326px;
+  width: 100%;
   height: 19px;
   color: #505050;
   font-size: 14px;
@@ -346,25 +370,30 @@
 
 /* location */
 
-.locationFieldWrapper{
-  display: flex;
-  justify-content: space-between;
-  padding: 15px;
+.locationFieldArray{
+  width:100%;
+  height:246px;
+  margin-bottom: 94px;
 }
 
-.locationFieldArray{
+.locationFieldWrapper{
+  display: flex;
+  grid-column-gap: 10px;
+  justify-content: space-between;
+  width: 100%;
+}
 
-  width:100%;
-  height:266px;
-  margin-bottom: 34px;
-  overflow-y: scroll;
+.locationFieldWrapper > div{
+  display: grid;
+  grid-template-columns: 49% 49%;
+  grid-column-gap: 10px;
+  margin-bottom: 20px;
+  width: 100%;
 }
 
 .locationFieldWrapper > div > div {
-  width: 237px;
   height: 68px;
   margin-bottom: 10px;
-
 }
 
 .locationFieldWrapper div div label {
@@ -387,7 +416,7 @@
 }
 
 .locationFieldWrapper div div div input, .locationSelectInput {
-  width: 274px;
+  width: 100%;
   height: 19px;
   color: #505050;
   font-size: 14px;
@@ -398,35 +427,59 @@
 
 .locationSelectInput:focus {
   outline: none;
-
 }
 
 /* attachment */
 
 .attachmentContainer > .NewProjectLayoutContent {
-  height: 440px;
+  height: 54vh;
   width: 627px;
- 
+  /* background-color: green; */
 }
+
+/* .attachmentContainer > div div:nth-child(1) {
+  background-color: red;
+  height: auto;
+  margin-bottom: 98px;
+} */
+
 
 .fileContainer {
   display: grid;
-  grid-template-columns: 120px 120px 120px 120px;
+  grid-template-columns: repeat(auto-fit, 120px);
   grid-column-gap: 25px;
-  height: 293px;
-  margin-bottom: auto;
+  height: 232px;
+  /* background-color: yellow;  */
+  margin-bottom: 93px;
+ 
+}
+
+/* width */
+::-webkit-scrollbar {
+  width: 4px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 0px grey; 
+  border-radius: 5px;
+}
+ 
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: rgb(161, 158, 158); 
+  border-radius: 5px;
 }
 
 .fileWrapper{
   width: 100%;
-  height: 176px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+  height: 150px;
+  /* height: 150px; */
+  background-color: green;
+  grid-row-gap: 5px;
 }
 
 .FileEarmarkWrapper{
-
   width: 100%; 
   height: 120px;
   background-color: #F3F4F5; 
@@ -436,7 +489,7 @@
 }
 
 .fileWrapper > div {
-  width: 120px;
+  width: 100%;
   height: 120px;
   border: 1px solid #DCDCDC;
   background-color: #F3F4F5;
@@ -444,30 +497,34 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-bottom: 5px;
+  /* margin-bottom: 5px; */
 }
 
 .fileWrapper > p {
   width: 100%;
-  height: 36px;
+  height: 26px;
   font-weight: 400;
-  line-height: 15px;
   font-size: 14px;
   color: #505050;
   display: flex;
-  flex-direction: column;
+  justify-content: center;
   align-items: center;
-  
+  margin-top: 5px;
 }
 
 /* milestones */
 
 .mileStonesFieldContainer {
   width:100%;
-  height:210px;
-  display: flex;
-  margin-bottom: 16px;
-  padding: 10px;
+  height:auto;
+  display: grid;
+  grid-template-columns: 1fr 38px;
+  grid-column-gap: 10px;
+  margin-bottom: 26px;
+}
+
+.mileStonesFieldContainer > div {
+  height:100%;
 }
 
 .modal_dialog {
@@ -515,15 +572,14 @@
 
   width:100%;
   height:256px;
-  margin-bottom: 44px;
-  overflow-y: scroll;
+  margin-bottom: 94px;
 
 }
 
 .mileStonesFieldWrapper > div {
-  width: 487px;
+  width: 100%;
   display: grid;
-  grid-template-columns: 337px 120px;
+  grid-template-columns: 3fr 1fr;
   grid-column-gap: 10px;
   margin-bottom: 16px;
   
@@ -531,8 +587,6 @@
 
 .mileStonesFieldWrapper > div div {
   height: 68px;
-  /* background-color: #31609A; */
-  /* margin-bottom: 10px; */
 }
 
 .mileStonesFieldWrapper > div > div > div {
@@ -546,12 +600,18 @@
   padding: 5px;
 }
 
-.mileStonesFieldWrapper > div > div > div input, .description > div input {
-  width: 189px;
-  height: 19px;
+.mileStonesFieldWrapper > div > div > div input, .description > div textarea,.description > textarea:focus {
+  width: 100%;
+  height: 100%;
   font-size: 12px;
-  font-weight: 100;
+  font-weight: 200;
+  color: #A8A8A8;
+  outline: none;
+ 
+  border-color: transparent;
+  resize: none;
   background-color: transparent;
+  /* background-color: red; */
 }
 
 .mileStonesFieldWrapper > div label, .description label {
@@ -563,7 +623,7 @@
 }
 
 .description{
-  width: 467px;
+  width: 100%;
   height:100px;
 }
 
@@ -574,6 +634,153 @@
   background-color: #F4F6F7;
   border-radius: 8px;
   padding: 5px;
+}
+
+@media (max-width:600px){
+
+  .NewProjectLayout{
+    height: 70vh;
+    overflow-y: scroll;
+  }
+
+  .NewProjectLayoutContent{
+    width: 100%;
+    height: auto;
+    
+  }
+
+  .NewProjectLayoutHero{
+    display: block;
+    width: 100%;
+    
+  }
+
+  .BackContainer{
+    width: 100%;
+  }
+
+  .NewProjectLayout > header {
+    display: none;
+  }
+
+
+
+  /* details */
+
+  .detailsContainer{
+    margin-top: 20px;
+    height: 52vh;
+  }
+
+  .detailsContainer >.NewProjectLayoutContent{
+    height: auto;
+  }
+
+  .Scroll{
+    
+    height: auto;
+    /* height: 210px; */
+    margin-bottom: 100px;
+  }
+
+  .NewProjectLayoutHero > div:nth-child(2){
+    width: 100%;
+    margin-top: 20px;
+    justify-content: space-between;
+  }
+
+  .formColumn{
+    display: block;
+  }
+
+  .detailsForm1 > div, .detailsForm2 > div  {
+    width: 100%;
+  }
+
+  /* SDGGOALS */
+
+  .SDGContainer >.NewProjectLayoutContent{
+    width: 100%;
+    height: auto;
+  }
+
+  .SDGWrapper{
+    height: auto;
+    /* height: 230px; */
+    margin-bottom: 60px;
+    /* overflow-y: scroll; */
+  }
+
+  /* location */
+
+  .locationFieldWrapper > div{
+    display: block;
+  }
+
+  .locationFieldArray{
+    height:auto;
+    /* height:166px; */
+  }
+
+  /* attachment */
+
+  .attachmentContainer {
+    background-color: green;
+    height: auto;
+  }
+
+  .attachmentContainer > .NewProjectLayoutContent {
+    height: auto;
+    width: 100%;
+  }
+
+  .fileContainer {
+    grid-template-columns: repeat(auto-fit, 105px);
+    grid-column-gap: 16px;
+    height: auto;
+    /* overflow-y: scroll; */
+    margin-bottom: 92px;
+  }
+
+  /* milestone */
+
+  .mileStonesFieldArrayContainer{
+    height: auto;
+    /* margin-bottom: 31px; */
+  }
+
+  .mileStonesFieldWrapper > div div:nth-child(2) label {
+    margin-top: 12px;
+  }
+
+  .mileStonesFieldWrapper > div {
+    display: block;
+  }
+
+  
+
+ 
+}
+
+@media (min-width:1024px){
+
+  .Scroll{
+    /* width: 627px; */
+    overflow-y: scroll;
+  }
+
+  /* location */
+
+  .locationFieldArray, .mileStonesFieldArrayContainer{
+    overflow-y: scroll;
+  }
+
+  /* attachment */
+
+  .fileContainer {
+    overflow-y: scroll;
+  }
+
 }
 
 

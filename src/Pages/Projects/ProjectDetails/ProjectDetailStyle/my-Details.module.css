@@ -24,7 +24,8 @@
     width:100%;
     height: auto;
     display:grid;
-    grid-template-columns: 265px 265px 232px;
+    grid-template-columns: repeat(auto-fit, 162px);
+    /* grid-template-columns: 265px 265px 232px; */
     grid-column-gap: 10px;
     margin-top: 15px;
     padding:20px 30px 30px 20px
@@ -42,7 +43,8 @@
 
 .imageWrapper{
     display: grid;
-    grid-template-columns: 40px 40px 40px 40px 40px;
+    grid-template-columns: repeat(auto-fit, 40px);
+    /* grid-template-columns: 40px 40px 40px 40px 40px; */
     grid-column-gap: 8px;
 }
 
