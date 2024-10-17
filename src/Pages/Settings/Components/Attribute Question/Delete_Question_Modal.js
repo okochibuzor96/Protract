@@ -1,7 +1,17 @@
 import { HiOutlineTrash } from "react-icons/hi2";
 import settings from '../../Styles/my-settings.module.css'
+import {useMutation,useQueryClient} from 'react-query'
+import CRUDfunc from "../../../hooks/useQuery/useProject";
 
-function Delete_Question_Modal() {
+function Delete_Question_Modal({children,Id}) {
+
+    const queryClient = useQueryClient()
+
+   const {mutate} = useMutation((Id)=>CRUDfunc.delete(`questions/${Id}`),{
+     onSuccess: ()=>{
+        queryClient.invalidateQueries('questions')
+     }
+   })
 
   return (
 
@@ -13,13 +23,7 @@ function Delete_Question_Modal() {
             data-bs-target="#staticBackdrop3" 
             className={settings.deleteIcon}
         >
-            <td>
-
-            <HiOutlineTrash 
-                size={16} 
-            />
-
-            </td>
+          {children}
         </tr>
 
        
@@ -55,7 +59,11 @@ function Delete_Question_Modal() {
                     
                     <div className="d-flex justify-content-center mb-5">
                         
-                        <button type="button" className={`${settings.addButton} btn btn-primary text-white  me-3`}
+                        <button 
+                            type="button" 
+                            className={`${settings.addButton} btn btn-primary text-white  me-3`}
+                            data-bs-dismiss="modal"
+                            onClick={()=>mutate(Id)}
                         >
                             Delete
                         </button>

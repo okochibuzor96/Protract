@@ -7,6 +7,7 @@ import { useQuery, useQueryClient } from 'react-query';
 import CRUDfunc from '../../../hooks/useQuery/useProject';
 import { LuPencil } from "react-icons/lu";
 import { useState } from 'react';
+import { HiOutlineTrash } from "react-icons/hi2";
 
 // import Delete from './Delete_Modal'
 // import Edit from './Edit_Modal';
@@ -128,9 +129,26 @@ function Attribute_Question() {
 
                             </tr>
 
-                            {/* <Edit_Question_Modal/> */}
+                            <tr>
 
-                            <Delete_Question_Modal/>
+                                <td>
+
+                                <Delete_Question_Modal
+                                    Id={Id}
+                                    data={getDataById}
+                                >
+
+                                    <button className={settings.deleteIcon} onClick={()=> handleDelete(value.id)}>
+                                        <HiOutlineTrash size={16}/>
+                                    </button>
+
+                                </Delete_Question_Modal>
+                                    
+                                </td>
+
+                            </tr>
+
+                            {/* <Delete_Question_Modal/> */}
 
                         </tbody>
                     ))

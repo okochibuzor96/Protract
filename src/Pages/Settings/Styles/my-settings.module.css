@@ -220,18 +220,18 @@ tbody >tr {
   border: none;
 }
 
-.addButton{
+.addButton, .questionModalContent > div:nth-child(3) button:nth-child(1){
     background-color: #31609A;
     color: #FFFFFF;
     border: none;
 }
 
-.addButton, .cancelButton {
+.addButton, .cancelButton, .questionModalContent > div:nth-child(3) button {
     font-weight: 600;
     font-size: 12px;
 }
 
-.cancelButton{
+.cancelButton, .questionModalContent > div:nth-child(3) button:nth-child(2){
     border: 1px solid #31609A;
     color: #31609A;
     background-color: #FFFFFF;
