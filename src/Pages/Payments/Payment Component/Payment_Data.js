@@ -1,21 +1,20 @@
 import contractor from '../../../styles/my-contractors.module.css'
 import project from '../../Projects/my-projects.module.css'
-import {Link,useNavigate} from 'react-router-dom'
-import {useQuery} from 'react-query'
-import {getProjects} from '../../hooks/useQuery/useProject'
+import {useNavigate} from 'react-router-dom'
 import { ViewButtons } from '../../../Components/viewButtons'
+import GetUser from '../../../Components/Pagination/GetUsers'
 
 
-function Payment_Data() {
-
-    const {data} = useQuery('payment', getProjects)
+function Payment_Data(props) {
 
     const navigate =  useNavigate()
+   
+    const getUser = GetUser(props)
 
     return (
     <div>
         {
-        data?.data.map((item,i)=>(
+        props.data?.data && getUser.map((item,i)=>(
             <div key={i} className={project.block70}> 
                 <div>
                     {item.projectReferenceNumber}

@@ -6,11 +6,43 @@ import Projecthistory from './Projecthistory';
 import Projecttablehistory from './Projecttablehistory';
 import Dherosection from './Dherosection';
 import RecentProjectlist from './RecentProjectlist';
+import Pagination from '../../Components/Pagination/Pagination';
+import {useQuery} from 'react-query'
+import { useState, useEffect } from 'react';
+import CRUDfunc from '../hooks/useQuery/useProject'
+import GetUsers from '../../Components/Pagination/GetUsers';
+
 
 function Dashboard() {
 
+  const [page, setPage] = useState(2)
+  const [limit, setLimit] = useState(5)
+  const [projectStatus,setProjectStatus] = useState()
+
+  const {data, isLoading,isFetching} = useQuery('contractorProject', ()=>CRUDfunc.get('projects')
+  )
+
+  if(isLoading || isFetching) <div>...Loading</div>
+
+  const totalPage = data?.data && Math.ceil(data?.data.length/limit)
+
+ 
+
+  useEffect(()=>{
+
+    data?.data.map((item)=>setProjectStatus(item))
+
+     
+
+  },[data?.data])
+
+  console.log('status', projectStatus)
+
   return (
+
     <main>
+      
+
       <Dherosection/>
         
       
@@ -30,18 +62,36 @@ function Dashboard() {
                 <Piechart/>
               </div>
           
-              <Projecthistory/>
+              <Projecthistory
+               data={data}
+              />
             
 
             </div>
             
-            <Projecttablehistory/> 
+            <Projecttablehistory
+             data={data}
+            /> 
 
             <div className={dashboard.block17} >
               RECENT PROJECTS
             </div>
 
-            <RecentProjectlist/>
+            <RecentProjectlist
+             page={page}
+             limit={limit}
+             data={data}
+             setProjectCompleted={setProjectStatus}
+            />
+
+            { 
+              !isLoading &&  <Pagination
+              totalPage={totalPage}
+              page={page}
+              setPage={setPage}
+              siblings={1}
+              />
+            }      
               
               
   

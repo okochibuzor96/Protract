@@ -3,26 +3,30 @@ import contractor from '../../styles/my-contractors.module.css';
 import { ViewButtons } from '../../Components/viewButtons';
 import {useQuery} from 'react-query'
 import {getContractors} from '../hooks/useQuery/useProject'
-import { useNavigate,Link} from "react-router-dom";
+import { useNavigate} from "react-router-dom";
 
 import { LiaSearchSolid } from "react-icons/lia";
 import { IoMdArrowDropdown } from "react-icons/io";
 import { TbCaretUpDownFilled } from "react-icons/tb";
+import Pagination from '../../Components/Pagination/Pagination';
+import { useState } from 'react';
+import GetUsers from '../../Components/Pagination/GetUsers';
 
 function ContractorsLayout() {
 
-  const {data, isLoading} = useQuery('contractors',getContractors,{
-    select: data =>{
-      const contractors = data.data.sort((a,b) => b.id - a.id)
-      return contractors
-    }
-  }) 
-  
-  const navigate = useNavigate();
+  const {data, isLoading} = useQuery('contractors',getContractors) 
 
-  if(isLoading){
-    return <div>Loading...</div>
-  }
+  const [page, setPage] = useState(1)
+  const [limit, setLimit] = useState(4)
+
+  if(isLoading) <div>...Loading</div>
+
+  const totalPage = data?.data && Math.ceil(data?.data.length/limit)
+
+  const getUser = GetUsers({page,limit,data})
+
+
+  const navigate = useNavigate();
 
   return (
     
@@ -116,62 +120,72 @@ function ContractorsLayout() {
 
       </div>
 
-      <div style={{height:'40vh'}}>
-
-        <div style={{height:'46vh',overflowY:'scroll'}}>
+      <div className={contractor.contractorTable}>
           
-          <div>
+        <div>
 
-           {
-              data.map((item,index)=>(
-                <div key={index} className={contractor.block70}> 
-                  <div>
-                    {item.contractorId}
-                  </div>
+          {
+            data?.data && getUser.map((item,index)=>(
+              <div key={index} className={contractor.block70}> 
 
-                  <div className={contractor.block71}>{item.companyName}</div>
-
-                  <div className={contractor.block71}>{item.contactEmailAddress}</div>
-
-                  <div className={contractor.block71}>{item.phoneNumber}</div>
-
-                  <div className={contractor.block72}>
-
-                    <div className={item.status ==='Pending'? contractor.block73: item.status === 'Active'? contractor.block74 : contractor.block75}>
-
-              
-              <input
-                type="radio"
-                value=""
-                aria-label="Radio button for following text "
-                className={contractor.block76}
-              />
-
-              {
-               item.status.statusState === 'Pending'?
-               <div className={contractor.block77}>{item.status}</div> :
-               item.status === 'Active'?
-               <div className={contractor.block77}>{item.status}</div> :
-               <div className={contractor.block77}>{item.status}</div>
-              }
-              
-                    </div>
-
-                    <Link to={`/contractors/contractor_details/${item.id}`}>
-                      <ViewButtons/>
-                    </Link>
-            
-            
-                  </div>
-
+                <div>
+                  {item.contractorId}
                 </div>
-              ))
 
-            } 
+                <div className={contractor.block71}>{item.companyName}</div>
 
-          </div>
+                <div className={contractor.block71}>{item.contactEmailAddress}</div>
+
+                <div className={contractor.block71}>{item.phoneNumber}</div>
+
+                <div className={contractor.block72}>
+
+                  <div className={item.status ==='Pending'? contractor.block73: item.status === 'Active'? contractor.block74 : contractor.block75}>
+
+            
+                    <input
+                      type="radio"
+                      value=""
+                      aria-label="Radio button for following text "
+                      className={contractor.block76}
+                    />
+
+                    {
+                    item.status.statusState === 'Pending'?
+                    <div className={contractor.block77}>{item.status}</div> :
+                    item.status === 'Active'?
+                    <div className={contractor.block77}>{item.status}</div> :
+                    <div className={contractor.block77}>{item.status}</div>
+                    }
+              
+                  </div>
+
+                  
+                  <ViewButtons
+                    click={()=>navigate(`/contractors/contractor_details/${item.id}`)}
+                  />
+                  
           
+            
+                </div>
+
+              </div>
+            ))
+
+          } 
+
+          
+
         </div>
+
+        {
+          !isLoading &&  <Pagination
+          totalPage={totalPage}
+          page={page}
+          setPage={setPage}
+          siblings={1}
+          /> 
+        }
 
       </div>
       

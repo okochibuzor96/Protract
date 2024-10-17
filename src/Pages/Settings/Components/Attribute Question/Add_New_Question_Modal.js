@@ -56,7 +56,7 @@ function Add_New_Modal() {
 
     const {mutate} = useMutation((value)=> CRUDfunc.create('questions',value),{
         onSuccess:()=>{
-            queryClient.invalidateQueries('question')
+            queryClient.invalidateQueries('questions')
         }
     })
 
@@ -132,7 +132,7 @@ function Add_New_Modal() {
                                         </div>
 
 
-                                        <Field name='question'>
+                                        <Field name='qstn'>
                                                 {
                                                     ({field}) =>{
                                                         return(

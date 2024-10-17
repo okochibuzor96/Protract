@@ -53,19 +53,19 @@ const SettingIndex = lazy(() => import("./Pages/Settings/Components/Settings/Set
 // const Setting_Layout = lazy(() => import("./Pages/Settings/Components/Settings/Setting_Layout"))
 
 
-const passWords = window.localStorage.getItem('Pwd')
+
+const passWords = window.localStorage.getItem('Pw')
 const resolvedPwd = JSON.parse(passWords)
 const userInfo = window.localStorage.getItem('users')
 const resolvedUser = JSON.parse(userInfo)
-// !resolvedPwd && !resolvedUser ?<Homepage/> : <Navigate to='/dashboard'/>
 const routerMain = createBrowserRouter([
   {
     path: "/",
-    element:  !resolvedPwd && !resolvedUser ?<Homepage/> : <Navigate to='/dashboard'/>
+    element:  !resolvedPwd && !resolvedUser ?<Navigate to='/login'/> : <Navigate to='/login'/>
   },
   {
       path:"/dashboard",
-      element: <Dashboard_Layout/>,
+      element:!resolvedPwd && !resolvedUser ?<Navigate to='/login'/> : <Dashboard_Layout/>,
       children: [
         {
           index:true,
@@ -178,15 +178,15 @@ const routerMain = createBrowserRouter([
     children: [
       {
         index: true,
-        element: <Suspense fallback={<div style={{display:'flex', alignItems:'center', justifyContent:'center',width:'100%', height:'100vh', backgroundColor:"gray"}}>Loading...</div>}><Evaluation_Index/></Suspense>
+        element: <Suspense fallback={<div style={{display:'flex', alignItems:'center', justifyContent:'center',width:'100%', height:'85vh', backgroundColor:"gray"}}>Loading...</div>}><Evaluation_Index/></Suspense>
       },
       {
         path: "new-evaluation",
-        element: <Suspense fallback={<div style={{display:'flex', alignItems:'center', justifyContent:'center',width:'100%', height:'100vh', backgroundColor:"gray"}}>Loading...</div>}><New_Evaluation/></Suspense>
+        element: <Suspense fallback={<div style={{display:'flex', alignItems:'center', justifyContent:'center',width:'100%', height:'85vh', backgroundColor:"gray"}}>Loading...</div>}><New_Evaluation/></Suspense>
       },
       {
         path:"evaluation-details/:id",
-        element:<Suspense fallback={<div style={{display:'flex', alignItems:'center', justifyContent:'center',width:'100%', height:'100vh', backgroundColor:"gray"}}>Loading...</div>}><Details_Layout/></Suspense>
+        element:<Suspense fallback={<div style={{display:'flex', alignItems:'center', justifyContent:'center',width:'100%', height:'85vh', backgroundColor:"gray"}}>Loading...</div>}><Details_Layout/></Suspense>
       }
     ]
   },
@@ -200,138 +200,6 @@ const routerMain = createBrowserRouter([
       }
     ]
   },
-   
-  // {
-  //   path: "/",
-  //   element: <Homepage/>,
-  //   children: [
-  //     {
-  //      path:"dashboard",
-  //       element: <Suspense fallback={<div style={{display:'flex', alignItems:'center', justifyContent:'center',width:'100%', height:'85vh', backgroundColor:"gray"}}>Loading...</div>}><Dashboard/></Suspense>
-  //     },
-  //     {
-  //       path: "contractors",
-  //       element: <Suspense fallback={<div style={{display:'flex', alignItems:'center', justifyContent:'center',width:'100%', height:'85vh', backgroundColor:"gray"}}>Loading...</div>}><Contractors/></Suspense>,
-  //       children: [
-  //         {
-  //           index:true,
-  //           element: <ContractorsLayout/>
-  //         },
-  //         {
-  //           path: "contractor_details/:id",
-  //           element: <ContractorDetails/>,
-  //           children: [
-  //             {
-  //               index:true,
-  //               element: <ContractorDetailsIndex/>
-  //             },
-  //             {
-  //               path:"edit_details",
-  //               element: <EditDetails/>
-  //             }
-  //           ]
-            
-  //         },
-  //         {
-  //           path:"new_contractor",
-  //           element: <AddContractor/>
-  //         }
-  //       ]
-  //     },
-  //     {
-  //       path:"projects",
-  //       element: <Suspense fallback={<div style={{display:'flex', alignItems:'center', justifyContent:'center',width:'100%', height:'80vh', backgroundColor:"gray"}}>Loading...</div>}><ProjectLayout/></Suspense>,
-  //       children: [
-  //         {
-  //           index: true,
-  //           element:<ProjectIndex/>
-  //         },
-  //         {
-  //           path:"project-details/:id",
-  //           element:<Suspense fallback={<div style={{display:'flex', alignItems:'center', justifyContent:'center',width:'100%', height:'80vh', backgroundColor:"gray"}}>Loading...</div>}><ProjectDetailsLayout/></Suspense>,
-  //           children:[
-  //             {
-  //               index: true,
-  //               element: <ProjectDetailsIndex/>
-  //             },
-  //             {
-  //               path:"edit-project",
-  //               element: <Edit_ProjectLayout/>
-  //             }
-  //           ]
-  //         },
-  //         {
-  //           path:"new-project",
-  //           element: <NewProjectLayout/>
-  //         }
-  //       ]
-  //     },
-  //     {
-  //       path:"payments",
-  //       element: <Suspense fallback={<div style={{display:'flex', alignItems:'center', justifyContent:'center',width:'100%', height:'85vh', backgroundColor:"gray"}}>Loading...</div>}><Payment_Layout/></Suspense>,
-  //       children: [
-  //         {
-  //           index:true,
-  //           element:<Payment_Index/>
-  //         },
-  //         {
-  //           path:"payment_details/:id",
-  //           element:<Payment_Details/>
-  //         }
-  //       ]
-  //     },
-  //     {
-  //       path:"users",
-  //       element: <Suspense fallback={<div style={{display:'flex', alignItems:'center', justifyContent:'center',width:'100%', height:'85vh', backgroundColor:"gray"}}>Loading...</div>}><UserLayout/></Suspense>,
-  //       children:[
-  //         {
-  //           index:true,
-  //           element:<UserIndex/>
-  //         },
-  //         {
-  //           path:"user-details/:id",
-  //           element:<User_Details_Layout/>,
-  //           children:[
-  //             {
-  //                index:true,
-  //                element:<User_Details_Index/>
-  //             },
-  //             {
-  //               path:"edit_user",
-  //               element:<Edit_User/>
-  //             }
-  //           ]
-  //         },
-  //         {
-  //           path:"new-staff",
-  //           element:<AddUser/>
-  //         }
-  //       ]
-  //     },
-  //     {
-  //       path:"evaluation",
-  //       element: <Suspense fallback={<div style={{display:'flex', alignItems:'center', justifyContent:'center',width:'100%', height:'100vh', backgroundColor:"gray"}}>Loading...</div>}><Evaluation_Layout/></Suspense>,
-  //       children: [
-  //         {
-  //           index: true,
-  //           element: <Evaluation_Index/>
-  //         },
-  //         {
-  //           path: "new-evaluation",
-  //           element: <New_Evaluation/>
-  //         },
-  //         {
-  //           path:"evaluation-details/:id",
-  //           element:<Details_Layout/>
-  //         }
-  //       ]
-  //     },
-  //     {
-  //       path:'settings',
-  //       element: <Suspense fallback={<div style={{display:'flex', alignItems:'center', justifyContent:'center',width:'100%', height:'85vh', backgroundColor:"gray"}}>Loading...</div>}><SettingIndex/></Suspense>
-  //     }
-  //   ]
-  // },
   {
     path: "/login",
     element: <Login/>
@@ -347,13 +215,8 @@ function App() {
     
   // },[])
   return (
-   
-    
 
-      <RouterProvider router={routerMain} />
-
-    
-      
+    <RouterProvider router={routerMain} />
    
   );
 }

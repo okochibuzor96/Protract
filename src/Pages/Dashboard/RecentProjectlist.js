@@ -1,13 +1,18 @@
 import {useState} from 'react';
-import{Link} from 'react-router-dom'
+import{useNavigate} from 'react-router-dom'
+import GetUsers from '../../Components/Pagination/GetUsers';
+import dashboard from '../../styles/my-Dashboard.module.css';
 
 /*import for button*/
 
 import {ViewButtons} from '../../Components/viewButtons'
+import { Ongoing } from '../../Components/Status/Ongoing';
+import { Abandoned } from '../../Components/Status/Abandon';
+import { Completed } from '../../Components/Status/Completed';
 
-function RecentProjectlist() {
+function RecentProjectlist(props) {
 
-
+ const getUsers = GetUsers(props)
 
     const [items,setItems] = useState([
         {
@@ -66,62 +71,44 @@ function RecentProjectlist() {
             }
         },
     ])
+    const navigate = useNavigate()
+
   return (
         <div className='block41-1'>
-
             
-            {items.map((item)=> (
-                <div
-                key={item.Id}
-                className=" mb-2 p-2 bg-white rounded block41"
-                >
-                
-                    <div  className=" block42">{item.Id}</div>
-                    
-                    <div  className=" block42">{item.companySlogan}</div>
-                    
-                    <div  className=" block42">{item.project}</div>
-
-                    <div  className=" block42">{item.companyName}</div>
-
-                    { item.projectStatus.statusText ==='Ongoing'? <div className='d-flex align-items-center rounded-4 block49'>
-                        <div className="mt-2 me-1  ps-2">
-                            <input
-                            className="form-check-input mt-0 block53"
-                            type="radio"
-                            value=""
-                            aria-label="Radio button for following text "
-                            />
-                        </div>
-                        <div className="">Ongoing</div>
-                    </div> :(
-
+            {props.data?.data && getUsers.map((item,i)=>{
+                return(
                     <div
-                        className="d-flex align-items-center rounded-4  block47" style={item.projectStatus.statusText ==='Completed'? {backgroundColor:'green'} : null }
+                    key={i}
+                    className={`${dashboard.block41} mb-2 p-2 bg-white rounded `}
                     >
-                        <div className="mt-2 me-1  ps-2">
-                            <input
-                            className="form-check-input mt-0 block53"
-                            type="radio"
-                            value=""
-                            aria-label="Radio button for following text "
-                            />
-                        </div>
-
-                       
-
-                        <div className="">{item.projectStatus.statusText}</div>
-                    </div>)}
-
-                     
+                    
+                        <div  className={dashboard.block42}>{item.projectReferenceNumber}</div>
                         
-                        {item.projectStatus.viewText === 'View'?<Link to='/projects'><ViewButtons/></Link> :''}
+                        <div  className={dashboard.block42}>{item.projectTitle}</div>
+                        
+                        <div  className={dashboard.block42}>{item.projectType}</div>
+
+                        <div  className={dashboard.block42}>{item.contractor}</div>
+
+                        { 
+                            item.status ==='Ongoing'?
+                            <Ongoing/>:
+                            item.status ==='Abandoned'?
+                            <Abandoned/>:
+                            <Completed/>
+                        }
+
+                        <ViewButtons
+                        click={()=>navigate(`/projects/project-details/:${item.id}`)}
+                        />
+
                         
                     
+                    </div>
 
-                
-                </div>
-            ))}
+                )
+            })}
 
         </div>
     )

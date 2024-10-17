@@ -12,13 +12,26 @@ import project from '../my-projects.module.css'
 import { IoMdArrowDropdown } from "react-icons/io";
 
 import contractor from '../../../styles/my-contractors.module.css'
-
+import {useQuery} from 'react-query'
+import {getProjects} from '../../hooks/useQuery/useProject'
 import {useNavigate} from 'react-router-dom'
-
+import {useState} from 'react'
+import Pagination from "../../../Components/Pagination/Pagination"
 
 
 function ProjectIndex() {
+    
+
+    const [page,setPage] = useState(1)
+
+    const [limit,setLimit] = useState(4)
+
     const navigate = useNavigate();
+
+    const {data,isLoading} = useQuery('project', getProjects)
+
+    const totalPage = data?.data && Math.ceil(data?.data.length/limit)
+
   return (
     <main>
 
@@ -71,12 +84,29 @@ function ProjectIndex() {
 
             <div className={project.pageScroll}>
 
-                <div className={project.verticalScroll}>
+                <div className={`${project.verticalScroll}`}>
 
-                    <ProjectData/>
+                    <ProjectData
+                        page={page}
+                        limit={limit}
+                        data={data}
+                    />
 
-                    <div className={project.paginationContainer}></div>
+                   
+                    
+
                 </div>
+
+                {
+                    !isLoading && <Pagination
+                        totalPage={totalPage}
+                        page={page}
+                        setPage={setPage}
+                        siblings={1}
+                    />
+                }
+
+
             </div>
 
         </div>

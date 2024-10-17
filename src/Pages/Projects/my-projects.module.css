@@ -104,17 +104,14 @@ main> {
 }
 
 .pageScroll{
-    height: 50vh;
+    height: 53.6vh;
 }
 
 .verticalScroll{
-    height: 50vh;
-    overflow-y: scroll;
+    height: 40vh;
+    margin-bottom: 50px;
 }
 
-.verticalScroll::-webkit-scrollbar{
-    display: none;
-}
 
 .paginationContainer{
     display: flex;

@@ -5,7 +5,7 @@ import { TbCaretUpDownFilled } from "react-icons/tb";
 import { LiaSearchSolid } from "react-icons/lia";
 import {Link, useNavigate} from "react-router-dom"
 import {useQuery} from 'react-query'
-import {getEvaluation} from '../../hooks/useQuery/useProject'
+import CRUDfunc, {getEvaluation} from '../../hooks/useQuery/useProject'
 import { ViewButtons } from '../../../Components/viewButtons'
 import { Completed } from '../../../Components/Status/Completed';
 import { Active } from '../../../Components/Status/Active';
@@ -13,12 +13,21 @@ import { InActive } from '../../../Components/Status/InActive';
 import { Ongoing } from '../../../Components/Status/Ongoing';
 import { Abandoned } from '../../../Components/Status/Abandon';
 import newEvaluation2 from '../Styles/my-new_evaluation_2.module.css'
-import React from 'react';
+import React, { useState } from 'react';
+import GetUsers from '../../../Components/Pagination/GetUsers';
+import Pagination from '../../../Components/Pagination/Pagination';
 
 
 function Evaluation_Index() {
 
-    const {data} = useQuery('evaluation', getEvaluation)
+    const {data} = useQuery('evaluation', ()=> CRUDfunc.get('evaluation'))
+
+    const [page, setPage] = useState(1)
+    const [limit, setLimit] = useState(4)
+
+    const getUser = GetUsers({page,limit,data})
+    
+    const totalPage = data?.data && Math.ceil(data?.data.length/limit)
 
     const navigate = useNavigate()
 
@@ -99,67 +108,82 @@ function Evaluation_Index() {
             </div>
         </div>
 
+        
         <div className={newEvaluation2.newEvaluation3Wrapper}>
 
-            {
-                data?.data.map((item, i) =>(
+            <div>
 
-                    <React.Fragment key={i} >
-                        {
-                            item.status === 'Completed' || item.status === 'Active' || item.status === 'Ongoing' || item.status === 'Abandon'?
-                            <div className={evaluation.tContent}>
-                
-                                <main>{item.projectNo}</main>
-                                <main>{item.projectFormValue}</main>
-                                <main>{item.SDGSector}</main>
-                                <main>{item.contractorFormValue}</main>
-                                <main></main>
-                                
-                                {
-                            
-                                    item.status === 'Completed'?
-                                    <main>
-                                        
-                                        <Completed/> 
-                                        <ViewButtons click={()=> navigate(`evaluation-details/${item.id}`)}/>
+                {
+                    data?.data && getUser.map((item, i) =>(
 
-                                    </main>:
-                                    item.status === 'Active'?
-                                    <main>
-
-                                        <Active/>
-                                        <ViewButtons click={()=> navigate(`evaluation-details/${item.id}`)}/>
-
-                                    </main>:
-                                    item.status === 'Ongoing'?
-                                    <main>
-
-                                        <Ongoing/>  
-                                        <ViewButtons click={()=> navigate(`evaluation-details/${item.id}`)}/>
-
-                                    </main>:
-                                    item.status === 'Abandon'?
-                                    <main>
-
-                                        <Abandoned/> 
-                                        <ViewButtons click={()=> navigate(`evaluation-details/${item.id}`)}/>
-
-                                    </main>: ""
-            
-                                        
-                                }
-                                
-                                
-            
-                            </div>: ""
-                        }
-                    </React.Fragment>
-
+                        <React.Fragment key={i} >
+                            {
+                                item.status === 'Completed' || item.status === 'Active' || item.status === 'Ongoing' || item.status === 'Abandon'?
+                                <div className={evaluation.tContent}>
                     
-                ))
-            }
+                                    <main>{item.projectNo}</main>
+                                    <main>{item.projectFormValue}</main>
+                                    <main>{item.SDGSector}</main>
+                                    <main>{item.contractorFormValue}</main>
+                                    <main></main>
+                                    
+                                    {
+                                
+                                        item.status === 'Completed'?
+                                        <main>
+                                            
+                                            <Completed/> 
+                                            <ViewButtons click={()=> navigate(`evaluation-details/${item.id}`)}/>
 
-</div>
+                                        </main>:
+                                        item.status === 'Active'?
+                                        <main>
+
+                                            <Active/>
+                                            <ViewButtons click={()=> navigate(`evaluation-details/${item.id}`)}/>
+
+                                        </main>:
+                                        item.status === 'Ongoing'?
+                                        <main>
+
+                                            <Ongoing/>  
+                                            <ViewButtons click={()=> navigate(`evaluation-details/${item.id}`)}/>
+
+                                        </main>:
+                                        item.status === 'Abandon'?
+                                        <main>
+
+                                            <Abandoned/> 
+                                            <ViewButtons click={()=> navigate(`evaluation-details/${item.id}`)}/>
+
+                                        </main>: ""
+                
+                                            
+                                    }
+                                    
+                                    
+                
+                                </div>: ""
+                            }
+                        </React.Fragment>
+
+                        
+                    ))
+                }
+
+            </div>
+
+            <Pagination
+                totalPage={totalPage}
+                page={page}
+                setPage={setPage}
+                siblings={1 }
+            />
+
+        </div>
+
+            
+        
 
     </div>
   )

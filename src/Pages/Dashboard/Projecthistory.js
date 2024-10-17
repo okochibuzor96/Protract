@@ -1,7 +1,12 @@
 import dashboard from '../../styles/my-Dashboard.module.css';
 
 
-function Projecthistory() {
+function Projecthistory({data}) {
+
+    const completedPro =data?.data.filter((value)=>value.status==='completed').length
+    const upComingPro =data?.data.filter((value)=>value.status==='Ongoing').length
+    
+
   return (
     
     <div className={dashboard.block8}>
@@ -18,7 +23,7 @@ function Projecthistory() {
 
                 </div>
 
-                <div>75</div>
+                <div>{completedPro}</div>
                 
             </div>
 
@@ -50,7 +55,7 @@ function Projecthistory() {
 
                 </div>
 
-                <div>14</div>
+                <div>{upComingPro}</div>
 
             </div>
 

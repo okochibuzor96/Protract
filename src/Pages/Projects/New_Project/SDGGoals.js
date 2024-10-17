@@ -118,7 +118,7 @@ function New_Project3(props) {
       {
         ({values}) => {
           return(
-            <Form>
+            <Form className={project.SDGContainer}>
               
               <div className={project.NewProjectLayoutContent}>
 

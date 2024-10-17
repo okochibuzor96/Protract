@@ -54,8 +54,13 @@
 
 .userTbodyWrapper{
   width: 100%;
-  height: 300px;
-  overflow-y: scroll;
+  height: 54.4vh;
+  margin-top: 8px;
+}
+
+.userTbodyWrapper > div:nth-child(1){
+  height: 47vh;
+  margin-bottom: 8px;
 }
 
 .userTbody{

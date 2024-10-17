@@ -122,6 +122,15 @@
   position: relative;
 }
 
+.attachmentContainer > .NewProjectLayoutContent{
+  max-height: 372px;
+}
+
+/* .detailsContainer > .NewProjectLayoutContent{
+  width: 780px;
+  background-color: red;
+} */
+
 .stepOverLay{
   background-color: #436DA2;
   opacity: 0.2;
@@ -138,6 +147,25 @@
   margin-top: 50px;
   position: absolute;
 }
+
+.detailsContainer > .NewProjectLayoutContent .stepOverLay,.detailsContainer > .NewProjectLayoutContent .stepButtonWrapper{
+   width: 627px;
+}
+
+.contractorContainer > .NewProjectLayoutContent .stepOverLay,.contractorContainer > .NewProjectLayoutContent .stepButtonWrapper, .SDGContainer > .NewProjectLayoutContent .stepOverLay,.SDGContainer > .NewProjectLayoutContent .stepButtonWrapper{
+   margin-top: -59px;
+   width: 627px; 
+}
+
+.locationContainer > .NewProjectLayoutContent .stepOverLay,.locationContainer > .NewProjectLayoutContent .stepButtonWrapper, .attachmentContainer > .NewProjectLayoutContent .stepOverLay, .attachmentContainer > .NewProjectLayoutContent .stepButtonWrapper, .milestoneContainer > .NewProjectLayoutContent .stepOverLay, .milestoneContainer > .NewProjectLayoutContent .stepButtonWrapper{
+  margin-top: -1px;
+  width: 627px; 
+}
+
+/* .attachmentContainer > .NewProjectLayoutContent .stepOverLay, .attachmentContainer > .NewProjectLayoutContent .stepButtonWrapper{
+  margin-top: -1px;
+  width: 627px; 
+} */
 
 
 
@@ -181,12 +209,12 @@
 
 .SDGWrapper{
   width: 558px;
-  height: 278px;
+  height: auto;
   display: grid;
   grid-template-columns: 91px 91px 91px 91px 91px 91px;
   grid-column-gap: 2px;
   grid-row-gap: 2px;
-  margin-bottom: 23px;
+  padding-bottom: 80px;
 }
 
 [type='checkbox'] {
@@ -230,7 +258,7 @@
 /* DETAILS */
 
 .detailsContainer > .NewProjectLayoutContent{
-  width: 600px;
+  width: 627px;
   max-height: 350px;
   overflow-y: scroll;
 }
