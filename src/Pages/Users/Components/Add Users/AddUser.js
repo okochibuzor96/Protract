@@ -148,142 +148,150 @@ function AddUser() {
                                 <div className={addUser.fieldWrapper}>
 
                                     <div>
-
-                                        <Field name='userFname'>
-                                            {
-                                                ({field}) =>{
-                                                    return(
-                                                        
-                                                        <div>
-                                                            <label>First Name</label>
-                                                            <div>
-                                                                <input {...field} type='text' placeholder='' />
-                                                            </div>
-                                                            
-                                                        </div>
-                                                    )
-                                                }
-                                            }
-                                        </Field>
                                         
-                                        <Field name='userLname'>
-                                            {
-                                                ({field}) =>{
-                                                    return(
-                                                        <div>
-                                                            <label>Surname</label>
-                                                            <div>
-                                                                <input type='text'  {...field} placeholder=''/>
-                                                            </div>
-                                                            
-                                                        </div>
-                                                    )
-                                                }
-                                            }
-                                        </Field>    
+                                        <div className={addUser.formContainer}>
+
+                                            <div>
+
+                                                <Field name='userFname'>
+                                                    {
+                                                        ({field}) =>{
+                                                            return(
+                                                                
+                                                                <div>
+                                                                    <label>First Name</label>
+                                                                    <div>
+                                                                        <input {...field} type='text' placeholder='' />
+                                                                    </div>
+                                                                    
+                                                                </div>
+                                                            )
+                                                        }
+                                                    }
+                                                </Field>
+                                                
+                                                <Field name='userLname'>
+                                                    {
+                                                        ({field}) =>{
+                                                            return(
+                                                                <div>
+                                                                    <label>Surname</label>
+                                                                    <div>
+                                                                        <input type='text'  {...field} placeholder=''/>
+                                                                    </div>
+                                                                    
+                                                                </div>
+                                                            )
+                                                        }
+                                                    }
+                                                </Field>    
+
+                                            </div>
+
+                                            <div>
+
+                                                <Field name='userEmail'>
+                                                    {
+                                                        ({field}) =>{
+                                                            return(
+                                                                <div>
+                                                                    <label>Email Address</label>
+                                                                    <div>
+                                                                        <input type='text' placeholder='' {...field}/>
+                                                                    </div>
+                                                                    
+                                                                </div>
+                                                            )
+                                                        }
+                                                    }
+                                                </Field>
+
+                                                <Field name='userNumber'>
+                                                    {
+                                                        ({field}) =>{
+                                                            return(
+                                                                <div>
+                                                                    <label>Phone Number</label>
+                                                                    <div>
+                                                                        <input type='text' placeholder='' {...field}/>
+                                                                    </div>
+                                                                
+                                                                </div>
+                                                            )
+                                                        }
+                                                    }
+                                                </Field>
+
+                                                <Field name='userAltNumber'>
+                                                    {
+                                                        ({field}) =>{
+                                                            return(
+                                                                <div>
+                                                                    <label>Alternate Phone Number</label>
+                                                                    <div>
+                                                                        <input type='text' placeholder='' {...field}/>
+                                                                    </div>
+                                                                    
+                                                                </div>
+                                                            )
+                                                        }
+                                                    }
+                                                </Field>
+
+                                                <Field name='userDepartment'>
+                                                    {
+                                                        ({field}) =>{
+                                                            return(
+                                                                <div>
+                                                                    <label>Department</label>
+                                                                    <div>
+                                                                        <input type='text' placeholder='' {...field}/>
+                                                                    </div>
+                                                                    
+                                                                </div>
+                                                            )
+                                                        }
+                                                    }
+                                                </Field>
+
+                                                <Field name='userRole'>
+                                                    {
+                                                        ({field}) =>{
+                                                            return(
+                                                                <div>
+                                                                    <label>Role</label>
+                                                                    <div>
+                                                                        <input type='text' placeholder='' {...field}/>
+                                                                    </div>
+                                                                    
+                                                                </div>
+                                                            )
+                                                        }
+                                                    }
+                                                </Field>
+
+                                                <Field name='userLocation'>
+                                                    {
+                                                        ({field}) =>{
+                                                            return(
+                                                                <div>
+                                                                    <label>Location</label>
+                                                                    <div>
+                                                                        <input type='text' placeholder='' {...field}/>
+                                                                    </div>
+                                                                    
+                                                                </div>
+                                                            )
+                                                        }
+                                                    }
+                                                </Field>
+
+                                            </div>
+
+                                        </div>
 
                                     </div>
-
-                                    <div>
-
-                                        <Field name='userEmail'>
-                                            {
-                                                ({field}) =>{
-                                                    return(
-                                                        <div>
-                                                            <label>Email Address</label>
-                                                            <div>
-                                                                <input type='text' placeholder='' {...field}/>
-                                                            </div>
-                                                            
-                                                        </div>
-                                                    )
-                                                }
-                                            }
-                                        </Field>
-
-                                        <Field name='userNumber'>
-                                            {
-                                                ({field}) =>{
-                                                    return(
-                                                        <div>
-                                                            <label>Phone Number</label>
-                                                            <div>
-                                                                <input type='text' placeholder='' {...field}/>
-                                                            </div>
-                                                        
-                                                        </div>
-                                                    )
-                                                }
-                                            }
-                                        </Field>
-
-                                        <Field name='userAltNumber'>
-                                            {
-                                                ({field}) =>{
-                                                    return(
-                                                        <div>
-                                                            <label>Alternate Phone Number</label>
-                                                            <div>
-                                                                <input type='text' placeholder='' {...field}/>
-                                                            </div>
-                                                            
-                                                        </div>
-                                                    )
-                                                }
-                                            }
-                                        </Field>
-
-                                        <Field name='userDepartment'>
-                                            {
-                                                ({field}) =>{
-                                                    return(
-                                                        <div>
-                                                            <label>Department</label>
-                                                            <div>
-                                                                <input type='text' placeholder='' {...field}/>
-                                                            </div>
-                                                            
-                                                        </div>
-                                                    )
-                                                }
-                                            }
-                                        </Field>
-
-                                        <Field name='userRole'>
-                                            {
-                                                ({field}) =>{
-                                                    return(
-                                                        <div>
-                                                            <label>Role</label>
-                                                            <div>
-                                                                <input type='text' placeholder='' {...field}/>
-                                                            </div>
-                                                            
-                                                        </div>
-                                                    )
-                                                }
-                                            }
-                                        </Field>
-
-                                        <Field name='userLocation'>
-                                            {
-                                                ({field}) =>{
-                                                    return(
-                                                        <div>
-                                                            <label>Location</label>
-                                                            <div>
-                                                                <input type='text' placeholder='' {...field}/>
-                                                            </div>
-                                                            
-                                                        </div>
-                                                    )
-                                                }
-                                            }
-                                        </Field>
-
-                                    </div>
-            
+                    
                                 </div>
 
                             </div>

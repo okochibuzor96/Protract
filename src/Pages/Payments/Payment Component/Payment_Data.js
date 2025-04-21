@@ -25,12 +25,14 @@ function Payment_Data(props) {
 
                 <div key={i} className={project.block70}> 
                     <div>
+
                         {item.projectReferenceNumber}
+
                     </div>
 
                     <div >{item.projectTitle}</div>
 
-                    <div>{item.mileStone.length}</div>
+                    <div>{item.mileStone?.length}</div>
 
                     <div>{item.projectValue}</div>
 
@@ -82,9 +84,16 @@ function Payment_Data(props) {
 
                         </div>
 
+
+
+
                         <div>
 
-                            <div>{item.projectReferenceNumber}</div>
+                            <div>
+
+                                {item.projectReferenceNumber}
+
+                            </div>
 
                             <div className={dashboard.date}>
                             

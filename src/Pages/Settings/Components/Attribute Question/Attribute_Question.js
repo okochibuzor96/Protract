@@ -6,11 +6,12 @@ import Delete_Question_Modal from './Delete_Question_Modal';
 import { useQuery, useQueryClient } from 'react-query';
 import CRUDfunc from '../../../hooks/useQuery/useProject';
 import { LuPencil } from "react-icons/lu";
-import { useContext, useState } from 'react';
+import { useContext, useState,useEffect } from 'react';
 import { HiOutlineTrash } from "react-icons/hi2";
 import DataContext from '../../../Context API/Create_Context';
 import { IoChevronBackOutline } from "react-icons/io5";
 import { IoChevronForward } from "react-icons/io5";
+import contractor from '../../../../styles/my-contractors.module.css'
 
 // import Delete from './Delete_Modal'
 // import Edit from './Edit_Modal';
@@ -47,9 +48,13 @@ function Attribute_Question({setPage, page}) {
         setId(id)
     }
 
-    if(!questions){
-        return <div>...Loading</div>
-    }
+    useEffect(()=>{
+        localStorage.removeItem("questions")
+      },[])
+
+    // if(!questions){
+    //     return <div>...Loading</div>
+    // }
 
 
 
@@ -60,7 +65,9 @@ function Attribute_Question({setPage, page}) {
 
             <div>Attribute Questions</div>
 
-            <Modal/>
+            <Modal>
+                Add New
+            </Modal>
 
         </header>
 
@@ -85,80 +92,98 @@ function Attribute_Question({setPage, page}) {
                     </td>
                 </tr>
             </thead>
-            
-            <div className={settings.scroll}>
-                {
-                    questions.map((value,i) =>(
-                        <tbody key={i}>
-                            <tr>
-                                <td>
-                                {value.category}
-                                </td>
-                            </tr>
 
-                            <tr className={settings.trmobile}>
-                                <td>
-                                {value.qstn}
-                                </td>
-                            </tr>
+            {
+                questions?(
 
-                            <tr className={settings.trmobile}>
-                                <td>
-                                {value.answerType}
-                                </td>
-                            </tr>
+                    <div className={settings.scroll}>
+                        {
+                            questions.map((value,i) =>(
+                                <tbody key={i}>
+                                    <tr>
+                                        <td>
+                                        {value.category}
+                                        </td>
+                                    </tr>
 
-                            <tr className={settings.editButton}>
+                                    <tr className={settings.trmobile}>
+                                        <td>
+                                        {value.qstn}
+                                        </td>
+                                    </tr>
 
-                                <td>
+                                    <tr className={settings.trmobile}>
+                                        <td>
+                                        {value.answerType}
+                                        </td>
+                                    </tr>
 
-                                    <Edit_Question_Modal
-                                      Id={Id}
-                                    //   data={getDataById}
-                                      showInitialValue={showInitialValue}
-                                      setShowInitialValue={setShowInitialValue}
-                                    >
+                                    <tr className={settings.editButton}>
 
-                                        <button 
-                                            onClick={()=>handleEdit(value.id)}
-                                           
+                                        <td>
+
+                                            <Edit_Question_Modal
+                                            Id={Id}
+                                            //   data={getDataById}
+                                            showInitialValue={showInitialValue}
+                                            setShowInitialValue={setShowInitialValue}
+                                            >
+
+                                                <button 
+                                                    onClick={()=>handleEdit(value.id)}
+                                                
+                                                >
+
+                                                    <LuPencil size={16} />
+
+                                                </button>
+
+                                            </Edit_Question_Modal>
+
+                                        </td>
+
+                                    </tr>
+
+                                    <tr>
+
+                                        <td>
+
+                                        <Delete_Question_Modal
+                                            Id={Id}
+                                            // data={getDataById}
                                         >
 
-                                            <LuPencil size={16} />
+                                            <button className={settings.deleteIcon} onClick={()=> handleDelete(value.id)}>
+                                                <HiOutlineTrash size={16}/>
+                                            </button>
 
-                                        </button>
+                                        </Delete_Question_Modal>
+                                            
+                                        </td>
 
-                                    </Edit_Question_Modal>
-
-                                </td>
-
-                            </tr>
-
-                            <tr>
-
-                                <td>
-
-                                <Delete_Question_Modal
-                                    Id={Id}
-                                    // data={getDataById}
-                                >
-
-                                    <button className={settings.deleteIcon} onClick={()=> handleDelete(value.id)}>
-                                        <HiOutlineTrash size={16}/>
-                                    </button>
-
-                                </Delete_Question_Modal>
-                                    
-                                </td>
-
-                            </tr>
+                                    </tr>
 
 
-                        </tbody>
-                    ))
-                }
+                                </tbody>
+                            ))
+                        }
 
-            </div>
+                    </div>
+                ):
+                (
+                    <div className={contractor.noDataWrapper}>
+
+                        <h2>Oops no data found!!!</h2>
+
+                        <div> 
+                            click on the Add New button at the top right to add data
+                        </div>
+
+                    </div>
+                )
+
+            }
+                        
 
         </table>
 

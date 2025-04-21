@@ -66,39 +66,40 @@
   background-color:#6FCF97;
 }
 
-.NewProjectLayout > header {
+.NewProjectLayoutWrapper > header {
   width: 627px;
+  display: grid;
+  grid-template-columns: 58px 78px 85px 68px 85px 75px;
+  grid-column-gap: 10px;
   height: 40px;
+  align-items: center;
   background-color: #FFFFFF;
-  padding: 10px 50px 10px 10px;
+  padding: 0px 50px 0px 10px;
   border-radius: 8px;
   margin: 10px 0px;
-  display: flex;
 }
 
 
 .headerItems {
-  width: auto;
   color: #505050;
-  font-size: 14px;
-  font-weight: 500;
   opacity: 0.5;
-  margin-right: 15px;
 }
-.activeHeader {
-  width: 100px;
-  height: 32px;
+
+.headerItems, .activeHeader {
+  width: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
-  padding:5px 10px;
-  background-color: #436DA2;
-  color:#FFFFFF;
-  border-radius: 8px;
+  color: #505050;
   font-size: 14px;
   font-weight: 500;
-  margin-top: -6px;
-  margin-right: 15px;
+  height: 32px;
+}
+
+.activeHeader {
+  background-color: #436DA2;
+  color:#FFFFFF;
+  border-radius: 4px;
 }
 
 .pageTitle{
@@ -113,17 +114,11 @@
 .NewProjectLayoutContent{
   width: 627px;
   height: auto;
-  /* max-height: 378px; */
-  /* overflow-y: scroll; */
   background-color: #FFFFFF;
   padding: 20px 20px 0px 20px;
   border-radius: 8px;
   position: relative;
 }
-
-/* .attachmentContainer > .NewProjectLayoutContent{
-  max-height: 372px;
-} */
 
 .stepOverLay{
   background-color: #436DA2;
@@ -142,7 +137,7 @@
 }
 
 .detailsContainer > .NewProjectLayoutContent .stepOverLay,.detailsContainer > .NewProjectLayoutContent .stepButtonWrapper{
-   width: 100%;
+  width: 100%;
 }
 
 .contractorContainer > .NewProjectLayoutContent .stepOverLay,.contractorContainer > .NewProjectLayoutContent .stepButtonWrapper, .SDGContainer > .NewProjectLayoutContent .stepOverLay,.SDGContainer > .NewProjectLayoutContent .stepButtonWrapper, .detailsContainer > .NewProjectLayoutContent .stepOverLay,.detailsContainer > .NewProjectLayoutContent .stepButtonWrapper{
@@ -152,16 +147,8 @@
 
 .locationContainer > .NewProjectLayoutContent .stepOverLay,.locationContainer > .NewProjectLayoutContent .stepButtonWrapper, .attachmentContainer > .NewProjectLayoutContent .stepOverLay, .attachmentContainer > .NewProjectLayoutContent .stepButtonWrapper, .milestoneContainer > .NewProjectLayoutContent .stepOverLay, .milestoneContainer > .NewProjectLayoutContent .stepButtonWrapper{
   margin-top: -59px;
-  
   width:100%; 
 }
-
-/* .attachmentContainer > .NewProjectLayoutContent .stepOverLay, .attachmentContainer > .NewProjectLayoutContent .stepButtonWrapper{
-  margin-top: -1px;
-  width: 627px; 
-} */
-
-
 
 .prevButton,.nextButton{
   height: 40px;
@@ -201,12 +188,15 @@
 
 /* SDG Goals */
 
+.SDGContainer > .NewProjectLayoutContent{
+  height: 383px;
+}
+
 .SDGWrapper{
   width: 100%;
   height: auto;
   display: grid;
   grid-template-columns: repeat(auto-fit, 95.02px);
-  /* grid-template-columns: 91px 91px 91px 91px 91px 91px; */
   grid-column-gap: 3px;
   grid-row-gap: 5px;
   padding-bottom: 80px;
@@ -252,11 +242,13 @@
 
 /* DETAILS */
 
+.detailsContainer > .NewProjectLayoutContent{
+  height: 370px;
+}
+
 .Scroll{
-  /* width: 627px; */
   height: 270px;
   margin-bottom: 80px;
- 
 }
 
 .field{
@@ -270,7 +262,9 @@
 
 .formColumn{
   width: 100%;
-  display: flex;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(192px, 1fr));
+  grid-column-gap: 10px;
   justify-content: space-between;
 }
 
@@ -278,7 +272,7 @@
   color: #A8A8A8;
   font-size: 12px;
   font-weight: 700;
-  width: 192px;
+  width: 100%;
   height: 12px;
   margin-bottom: 10px;
 }
@@ -286,13 +280,11 @@
 .field, .detailsForm1 > div, .detailsForm2 > div {
   height: 68px;
   margin-bottom: 15px;
-  display: grid;
-  grid-template-rows: auto 100%;
 }
 
 
 .detailsForm1 > div, .detailsForm2 > div  {
-  width: 260px;
+  width: 100%;
 }
 
 .detailsForm1 > div div, .detailsForm2 > div div, .field > div {
@@ -332,6 +324,9 @@
 
 /* CONTRACTOR */
 
+.contractorContainer > .NewProjectLayoutContent{
+  height: 320px;
+}
 
 .contractorFieldWrapper{
   width: 100%;
@@ -369,6 +364,10 @@
 }
 
 /* location */
+
+.locationContainer > .NewProjectLayoutContent{
+  height: 360px;
+}
 
 .locationFieldArray{
   width:100%;
@@ -431,17 +430,11 @@
 
 /* attachment */
 
-.attachmentContainer > .NewProjectLayoutContent {
-  height: 54vh;
-  width: 627px;
-  /* background-color: green; */
+.attachmentContainer >.NewProjectLayoutContent {
+  min-height: 345px;
 }
 
-/* .attachmentContainer > div div:nth-child(1) {
-  background-color: red;
-  height: auto;
-  margin-bottom: 98px;
-} */
+
 
 
 .fileContainer {
@@ -449,9 +442,7 @@
   grid-template-columns: repeat(auto-fit, 120px);
   grid-column-gap: 25px;
   height: 232px;
-  /* background-color: yellow;  */
   margin-bottom: 93px;
- 
 }
 
 /* width */
@@ -474,8 +465,6 @@
 .fileWrapper{
   width: 100%;
   height: 150px;
-  /* height: 150px; */
-  background-color: green;
   grid-row-gap: 5px;
 }
 
@@ -497,7 +486,6 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  /* margin-bottom: 5px; */
 }
 
 .fileWrapper > p {
@@ -511,6 +499,7 @@
   align-items: center;
   margin-top: 5px;
 }
+
 
 /* milestones */
 
@@ -607,11 +596,9 @@
   font-weight: 200;
   color: #A8A8A8;
   outline: none;
- 
   border-color: transparent;
   resize: none;
   background-color: transparent;
-  /* background-color: red; */
 }
 
 .mileStonesFieldWrapper > div label, .description label {
@@ -659,7 +646,7 @@
     width: 100%;
   }
 
-  .NewProjectLayout > header {
+  .NewProjectLayoutWrapper > header {
     display: none;
   }
 
@@ -677,9 +664,7 @@
   }
 
   .Scroll{
-    
     height: auto;
-    /* height: 210px; */
     margin-bottom: 100px;
   }
 
@@ -706,9 +691,7 @@
 
   .SDGWrapper{
     height: auto;
-    /* height: 230px; */
     margin-bottom: 60px;
-    /* overflow-y: scroll; */
   }
 
   /* location */
@@ -719,13 +702,11 @@
 
   .locationFieldArray{
     height:auto;
-    /* height:166px; */
   }
 
   /* attachment */
 
   .attachmentContainer {
-    background-color: green;
     height: auto;
   }
 
@@ -738,7 +719,6 @@
     grid-template-columns: repeat(auto-fit, 105px);
     grid-column-gap: 16px;
     height: auto;
-    /* overflow-y: scroll; */
     margin-bottom: 92px;
   }
 
@@ -746,7 +726,6 @@
 
   .mileStonesFieldArrayContainer{
     height: auto;
-    /* margin-bottom: 31px; */
   }
 
   .mileStonesFieldWrapper > div div:nth-child(2) label {
@@ -762,23 +741,109 @@
  
 }
 
-@media (min-width:1024px){
 
-  .Scroll{
-    /* width: 627px; */
+@media (min-width: 601px) and (max-width:1023px) {
+
+  .NewProjectLayoutContent, .attachmentContainer > .NewProjectLayoutContent {
+
+    min-height: 308px;
+  }
+
+  /* details */
+
+  .NewProjectLayoutWrapper{
+    height: 72vh;
+    width: calc(100vw - 85px);
     overflow-y: scroll;
   }
 
-  /* location */
+  .detailsContainer > .NewProjectLayoutContent,.Scroll{
+    height: auto;
+  }
 
-  .locationFieldArray, .mileStonesFieldArrayContainer{
-    overflow-y: scroll;
+  @media (min-width:768px) {
+
+    .NewProjectLayoutWrapper{
+      
+      width: calc(100vw - 245px);
+      
+    }
+    
+
+  }
+
+  @media (max-width:900px) {
+
+    .NewProjectLayoutContent, .attachmentContainer > .NewProjectLayoutContent {
+      width: 100%;
+      height: auto;
+    }
+
+    .NewProjectLayoutWrapper > header{
+      width: 100%;
+    }
+
+  }
+
+  .locationContainer > .NewProjectLayoutContent, .locationFieldArray, .milestoneContainer >.NewProjectLayoutContent, .mileStonesFieldArrayContainer, .SDGContainer > .NewProjectLayoutContent{
+    height: auto;
   }
 
   /* attachment */
 
-  .fileContainer {
+  .fileContainer, .locationFieldArray {
+   
+    height: auto;
+    margin-bottom: 93px;
+   
+  }
+
+  
+
+}
+
+
+
+@media (min-width:1024px){
+
+  .NewProjectLayoutContent, .attachmentContainer > .NewProjectLayoutContent, .milestoneContainer >.NewProjectLayoutContent, .locationContainer > .NewProjectLayoutContent, .detailsContainer > .NewProjectLayoutContent {
+    height: 56vh;
+  }
+
+  .fileContainer, .mileStonesFieldArrayContainer, .locationFieldArray, .Scroll{
+    height: calc(56vh - 104px);
+    margin-bottom: 84px;
+  }
+
+  @media (min-width:1440px){
+
+    .NewProjectLayoutContent, .attachmentContainer > .NewProjectLayoutContent, .milestoneContainer >.NewProjectLayoutContent, .locationContainer > .NewProjectLayoutContent, .detailsContainer > .NewProjectLayoutContent {
+      height: 65vh;
+    }
+
+    .fileContainer, .mileStonesFieldArrayContainer, .locationFieldArray, .Scroll{
+      height: calc(65vh - 104px);
+    }
+  }
+
+  .Scroll, .locationFieldArray, .mileStonesFieldArrayContainer, .fileContainer{
     overflow-y: scroll;
+  }
+
+  /* SDG */
+
+  @media (max-width:1142px){
+
+    .SDGContainer > .NewProjectLayoutContent{
+      height: 323px;
+    }
+    
+    .SDGWrapper{
+      height: 223px;
+      overflow-y: scroll;
+     margin-bottom: 80px;
+    }
+
   }
 
 }

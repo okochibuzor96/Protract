@@ -11,6 +11,7 @@ import { useContext, useState } from 'react';
 import DataContext from '../../../Context API/Create_Context';
 import { IoChevronBackOutline } from "react-icons/io5";
 import { IoChevronForward } from "react-icons/io5";
+import contractor from '../../../../styles/my-contractors.module.css'
 
 
 function Attribute_Category({setPage, page}) {
@@ -51,14 +52,16 @@ function Attribute_Category({setPage, page}) {
     }
 
   return (
-    <>
+    <div className={settings.attributeCategory}>
 
         <header>
 
             <div>Attribute Categories</div>
 
             
-           <div><Modal/></div> 
+            <Modal >
+              Add New
+            </Modal> 
 
         </header>
 
@@ -90,75 +93,92 @@ function Attribute_Category({setPage, page}) {
                 </tr>
             </thead>
 
-            <div className={settings.scroll }>
+            {
 
-                {
-                    category.map((value,i) =>(
-                        <tbody key={i}>
-                            <tr>
-                                <td>
-                                {value.projectNature}
-                                </td>
-                            </tr>
+                category?(
+                    <div className={settings.scroll }>
 
-                            <tr className={settings.trmobile}>
-                                <td>
-                                {value.attributeCategory}
-                                </td>
-                            </tr>
+                        {
+                            category.map((value,i) =>(
+                                <tbody key={i}>
+                                    <tr>
+                                        <td>
+                                        {value.projectNature}
+                                        </td>
+                                    </tr>
 
-                            <tr>
+                                    <tr className={settings.trmobile}>
+                                        <td>
+                                        {value.attributeCategory}
+                                        </td>
+                                    </tr>
 
-                                <td>
+                                    <tr>
+
+                                        <td>
+                                            
+
+                                            <Edit
+                                                Id={Id}
+                                                data={getDataById}
+                                                setShowInitialValue={setShowInitialValue}
+                                                showInitialValue={showInitialValue}
+                                            >
+                                                <button className={settings.attributeCategoryThirdRow} onClick={()=> handleEdit(value.id)}> <LuPencil size={16} /></button>
+
+                                            </Edit>
+
+                                        </td>
+
+                                    </tr>
+
+                                    <tr>
+
+                                        <td>
+
+                                        <Delete
+                                            Id={Id}
+                                            data={getDataById}
+                                        >
+
+                                            <button className={settings.deleteIcon} onClick={()=> handleDelete(value.id)}>
+                                                <HiOutlineTrash size={16}/>
+                                            </button>
+
+                                        </Delete>
+                                            
+                                        </td>
+
+                                    </tr>
+
+                                
                                     
-
-                                    <Edit
-                                        Id={Id}
-                                        data={getDataById}
-                                        setShowInitialValue={setShowInitialValue}
-                                        showInitialValue={showInitialValue}
-                                    >
-                                        <button className={settings.attributeCategoryThirdRow} onClick={()=> handleEdit(value.id)}> <LuPencil size={16} /></button>
-
-                                    </Edit>
-
-                                </td>
-
-                            </tr>
-
-                            <tr>
-
-                                <td>
-
-                                <Delete
-                                    Id={Id}
-                                    data={getDataById}
-                                >
-
-                                    <button className={settings.deleteIcon} onClick={()=> handleDelete(value.id)}>
-                                        <HiOutlineTrash size={16}/>
-                                    </button>
-
-                                </Delete>
-                                    
-                                </td>
-
-                            </tr>
-
+                                </tbody>
+                            ))
+                        }
                         
-                            
-                        </tbody>
-                    ))
-                }
-                
-            </div>
+                    </div>
+                ):
+                (
+                    <div className={contractor.noDataWrapper}>
+
+                        <h2>Oops no data found!!!</h2>
+
+                        <div> 
+                            click on the   Add New button at the top right to add data
+                        </div>
+
+                    </div>
+                )
+
+            }
 
         </table>
 
         
 
         
-    </>
+    </div>
   )
 }
 

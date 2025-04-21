@@ -14,7 +14,6 @@ import { useMutation, useQuery, useQueryClient } from 'react-query';
 import {getContractorDetails, upDateContractorDetails} from '../hooks/useQuery/useProject'
 import { useState,useContext } from 'react';
 
-import {Formik,Form} from 'formik'
 import Deny_Modal from '../Payments/Payment Details/Deny_Modal';
 import Approve_Modal from '../Payments/Payment Details/Approve_Modal';
 import DataContext from '../Context API/Create_Context';
@@ -216,12 +215,16 @@ function ContractorDetailsIndex() {
             // </div>:
               preveiw?
               <div className={contractor.companyDetailsImageWrapper}>
+
                 <img className={contractor.companyDetailsImage} src={preveiw}/>
                 <label onClick={handleImageUpdate} className={contractor.upDateBtn}>Update Logo</label>
+
               </div>:
               <div className={contractor.companyDetailsImageWrapper}>
+
                 <img className={contractor.companyDetailsImage} src={imageBadge}/>
                 <label htmlFor="actual-btn" className={contractor.upDateBtn}>Change Logo</label>
+                
               </div>
             
             }

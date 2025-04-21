@@ -14,7 +14,7 @@ function New_Project2({handleNext, fieldValues,handlePrev,editMutate}) {
 
     const location = useLocation()
     const {id} = useParams()
-    const data = projects.find((item)=> item.id === parseInt(id))
+    const data = projects?(projects.find((item)=> item.id === parseInt(id))) : ("")
 
     const handleSubmit = (value) => {
         handleNext(value)
@@ -36,7 +36,7 @@ function New_Project2({handleNext, fieldValues,handlePrev,editMutate}) {
 
                             <div className={project.NewProjectLayoutContent}>
 
-                                <Field name='contractor'>
+                                <Field name='projectContractor'>
                                     {
                                         ({field}) =>{
                                             return(
@@ -49,6 +49,7 @@ function New_Project2({handleNext, fieldValues,handlePrev,editMutate}) {
 
                                                         <LiaSearchSolid size={20} color='#A8A8A8'/>
                                                     </div>
+                                                    
                                                 </div>
                                                     
                                                 
@@ -56,6 +57,7 @@ function New_Project2({handleNext, fieldValues,handlePrev,editMutate}) {
                                         }
                                     }
                                 </Field>
+
 
                                 <div className={`${project.stepOverLay}`}></div>
 

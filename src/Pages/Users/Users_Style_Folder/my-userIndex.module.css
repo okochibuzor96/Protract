@@ -60,8 +60,8 @@
 }
 
 .userTbodyWrapper > div:nth-child(1){
-  height: 47vh;
-  margin-bottom: 8px;
+  height: auto;
+  margin-bottom: 18px;
 }
 
 .userTbody{
@@ -114,4 +114,53 @@
     margin-bottom: 13px;
     /* overflow-y: scroll; */
   }
+}
+
+@media (min-width:601px) and (max-width:1023px) {
+
+  /* evaluation index */
+
+ .IndexTable {
+     overflow-x: scroll;
+     width: calc(100vw - 248px);
+     height: 58vh;
+ }
+
+ .tableContainer{
+    width: 1100px;
+ }
+
+  @media (min-width:601px) and (max-width:767px) {
+
+    .IndexTable {
+      width: calc(100vw - 46px);
+    }
+
+  }
+
+  .tableWrapper > div:nth-child(1){
+    height: auto;
+    margin-bottom: 18px;
+  }
+
+}
+
+@media (min-width:1024px){
+
+ /* Index */
+
+  @media (min-width:1024px) and (max-width:1339px){
+
+    .IndexTable {
+      overflow-x: scroll;
+      width: calc(100vw - 248px);
+      height: 58vh;
+    }
+     
+    .tableContainer {
+      width: 1100px;
+    }
+
+  }
+
 }

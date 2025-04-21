@@ -1,4 +1,4 @@
-import {useNavigate} from 'react-router-dom'
+
 
 const style= {
   backgroundColor:'#31609A', 
@@ -11,11 +11,7 @@ const style= {
   borderRadius:'8px'
 }
 
-function NewProjectButton() {
-
-    const navigate = useNavigate();
-
-    const handleNavigate = ()=> navigate('new-project')
+function NewProjectButton({handleNavigate}) {
 
   return (
     <button onClick={handleNavigate} style={style}>

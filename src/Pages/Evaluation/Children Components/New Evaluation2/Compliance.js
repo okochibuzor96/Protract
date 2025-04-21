@@ -66,11 +66,11 @@ function Compliance({data}) {
             {
                 ComplianceData.map((item,i)=>(
 
-                    <main key={i}>
+                    <div key={i}>
                       
                         <ErrorMessage name={`CRinput${i+1}`} component={Texterror}/>
 
-                        <div className={location.pathname === `/evaluation/evaluation-details/${id}`?newEvaluation2.RinputWrapperDetails:newEvaluation2.RinputWrapper} key={i}>
+                        <div className={location.pathname === `/evaluation/evaluation-details/${id}`?newEvaluation2.RinputWrapperDetails:newEvaluation2.RinputWrapper}>
 
                         
 
@@ -107,7 +107,7 @@ function Compliance({data}) {
                             </Field>
 
                         </div>
-                    </main>
+                    </div>
 
                 
                 ))

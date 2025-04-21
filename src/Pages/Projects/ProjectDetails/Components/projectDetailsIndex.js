@@ -129,7 +129,7 @@ function ProjectDetailsIndex() {
 
       <div className={project.headerDiv}>
 
-        <div className={`${project.backContentWrapper} d-flex align-item-center`}>
+        <div className={`${project.backContentWrapper}`}>
 
           <BsArrowLeftShort  onClick={() => navigate('/projects')} className={contractor.backArrow }/>
 

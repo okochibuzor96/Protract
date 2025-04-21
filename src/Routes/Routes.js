@@ -50,9 +50,9 @@ import { createBrowserRouter } from "react-router-dom";
   
   
   
-  const passWords = window.localStorage.getItem('Pw')
+  const passWords = window.localStorage.getItem('Pwd')
   const resolvedPwd = JSON.parse(passWords)
-  const userInfo = window.localStorage.getItem('users')
+  const userInfo = window.localStorage.getItem('user')
   const resolvedUser = JSON.parse(userInfo)
 
   const routerMain = createBrowserRouter([

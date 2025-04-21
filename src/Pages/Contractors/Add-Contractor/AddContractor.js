@@ -39,7 +39,7 @@ function AddContractor() {
 
   const handleNext = (value) =>{
     setFieldValues((oldValues) =>({...oldValues, ...value}));
-    setPage((current)=> current +1)
+    setPage(1)
   }
 
   const handlePrev = (value) =>{

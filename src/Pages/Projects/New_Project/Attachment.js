@@ -1,7 +1,7 @@
 import {Formik,Form,Field,FieldArray} from 'formik'
 import { useLocation } from 'react-router-dom';
 import { BsFileEarmarkPlus } from "react-icons/bs";
-import { useContext, useState } from 'react';
+import { useContext, useState, useMemo,useEffect } from 'react';
 
 import project from './my-NewProject.module.css';
 import Doc from '../../../Components/Add Document/Doc';
@@ -61,30 +61,33 @@ function New_Project5({handlePrev,handleNext,fieldValues,data,editMutate,id,docI
 
   const {projects,setProjects} = useContext(DataContext)
 
-  const data2 = projects.find((item)=> item.id === parseInt(id))
+  const data2 = useMemo(()=>projects?(projects.find((item)=> item.id === parseInt(id))) : (""),[])
 
   const onSubmit = (value) =>{
+
+    console.log('data',value)
 
     handleNext(value)
 
     //   return editMutate(value)
 
-  if(location.pathname === `/projects/project-details/${id}/edit-project`){
+    if(location.pathname === `/projects/project-details/${id}/edit-project`){
 
-    setProjects((prev)=> prev.map((item)=> item.id === parseInt(id)?
-     {
-        ...item,
-        mileStone:[...value.mileStone]
-      }:item
-    )
-    )
-}
+      setProjects((prev)=> prev.map((item)=> item.id === parseInt(id)?
+      {
+          ...item,
+          document:[...value?.document]
+        }:item
+      )
+      )
+    }
+    
   }
 
   return (
     <div className={project.attachmentContainer}>
       <Formik
-        initialValues={location.pathname === `/projects/project-details/${id}/edit-project`? data2||fieldValues:fieldValues}
+        initialValues={location.pathname === `/projects/project-details/${id}/edit-project`?data2 || fieldValues:fieldValues}
         enableReinitialize={true}
         onSubmit={onSubmit}
       >
@@ -96,17 +99,19 @@ function New_Project5({handlePrev,handleNext,fieldValues,data,editMutate,id,docI
 
                 <div >
                     
-                  <Doc
-                  values={values}
-                  setFieldValue={setFieldValue}
-                  fileContainerClassName={project.fileContainer}
-                  fileWrapperClassName={project.fileWrapper}
-                  addButtonClassName={project.FileEarmarkWrapper}
-                  editMutate={editMutate}
-                  docInitValue={docInitValue}
-                  deleteMutate={deleteMutate}
-                  data={data}
-                  />
+                  {
+                    <Doc
+                      values={values}
+                      setFieldValue={setFieldValue}
+                      fileContainerClassName={project.fileContainer}
+                      fileWrapperClassName={project.fileWrapper}
+                      addButtonClassName={project.FileEarmarkWrapper}
+                      editMutate={editMutate}
+                      docInitValue={docInitValue}
+                      deleteMutate={deleteMutate}
+                      data={data}
+                    />
+                  }
 
                   <div className={`${project.stepOverLay}`}></div>
 

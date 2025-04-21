@@ -25,11 +25,12 @@ function ProjectIndex() {
 
     const {projects} = useContext(DataContext)
 
-    
-   const [page, setPage] = useState(1)
-   const [limit, setLimit] = useState(6)
+    const handleNavigation = (item) =>navigate(`/projects/new-project`)
 
-   const totalPage = projects && Math.ceil(projects.length/limit)
+    const [page, setPage] = useState(1)
+    const [limit, setLimit] = useState(6)
+
+    const totalPage = projects && Math.ceil(projects.length/limit)
 
 //    const totalPage = data?.data && Math.ceil(data?.data.length/limit)
 
@@ -38,13 +39,13 @@ function ProjectIndex() {
     // if(isLoading) <div>...loading</div>
 
   return (
-    <main>
+    <div className={paymentDetail.paymentIndexContainer}>
 
-        <div className={paymentDetail.pageTitle}> 
-            Payments Advice
-        </div>
+        <div className={paymentDetail.paymentIndexWrapper}>
 
-        <div>
+            <div className={paymentDetail.pageTitle}> 
+                Payments Advice
+            </div>
 
             <div className={paymentDetail.block57}>
             
@@ -75,67 +76,100 @@ function ProjectIndex() {
                 </div>
 
             </div>
+
+            <div className={paymentDetail.IndexTable}>
+
+                <div>
+
+                    <div className={paymentDetail.tableContainer}>
             
-            <div className={project.DataHeader}>
+                        <div className={project.DataHeader}>
 
-                <div>
+                            <div>
 
-                    <TbCaretUpDownFilled/>
+                                <TbCaretUpDownFilled/>
 
-                    <div>Payment ID</div>
+                                <div>Payment ID</div>
 
-                </div>
+                            </div>
 
-                <div>Project Title</div>
+                            <div>Project Title</div>
 
-                <div>Milestone</div>
+                            <div>Milestone</div>
 
-                <div>Amount</div>
+                            <div>Amount</div>
 
-                <div>Contractor</div>
+                            <div>Contractor</div>
 
-                <div>
+                            <div>
 
-                    <TbCaretUpDownFilled/>
+                                <TbCaretUpDownFilled/>
 
-                    <div>
+                                <div>
 
-                        Status
+                                    Status
 
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                        <div className={`${paymentDetail.tableWrapper}`}>
+
+                            {    
+                                projects?
+                                (
+
+                                    <>   <div>
+
+                                            <Payment_Data
+                                            page={page}
+                                            // data={data}
+                                            handleNavigation={handleNavigation}
+                                            limit={limit}
+                                            />
+
+                                        </div>
+
+                                        {  
+                                        
+                                            (totalPage > 1) && <Pagination
+                                                totalPage={totalPage}
+                                                page={page}
+                                                setPage={setPage}
+                                                siblings={1}
+                                            />
+                                        }
+
+                                    </>
+
+                                ):(
+                                    <div className={contractor.noDataWrapper}>
+
+                                    <h2>Oops no data found!!!</h2>
+
+                                    <div> 
+                                        click on <span onClick={handleNavigation}> Add project</span> to add data
+                                    </div>
+
+                                    </div>
+                                )
+
+                            }
+
+                            
+                        </div>
+    
                     </div>
 
                 </div>
 
             </div>
 
-            <div className={`${paymentDetail.tableWrapper}`}>
-
-                <div>
-
-                    <Payment_Data
-                    page={page}
-                    // data={data}
-                    limit={limit}
-                    />
-
-                </div>
-
-                {  
-                
-                    <Pagination
-                        totalPage={totalPage}
-                        page={page}
-                        setPage={setPage}
-                        siblings={1}
-                    />
-                }
-
-                
-            </div>
-
         </div>
 
-    </main>
+    </div>
   )
 }
 

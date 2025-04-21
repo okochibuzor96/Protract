@@ -16,12 +16,18 @@ import contractor from '../../../styles/my-contractors.module.css'
 import {useQuery} from 'react-query'
 import {getProjects} from '../../hooks/useQuery/useProject'
 import {useNavigate} from 'react-router-dom'
-import {useContext, useState} from 'react'
+import {useContext, useState, useEffect} from 'react'
 import Pagination from "../../../Components/Pagination/Pagination"
 import DataContext from "../../Context API/Create_Context"
 
 
 function ProjectIndex() {
+
+    // useEffect(()=>{
+    //     localStorage.removeItem("projects")
+        
+    //   },[])
+
     const {projects} = useContext(DataContext)
 
     const [page,setPage] = useState(1)
@@ -34,6 +40,8 @@ function ProjectIndex() {
 
     const totalPage = projects && Math.ceil(projects.length/limit)
 
+    const handleNavigation = ()=> navigate('new-project')
+
   return (
     
     <div className={project.projectIndexContainer}>
@@ -44,7 +52,9 @@ function ProjectIndex() {
                 Projects
             </div>
 
-            <NewProjectButton/>
+            <NewProjectButton
+            handleNavigate={handleNavigation}
+            />
 
         </div>
 
@@ -82,31 +92,54 @@ function ProjectIndex() {
 
             </div>
 
-            <div>
-             <DataHeader/>
-            </div>
-
             <div className={project.pageScroll}>
+
+                
 
                 <div className={`${project.verticalScroll}`}>
 
-                    <ProjectData
-                        page={page}
-                        limit={limit}
-                        // data={data}
-                    />
+                    <div>
+                        <DataHeader/>
+                    </div>
+
+                    {
+                        projects?
+                        (
+                            <> 
+                               <ProjectData
+                                    page={page}
+                                    limit={limit}
+                                    // data={data}
+                                />
+
+                                
+                                {   
+
+                                    (totalPage > 1) && <Pagination
+                                        totalPage={totalPage}
+                                        page={page}
+                                        setPage={setPage}
+                                        siblings={1}
+                                    />
+
+                                }
+                            </>
+                            
+                        ):
+                        (
+                            <div className={contractor.noDataWrapper}>
+
+                            <h2>Oops no data found!!!</h2>
+
+                            <div> 
+                                click on <span onClick={handleNavigation}> Add project</span> or on the  New Project button at the top right to add data
+                            </div>
+
+                            </div>
+                        )
+                    }
 
                 </div>
-
-                {
-                    (totalPage > 1) && <Pagination
-                        totalPage={totalPage}
-                        page={page}
-                        setPage={setPage}
-                        siblings={1}
-                    />
-                }
-
 
             </div>
 

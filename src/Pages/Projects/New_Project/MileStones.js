@@ -19,7 +19,7 @@ function MileStones(props) {
 
     const {projects, setProjects} = useContext(DataContext)
 
-    const data = projects.find((item)=> item.id === parseInt(id))
+    const data = projects?(projects.find((item)=> item.id === parseInt(id))) : ("")
 
     const location = useLocation()
     const navigate = useNavigate()
@@ -28,9 +28,9 @@ function MileStones(props) {
 
     const [nav, setNav] = useState(false)
 
-    useEffect(()=>{
-        localStorage.setItem('projects', JSON.stringify(projects))
-    },[projects])
+    // useEffect(()=>{
+    //     localStorage.setItem('projects', JSON.stringify(projects))
+    // },[projects])
 
     // const title = fieldValues.mileStone.title
     
@@ -42,10 +42,10 @@ function MileStones(props) {
 
         if(location.pathname === `/projects/project-details/${id}/edit-project`){
 
-            setProjects((prev)=> prev.map((item)=> item.id === parseInt(id)?
+            setProjects((prev)=> prev.map((item,index)=> item.id === parseInt(id)?
              {
                 ...item,
-                mileStone:[...value.mileStone]
+                mileStone:[...value?.mileStone]
               }:item
             )
             )
@@ -62,16 +62,16 @@ function MileStones(props) {
 
             setProjects(newValue)
             console.log('finals', id)
-            // localStorage.removeItem('projects')
+            localStorage.removeItem('projects')
 
-            // localStorage.setItem('projects', JSON.stringify(newValue))
+            localStorage.setItem('projects', JSON.stringify(newValue))
         }
 
-        // navigate(`/projects/project-details/${id}`)
+        navigate(`/projects/project-details/${id}`)
         
-        // return location.pathname === `/projects/project-details/${id}/edit-project`?
-        // editMutate(value):
-        // mutate(value) 
+        return location.pathname === `/projects/project-details/${id}/edit-project`?
+        editMutate(value):
+        mutate(value) 
     }
 
     return (

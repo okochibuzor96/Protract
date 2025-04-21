@@ -12,7 +12,7 @@ import { IoClose } from "react-icons/io5";
 
  const Navbar= ()=> {
 
-  const [showMenu, setShowMenu] = useState(true)
+  const [showMenu, setShowMenu] = useState(false)
   
         
   return (

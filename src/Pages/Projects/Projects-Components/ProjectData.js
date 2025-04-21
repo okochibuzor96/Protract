@@ -22,9 +22,9 @@ function ProjectData(props) {
         {
             getUser?.map((item,i)=>(
 
-            <React.Fragment>
+            <React.Fragment key={i}>
 
-                <div key={i} className={project.block70}> 
+                <div className={project.block70}> 
                     <div>
                         {item.projectReferenceNumber}
                     </div>

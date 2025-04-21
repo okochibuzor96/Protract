@@ -25,11 +25,7 @@ function New_Project4({handleNext,handlePrev,fieldValues,locationInitialValues,d
 
   const {projects, setProjects} = useContext(DataContext)
 
-  const data2 = projects.find((item)=> item.id === parseInt(id))
-
-  useEffect(()=>{
-    localStorage.setItem('projects', JSON.stringify(projects))
-  },[projects])
+  const data2 = projects?(projects.find((item)=> item.id === parseInt(id))) : ("")
 
   const onSubmit = (value) => {
 
@@ -39,7 +35,7 @@ function New_Project4({handleNext,handlePrev,fieldValues,locationInitialValues,d
 
     if(`/projects/project-details/${id}/edit-project`){
 
-     setProjects((prev)=> prev.map((item,index)=> item.id === parseInt(id)?
+     setProjects((prev)=> prev?.map((item,index)=> item.id === parseInt(id)?
       {
         ...item,
         location : [
@@ -213,7 +209,7 @@ function New_Project4({handleNext,handlePrev,fieldValues,locationInitialValues,d
                         </div>
                        
           
-                        <div className={`${project.stepOverLay}`}>rrrr</div>
+                        <div className={`${project.stepOverLay}`}></div>
           
                         <div className={`d-flex justify-content-between align-items-center px-4 ${project.stepButtonWrapper}`}>
           

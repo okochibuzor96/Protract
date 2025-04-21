@@ -11,11 +11,7 @@ function NewProject1({handleNext, handlePrev, fieldValues,id,editMutate, ...rest
   
   const {projects, setProjects} = useContext(DataContext)
 
-  const data = useMemo(()=>projects.find((item)=> item.id === parseInt(id)),[])
-
-  useEffect(()=>{
-    localStorage.setItem("projects", JSON.stringify(projects))
-  },[projects])
+  const data = projects?(projects.find((item)=> item.id === parseInt(id))) : ("")
 
   const location = useLocation()
 
@@ -67,39 +63,35 @@ function NewProject1({handleNext, handlePrev, fieldValues,id,editMutate, ...rest
     {key:'key 18', value:'key18'}
   ]
 
-  
-
- 
-
   const onSubmit = (value) => {
     console.log('d',value)
     
 
     handleNext(value)
 
-      if(location.pathname === `/projects/project-details/${id}/edit-project`){
-        console.log('Form values', value.projectReferenceNumber)
-        setProjects((prev)=>
-        prev.map((item)=> item.id === parseInt(id)?
-        {
-          ...item,
-            projectTitle:value?.projectTitle,
-            projectReferenceNumber:value?.projectReferenceNumber,
-            projectValue:value?.projectValue,
-            projectSector:value?.projectSector,
-            projectType:value?.projectType,
-            geopoliticalZone:value?.geopoliticalZone,
-            federalConsistuency:value?.federalConsistuency,
-            state:value?.state,
-            localGovernment:value?.localGovernment,
-            GPSLocation:value?.GPSLocation,
-            beneficiaryCommunities:value?.beneficiaryCommunities,
-            projectYear:value?.projectYear,
-            status:value?.status
-          }: item
-        )
-        )
-      }
+    if(location.pathname === `/projects/project-details/${id}/edit-project`){
+      console.log('Form values', value.projectReferenceNumber)
+      setProjects((prev)=>
+      prev.map((item)=> item.id === parseInt(id)?
+      {
+        ...item,
+          projectTitle:value?.projectTitle,
+          projectReferenceNumber:value?.projectReferenceNumber,
+          projectValue:value?.projectValue,
+          projectSector:value?.projectSector,
+          projectType:value?.projectType,
+          geopoliticalZone:value?.geopoliticalZone,
+          federalConsistuency:value?.federalConsistuency,
+          state:value?.state,
+          localGovernment:value?.localGovernment,
+          GPSLocation:value?.GPSLocation,
+          beneficiaryCommunities:value?.beneficiaryCommunities,
+          projectYear:value?.projectYear,
+          status:value?.status
+        }: item
+      )
+      )
+    }
 
     // return editMutate(value)
   }
@@ -145,6 +137,10 @@ function NewProject1({handleNext, handlePrev, fieldValues,id,editMutate, ...rest
                 
                   <div className={project.formColumn}>
 
+                    
+
+                      
+                    
                     <div className={project.detailsForm1}>
 
                       <Field name='projectReferenceNumber'>
@@ -178,10 +174,6 @@ function NewProject1({handleNext, handlePrev, fieldValues,id,editMutate, ...rest
                               ))
                                 
                             }
-                            {/* <option value="" label={values.projectSector} />
-                            <option value="pending" label="Pending" />
-                            <option value="approved" label="Approved" />
-                            <option value="rejected" label="Rejected" /> */}
                         
                           </Field>
                         </div>

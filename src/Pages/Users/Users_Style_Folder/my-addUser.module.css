@@ -72,38 +72,39 @@
 
 .fieldWrapper{
     background-color: #FFFFFF;
-    height: 367px;
+    height: 63vh;
+    /* height: 367px; */
     padding: 30px 25px;
     border-radius: 8px;
     box-shadow: 0px 5px 9px -5px #0000000D;
 
 }
 
-.fieldWrapper > div:nth-child(1){
+.formContainer > div:nth-child(1){
     
     grid-template-columns: 1fr 1fr;
     grid-column-gap: 15px;
 }
 
-.fieldWrapper > div:nth-child(1), .fieldWrapper > div:nth-child(2) {
+.formContainer > div:nth-child(1), .formContainer > div:nth-child(2) {
     display: grid;
     width: 100%;
     
 }
 
-.fieldWrapper > div:nth-child(2) {
+.formContainer > div:nth-child(2) {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
     grid-column-gap: 15px;
     
 }
 
-.fieldWrapper > div:nth-child(2) > div, .fieldWrapper > div:nth-child(1) > div{
+.formContainer > div:nth-child(2) > div, .formContainer > div:nth-child(1) > div{
     margin-bottom: 10px;
 }
 
 
-.fieldWrapper > div:nth-child(1) div div, .fieldWrapper > div:nth-child(2) div div {
+.formContainer > div:nth-child(1) div div, .formContainer > div:nth-child(2) div div {
     height: 50px;
     border: 1px solid #DCDCDC;
     background-color: #F3F4F5;
@@ -113,11 +114,11 @@
     align-items: center;
 }
 
-.fieldWrapper > div:nth-child(1) div div input{
+.formContainer > div:nth-child(1) div div input{
     width: 100%;
 }
 
-.fieldWrapper > div:nth-child(1) div div input, .fieldWrapper > div:nth-child(2) div div input {
+.formContainer > div:nth-child(1) div div input, .formContainer > div:nth-child(2) div div input {
     height: 19px;
     opacity: 40%;
     font-weight: 400;
@@ -126,11 +127,11 @@
     line-height: 21px;
 }
 
-.fieldWrapper > div:nth-child(2) div div input {
+.formContainer > div:nth-child(2) div div input {
     width: 145px;
 }
 
-.fieldWrapper > div:nth-child(1) div label, .fieldWrapper > div:nth-child(2) div label {
+.formContainer > div:nth-child(1) div label, .formContainer > div:nth-child(2) div label {
     width: 170px;
     height: 12px;
     font-size: 12px;
@@ -152,7 +153,13 @@
         display: block;
     }
 
-    .fieldWrapper > div:nth-child(1), .fieldWrapper > div:nth-child(2) {
+    .imageWrapper{
+        width: 270px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .formContainer > div:nth-child(1), .formContainer > div:nth-child(2) {
         display: block;
     }
 
@@ -167,6 +174,108 @@
         overflow-y: scroll;
         height: 70vh;
         padding-right: 5px;
+    }
+    
+}
+
+@media (min-width: 601px) and (max-width:1023px) {
+
+    .formContainer > div:nth-child(1), .formContainer > div:nth-child(2){
+    
+        grid-template-columns: 1fr;
+
+    }
+
+    .formWrapper{
+        grid-template-columns: 200px 1fr;
+        grid-column-gap: 20px;
+    }
+    
+    .imageWrapper {
+        height: 45vh;
+    }
+
+    @media (max-width: 728px) {
+
+        .fieldWrapper > div {
+
+            padding-right:5px;
+            overflow-y: scroll;
+            height: 53vh;
+
+        }
+
+    }
+
+    @media (min-width: 729px) and (max-width: 767px) {
+
+        .formContainer > div:nth-child(1), .formContainer > div:nth-child(2){
+    
+            grid-template-columns: 1fr 1fr;
+    
+        }
+
+        .fieldWrapper{
+           padding-top: 20px;
+           padding-bottom: 20px;
+            height: 64vh;
+        }
+
+    }
+
+
+    @media (min-width: 768px) {
+
+        .formContainer > div:nth-child(1), .formContainer > div:nth-child(2){
+    
+            grid-template-columns: 1fr;
+    
+        }
+
+        .fieldWrapper > div {
+
+           padding-right:5px;
+           overflow-y: scroll;
+           height: 53vh;
+
+        }
+
+    }
+
+    @media (min-width: 964px) {
+
+        .formContainer > div:nth-child(1), .formContainer > div:nth-child(2){
+    
+            grid-template-columns: 1fr 1fr;
+    
+        }
+
+    }
+
+}
+
+@media (min-width:1024px) {
+
+    @media (max-width: 1339px) {
+
+        .formContainer > div:nth-child(1){
+            grid-template-columns: 1fr 1fr;
+            grid-column-gap: 15px;
+        }
+        
+        .formContainer > div:nth-child(2) {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            grid-column-gap: 15px;
+            
+        }
+
+        .fieldWrapper > div {
+           padding-right:5px;
+           overflow-y: scroll;
+           height: 53vh;
+        }
+
     }
     
 }

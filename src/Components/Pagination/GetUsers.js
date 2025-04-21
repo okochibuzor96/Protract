@@ -1,5 +1,6 @@
 import DataContext from "../../Pages/Context API/Create_Context";
 import {useContext} from 'react'
+
 // function GetUsers(props) {
 
 //   const {projects} = useContext(DataContext)
@@ -25,9 +26,9 @@ const GetUsers = {
 
     const userArrayValue = []
 
-    for (let index = (props.page-1)*props.limit; index <(props.page * props.limit) && projects[index]; index++) {
+    for (let index = (props.page-1)*props.limit; index <(props.page * props.limit) && projects?projects[index]:""; index++) {
 
-      userArrayValue.push(projects[index]);
+      userArrayValue.push(projects?projects[index]:'');
       
     }
 
@@ -38,9 +39,9 @@ const GetUsers = {
 
     const userArrayValue = []
 
-    for (let index = (props.page-1)*props.limit; index <(props.page * props.limit) && contractors[index]; index++) {
+    for (let index = (props.page-1)*props.limit; index <(props.page * props.limit) && contractors?contractors[index]:''; index++) {
 
-      userArrayValue.push(contractors[index]);
+      userArrayValue.push(contractors?contractors[index]:"");
       
     }
 
@@ -53,9 +54,9 @@ const GetUsers = {
     const userArrayValue = []
 
 
-    for (let index = (props.page-1)*props.limit; index <(props.page * props.limit) && evaluation[index]; index++) {
+    for (let index = (props.page-1)*props.limit; index <(props.page * props.limit) && evaluation?evaluation[index]:''; index++) {
 
-      userArrayValue.push(evaluation[index]);
+      userArrayValue.push(evaluation?evaluation[index]:"");
       
     }
 
@@ -68,9 +69,9 @@ const GetUsers = {
     const userArrayValue = []
 
 
-    for (let index = (props.page-1)*props.limit; index <(props.page * props.limit) && users[index]; index++) {
+    for (let index = (props.page-1)*props.limit; index <(props.page * props.limit) && users?users[index] : ""; index++) {
 
-      userArrayValue.push(users[index]);
+      userArrayValue.push(users?users[index] : '');
       
     }
 

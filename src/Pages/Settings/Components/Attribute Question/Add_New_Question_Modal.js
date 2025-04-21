@@ -52,7 +52,8 @@ const dropDownValue = [
     answerType:''
   }
 
-function Add_New_Modal() {
+  
+  function Add_New_Modal({children}) {
 
     const {questions,setQuestions} = useContext(DataContext)
 
@@ -104,7 +105,8 @@ function Add_New_Modal() {
                             className={settings.addNewButton}
                         >
 
-                            Add New
+                            {children}
+
 
                         </button>
 

@@ -66,11 +66,11 @@ function Project_Attributes({data}) {
             {
                 itemValues.map((item,i)=>(
 
-                    <main key={i}>
+                    <div key={i}>
                       
                         <ErrorMessage name={`PRinput${i+1}`} component={Texterror}/>
 
-                        <div className={location.pathname === `/evaluation/evaluation-details/${id}`?newEvaluation2.RinputWrapperDetails:newEvaluation2.RinputWrapper} key={i}>
+                        <div className={location.pathname === `/evaluation/evaluation-details/${id}`?newEvaluation2.RinputWrapperDetails:newEvaluation2.RinputWrapper}>
 
                             <div>{item.label}</div>
 
@@ -103,7 +103,7 @@ function Project_Attributes({data}) {
 
                         </div>
 
-                    </main>
+                    </div>
                     
                 ))
             }

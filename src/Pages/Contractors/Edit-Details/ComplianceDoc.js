@@ -46,7 +46,7 @@ function ComplianceDoc({data, values, setFieldValue,mutate}) {
   };
   
   return (
-    <div>
+    <div className={contractor.editDoc}>
 
       <Doc
       data={data}

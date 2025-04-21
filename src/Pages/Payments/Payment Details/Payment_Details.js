@@ -38,7 +38,7 @@ function Payment_Details() {
     const navigate = useNavigate()
     const {id} = useParams()
 
-    const data = projects.find((project)=>project.id === parseInt(id))
+    const data = projects?(projects.find((project)=>project.id === parseInt(id))) : ('')
     const contractordetails = contractors.find((contractor)=>contractor.id === parseInt(id))
 
     // const queryClient = useQueryClient()

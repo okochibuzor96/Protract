@@ -13,6 +13,8 @@ import Project_Info from './Project_Info'
 import DataContext from '../../../Context API/Create_Context'
 import { useContext } from 'react'
 import { useNavigate } from 'react-router-dom'
+import { BsArrowLeftShort } from "react-icons/bs";
+import contractor from '../../../../styles/my-contractors.module.css'
 
 
 function New_Evaluation_2(props) {
@@ -190,7 +192,25 @@ function New_Evaluation_2(props) {
 
                 <header>
 
-                  <div>{data.projectReferenceNumber}</div>
+                  <div className={contractor.herosection1}> 
+            
+                    <BsArrowLeftShort onClick={() => navigate("/evaluation")} className={contractor.backArrow}/>
+                      
+                    <div>
+
+                      <p className={contractor.backArrowText1}>
+                        Back to All Evaluation
+                      </p>
+          
+                      <h6 className={contractor.backArrowText2}> 
+                        {data.projectReferenceNumber}
+                      </h6>
+          
+                    </div>
+                        
+                  </div>
+
+                  {/* <div>{data.projectReferenceNumber}</div> */}
 
                   <div>
 
@@ -225,7 +245,7 @@ function New_Evaluation_2(props) {
                     
                     <Impact/>
 
-                    {/* <NinputType_PC/> */}
+                    <NinputType_PC/>
 
                     <Facilities/>
 

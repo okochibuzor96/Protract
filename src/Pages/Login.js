@@ -30,7 +30,7 @@ function Login() {
         const user = data.email;
         const pwd = data.password;
         localStorage.setItem('Pwd', JSON.stringify(pwd))
-        localStorage.setItem('users', JSON.stringify(user)) 
+        localStorage.setItem('user', JSON.stringify(user)) 
 
         setLogIn(true)
 
@@ -38,16 +38,18 @@ function Login() {
 
             const passWords = window.localStorage.getItem('Pwd')
             const resolvedPwd = JSON.parse(passWords)
-            const userInfo = window.localStorage.getItem('users')
+            const userInfo = window.localStorage.getItem('user')
             const resolvedUser = JSON.parse(userInfo)
 
-            console.log('users',{resolvedPwd,resolvedUser})
+            console.log('user',{resolvedPwd,resolvedUser})
 
             if(resolvedPwd && resolvedUser){
+
                 navigate('/dashboard')
+
                 setLogIn(false)
 
-                console.log('users',{resolvedPwd,resolvedUser})
+                console.log('user',{resolvedPwd,resolvedUser})
             }
             
 
@@ -129,19 +131,19 @@ function Login() {
                     {errors.password && <p className={LoginStyle.errorMsg}>{errors.password?.message}</p>}
                 </div>
 
-                <button className={logIn ? LoginStyle.login_btn2 : LoginStyle.login_btn} >
+                <button type="submit" className={logIn ? LoginStyle.login_btn2 : LoginStyle.login_btn} >
 
-                 Login
+                
 
-                { 
-                    logIn ? (
+                    { 
+                        logIn ? (
 
-                        <div className={` ${LoginStyle.spinner} spinner-border text-primary`} role="status">
-                            <span className="visually-hidden">Loading...</span>
-                        </div>
+                            <div className={` ${LoginStyle.spinner} spinner-border text-primary`} role="status">
+                                <span className="visually-hidden">Loading...</span>
+                            </div>
 
-                    ):""
-                }
+                        ):" Login"
+                    }
                     
                 </button>
 
@@ -160,9 +162,9 @@ function Login() {
             </div>
         </div>
 
-        <div>
+        <div className={LoginStyle.backgroundImage2}>
 
-            <svg width="128" height="81%" viewBox="0 0 128 100%" fill="none" xmlns="http://www.w3.org/2000/svg" class=" "  >
+            <svg width="128" height="90%" viewBox="0 0 128 100%" fill="none" xmlns="http://www.w3.org/2000/svg">
 
                 <path opacity="0.3" d="M13 0C13 31.4887 37.5054 57 67.717 57C68.8113 57 69.9447 56.9609 71 56.8828V0H13Z" fill="#428BFF"/>
                 <path opacity="0.3" d="M128 0C128 31.4887 103.917 57 74.2264 57C73.1509 57 72.0371 56.9609 71 56.8828V0H128Z" fill="#1D3A5C"/>
@@ -171,7 +173,7 @@ function Login() {
 
             </svg>
 
-            <svg width="141" height="108" viewBox="0 0 128 128" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <svg width="131" height="10%" viewBox="0 0 128 128" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path opacity="0.3" d="M4.83186e-06 64C3.28596e-06 99.3662 28.6338 128 64 128L128 128L128 64C128 28.6339 99.3662 -1.25162e-06 64 -2.79753e-06C28.6338 -4.34343e-06 6.37777e-06 28.6338 4.83186e-06 64Z" fill="#428BFF"/>
             </svg>
 

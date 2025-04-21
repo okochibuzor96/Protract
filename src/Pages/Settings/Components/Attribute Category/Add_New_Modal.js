@@ -7,17 +7,17 @@ import DataContext from '../../../Context API/Create_Context'
 import { useContext } from 'react'
 
 
-function Add_New_Modal() {
+function Add_New_Modal({children}) {
 
     const {category, setCategory} = useContext(DataContext) 
 
-//     const queryClient =useQueryClient()
+    //     const queryClient =useQueryClient()
 
-//    const {mutate} = useMutation((value)=>CRUDfunc.create('category',value),{
-//     onSuccess: ()=>{
-//         queryClient.invalidateQueries('settings_category')
-//     }
-//    })
+    //    const {mutate} = useMutation((value)=>CRUDfunc.create('category',value),{
+    //     onSuccess: ()=>{
+    //         queryClient.invalidateQueries('settings_category')
+    //     }
+    //    })
 
     const dropDownValue = [
 
@@ -58,6 +58,7 @@ function Add_New_Modal() {
         setCategory(newValue)
 
         localStorage.setItem("category", JSON.stringify(newValue))
+
         
     }
 
@@ -82,7 +83,7 @@ function Add_New_Modal() {
                             className={settings.addNewButton}
                         >
 
-                            Add New
+                            {children}
 
                         </button>
 

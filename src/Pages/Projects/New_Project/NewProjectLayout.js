@@ -47,7 +47,13 @@ function NewProjectLayout() {
     GPSLocation:'',
     beneficiaryCommunities:'',
     projectYear:'',
-    document: [],
+    document: [
+      {
+        docTitle: "",
+        doc: "",
+        docName: ""
+      }
+    ],
     imageValues:[],
     mileStone:[mileStoneInitialValues],
     projectContractor:'',
@@ -258,23 +264,27 @@ function NewProjectLayout() {
 
       <hr/>
 
-      <header>
+      <div className={Newproject.NewProjectLayoutWrapper}>
 
-        {
-          projectsHeader.map((item,i) =>(
-            <div key={i}> 
+        <header>
 
-              {item}
-              
-            </div>
-          ))
-        }
+          {
+            projectsHeader.map((item,i) =>(
+              <div key={i}> 
 
-      </header>
+                {item}
+                
+              </div>
+            ))
+          }
 
-      <div className={Newproject.pageTitle}>{pageTitle}</div>
-      
-      {displayPage[currentPage]}
+        </header>
+
+        <div className={Newproject.pageTitle}>{pageTitle}</div>
+        
+        {displayPage[currentPage]}
+
+      </div>
 
     </div>
   )

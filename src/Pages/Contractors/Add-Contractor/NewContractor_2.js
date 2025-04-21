@@ -68,10 +68,6 @@ function NewContractors2(props) {
     return initials;
   };
 
-  // useEffect(()=>{
-  //   localStorage.setItem('contractors', JSON.stringify(contractors))
-  // },[contractors])
-
   const onSubmit = (value) =>{
 
     console.log('con', value)
@@ -93,14 +89,14 @@ function NewContractors2(props) {
 
     setContractors(newContractor)
     localStorage.setItem('contractors', JSON.stringify(newContractor))
-    navigate("/contractors")
+
+    navigate('/contractors')
 
     // return mutate(payload)
   }
 
-  console.log('fcon', contractors)
 
-  
+   console.log('con', contractors)
 
   return (
 

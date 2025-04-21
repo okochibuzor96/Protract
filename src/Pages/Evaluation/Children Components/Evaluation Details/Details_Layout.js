@@ -9,7 +9,9 @@ import paymentDetail from '../../../Payments/Payment_CSS_folder/my-paymentDetail
 import Contractor_Info from '../New Evaluation2/Contractor_Info'
 import Project_Info from '../New Evaluation2/Project_Info'
 import {Formik, Form} from 'formik'
-import { useParams } from 'react-router-dom'
+import { BsArrowLeftShort } from "react-icons/bs";
+import contractor from '../../../../styles/my-contractors.module.css'
+import { useNavigate, useParams } from 'react-router-dom'
 import { getEvaluationDetails} from '../../../hooks/useQuery/useProject'
 import { getContractorDetails} from '../../../hooks/useQuery/useProject'
 import { getProjectDetails} from '../../../hooks/useQuery/useProject'
@@ -20,6 +22,8 @@ import React, { useContext} from 'react';
 function Details_Layout() {
 
   const {id} = useParams()
+
+  const navigate = useNavigate()
 
   const {projects,contractors,evaluation} = useContext(DataContext)
   
@@ -89,9 +93,24 @@ function Details_Layout() {
 
       <div>
 
-        <div className='me-5'>{evaluationDetails?.projectNo}</div>
+        <div className={contractor.herosection1}> 
+            
+          <BsArrowLeftShort onClick={() => navigate("/evaluation")} className={contractor.backArrow}/>
+            
+          <div>
+            <p className={contractor.backArrowText1}>
+              Back to All Evaluation
+            </p>
+
+            <h6 className={contractor.backArrowText2}> 
+            {evaluationDetails?.projectNo}
+            </h6>
+
+          </div>
+              
+        </div>
           
-          <button className='ms-5' type='submit'>Download</button>
+        <button className='ms-5' type='submit'>Download</button>
 
         
 

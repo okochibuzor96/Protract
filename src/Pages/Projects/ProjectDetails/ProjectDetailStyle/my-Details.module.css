@@ -22,8 +22,9 @@
 
 .detailsContent {
     width:100%;
-    height: auto;
+    height: 43vh;
     display:grid;
+    overflow-y: scroll;
     grid-template-columns: repeat(auto-fit, 162px);
     /* grid-template-columns: 265px 265px 232px; */
     grid-column-gap: 10px;
@@ -64,4 +65,13 @@
     font-size: 14px;
     font-weight: 400;
     color: #505050;
+}
+
+@media (min-width: 320px) and (max-width:919px) {
+
+    .detailsContent{
+       height: auto;
+       /* overflow-y: scroll; */
+    }
+
 }

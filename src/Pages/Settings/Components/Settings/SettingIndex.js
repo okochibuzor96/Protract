@@ -20,13 +20,15 @@ const SettingIndex = () => {
 
  ]
   return (
-    <main className={settings.settingsWrapper}>
+    <div className={settings.settingsWrapper}>
 
       <div>
 
         <button className={page === 0? settings.activeButton: settings.notActiveButton} onClick={()=> setPage(0)}>Manage Attribute Category</button>
         
-        <button className={page === 1? settings.activeButton: settings.notActiveButton} onClick={()=> setPage(1)}>Manage Attribute Question</button>
+        <button className={page === 1? settings.activeButton: settings.notActiveButton} onClick={()=> setPage(1)}>
+          Manage Attribute Question
+        </button>
 
       </div>
 
@@ -44,7 +46,7 @@ const SettingIndex = () => {
 
       </div>
 
-    </main>
+    </div>
   )
 }
 

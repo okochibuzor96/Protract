@@ -10,6 +10,7 @@ import {getProjects,getContractors} from '../../../hooks/useQuery/useProject'
 import { useState, useRef, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import DataContext from "../../../Context API/Create_Context";
+import contractor from '../../../../styles/my-contractors.module.css';
 
 function New_Evaluation_1(props) {
 
@@ -100,7 +101,13 @@ function New_Evaluation_1(props) {
         contractorFormValue:yup.string().required('field is required')
     })
 
-    
+    const handleInputClear =() =>{
+        setInputValue('');
+    }
+
+    const handleInputClear2 =() =>{
+        setInputValue2('');
+    }
 
   return (
     <div className={newEvaluation.newEvaluationConttainer}>
@@ -159,16 +166,55 @@ function New_Evaluation_1(props) {
                                                             
                                                             <div>
                                                                 {
-                                                                    data?.filter((value) =>{
+                                                                    data?(data.filter((value) =>{
                                                                     const Value = value.projectTitle.toLowerCase();
                                                                     const InputValue = inputValue.toLowerCase()
                         
                                                                     return InputValue && Value.includes(InputValue) && Value !== filterValue
                                                                     }).map((item,i) =>{
-                        
-                                                                        return <div  key={i} onClick={()=>searchItem(item)}>{item.projectTitle}</div>
+
+                                                                        return (
+                                                                            
+                                                                            <> 
+                                                                              
+                                                                                {   item?
+                                                                                    (
+                                                                                        <div  key={i} onClick={()=>searchItem(item)}>
+                                                                                            {item.projectTitle}
+                                                                                            </div>
+                                                                                    ):
+                                                                                    (
+                                                                                        <div className={contractor.noDataWrapper}>
+
+                                                                                            <h1>
+                                                                                                No match from the input you entered
+                                                                                            </h1> 
+                                                                                            
+                                                                                            <div onClick={handleInputClear}>
+                                                                                                <span>Ok</span>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                    )
+
+                                                                                }
+
+                                                                            </>
+                                                                        
+                                                                        )
                                                                         
                                                                     })
+                                                                    ):
+                                                                    (
+                                                                        <div className={contractor.noDataWrapper}>
+
+                                                                            <h2>Oops no data found!!!</h2>
+
+                                                                            <div> 
+                                                                                click on <span onClick={() => navigate('/projects/new-project')}> Add project</span>
+                                                                            </div>
+
+                                                                        </div>
+                                                                    )
                                                                 }
 
                                                             </div>
@@ -219,27 +265,73 @@ function New_Evaluation_1(props) {
 
                                                     <div className={newEvaluation.absolutePosition}> 
 
-                                                    <div className={inputValue2?newEvaluation.absolutePosition2:newEvaluation.hideAbsolutePosition2}>   
+                                                        <div className={inputValue2?newEvaluation.absolutePosition2:newEvaluation.hideAbsolutePosition2}>   
 
-                                                        <div>        
+                                                            <div>        
 
-                                                            {
-                                                                Contractor?.filter((value) =>{
-                                                                const Value = value.companyName.toLowerCase();
-                                                                
-                                                                const InputValue = inputValue2.toLowerCase()
+                                                                {
+                                                                    Contractor?(
 
-                                                                return InputValue && Value.includes(InputValue) && Value !== InputValue
-                                                                }).map((item,i) =>{
+                                                                        Contractor.filter((value) =>{
+                                                                        const Value = value.companyName.toLowerCase();
+                                                                        
+                                                                        const InputValue = inputValue2.toLowerCase()
 
-                                                                    return <div  key={i} onClick={()=>searchItem2(item)}>{item.companyName}</div>
-                                                                    
-                                                                })
-                                                            }
+                                                                        return InputValue && Value.includes(InputValue) && Value !== InputValue
+                                                                        }).map((item,i) =>{
+
+                                                                            return (
+                                                                                
+                                                                                <> 
+                                                                                
+                                                                                    {   item?
+                                                                                        (
+                                                                                            <div  key={i} onClick={()=>searchItem2(item)}>
+                                                                                            {item.companyName}
+                                                                                            </div>
+                                                                                        ):
+                                                                                        (
+                                                                                            <div className={contractor.noDataWrapper}> 
+
+                                                                                                <h1>
+                                                                                                    No match from the input you entered
+                                                                                                </h1>
+
+                                                                                                <div onClick={handleInputClear2}>
+                                                                                                <span>Ok</span> 
+                                                                                                </div>
+
+                                                                                            </div>
+                                                                                        )
+
+                                                                                    }
+
+                                                                                </>
+                                                                            
+                                                                            )
+                                                                            
+                                                                        })
+
+                                                                    ):(
+
+                                                                        <div className={contractor.noDataWrapper}>
+
+                                                                            <h2>Oops no data found!!!</h2>
+
+                                                                            <div> 
+                                                                                click on <span onClick={() => navigate('/contractors/new_contractor')}>
+                                                                                    Add contractor
+                                                                                </span>
+                                                                            </div>
+
+                                                                        </div>
+
+                                                                    )
+                                                                }
+
+                                                            </div> 
 
                                                         </div> 
-
-                                                    </div> 
 
                                                     </div>
                                                 </>

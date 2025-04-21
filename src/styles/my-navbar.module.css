@@ -269,6 +269,10 @@ footer{
     .block2{
         grid-template-rows:180px 30px 30px 30px 30px 30px 30px 30px 30px;
     }  */
+
+    .headerContainer >div:nth-child(1), .menuContent{
+        display: none;
+    }
     
 }
 

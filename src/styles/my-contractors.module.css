@@ -1,6 +1,6 @@
 
  
- .block21{
+.block21{
  
     line-height: 12px;
 }
@@ -131,10 +131,10 @@
 .block65{
     
     display: grid;
-    grid-template-columns: 98px 345px 250px 145px 1fr;
+    grid-template-columns: 98px 1fr 1fr 145px 150px;
     grid-column-gap: 20px;
     align-items: center;
-    
+    /* width: 100%; */
     height: 50px; 
     color: #FFFFFF; 
     font-size: 14px;
@@ -149,6 +149,7 @@
 
 .contractorTable{
     height: 50.6vh;
+    width: 100%;
 }
 
 .contractorTable > div:nth-child(1){
@@ -177,7 +178,7 @@
 .block70{
 
     display: grid;
-    grid-template-columns: 98px 345px 250px 145px 1fr;
+    grid-template-columns: 98px 1fr 1fr 145px 150px;
     grid-column-gap: 20px;
     align-items: center;
     
@@ -193,6 +194,28 @@
     font-weight: 600;
     margin-top: 10px;
 
+}
+
+.noDataWrapper{
+    text-align: center;
+    margin-top:40px;
+    font-weight: 600;
+    color: #505050;
+    font-size: 14px;
+}
+
+.noDataWrapper > div{
+    margin-top: 20px;
+}
+
+.noDataWrapper > div span{
+    color: #31609a;
+    margin-left: 2px;
+    margin-right: 2px;
+}
+
+.noDataWrapper > div span:hover{
+    cursor: pointer;
 }
 
 .block71{
@@ -526,7 +549,7 @@
 
 .editInputFieldWrapper {
     margin-top: -19px;
-    /* background-color: red; */
+   
 }
 
 
@@ -604,6 +627,7 @@
     display: grid;
     grid-template-columns: 1fr 80px;
     grid-column-gap: 20px;
+    height: 70px;
     justify-content: center;
     align-items: center;
 }
@@ -691,7 +715,6 @@
     height: 70px;
     margin-right: -20px;
     margin-left: -20px;
-    /* background-color: red; */
 }
 
 .previousBtn,.nextBtn{
@@ -806,11 +829,8 @@
     background-color: #F3F4F5; */
     border-radius: 8px;
     display: flex;
-  flex-direction: column;
-  align-items: center;
-    /* display: flex;
+    flex-direction: column;
     align-items: center;
-    justify-content: center; */
     margin-bottom: 5px;
   }
   
@@ -1091,12 +1111,10 @@
     }
     
     .AddContractorWrapper{
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        height: 322px;
-        border-radius: 8px;
+      
+        width: 270px;
+       margin-left: auto;
+       margin-right: auto;
     }
 
     .inputFieldWrapper{
@@ -1110,18 +1128,177 @@
     
 }
 
+@media (min-width:601px) and (max-width:1023px) {
+
+    .contractorTable {
+        overflow-x: scroll;
+        width: calc(100vw - 248px);
+        height: 58vh;
+    }
+
+    @media (min-width:601px) and (max-width:767px) {
+
+        .contractorTable {
+            width: calc(100vw - 48px);
+            padding-right: 5px;
+        }
+
+    }
+
+    .contractorTableContainer {
+        width: 1100px;
+        padding-right: 5px;
+    }
+
+    /* add contractor */
+
+    .AddContractorContainer2{
+        grid-template-columns: 170px 1fr;
+        grid-column-gap: 20px;
+    }
+
+    .AddContractorWrapper{
+        height: 200px;
+    }
+
+    .companyDetailsImage{
+        height: 100px;
+        width: 100px;
+    }
+
+    .NewContractor1, .NewContractor2{
+        height: 60vh;
+    }
+    
+
+    .NewContractor1 > .formContainer{
+        margin-bottom: 24px;
+    }
+
+    .NewContractor1 > .formContainer,.complianceDocWrapper {
+        height: 40vh;
+        overflow-y: scroll;
+    }
+
+    /* details */
+
+    .companyDetailsWrapper > div{
+        grid-template-columns: 145px 1fr;
+        grid-column-gap: 20px;
+    }
+
+    .companyDetailsImageWrapper{
+        height: 200px;
+    }
+
+    
+
+    .ScrollWrapper{
+        width: calc(100vw -300px);
+        height: 62vh;
+        overflow-x: scroll;
+        padding-right: 6px;
+    }
+
+    .verticalScroll{
+        width: 100vw;
+        height: auto;
+    }
+
+
+    /* edit */
+
+    .editContainer >.companyDetailsWrapper  {
+        height: 52vh;
+    }
+
+    .editContainer >.companyDetailsWrapper .NewContractor1{
+        height: 52vh;
+    }
+
+    .editDoc > .complianceDocWrapper{
+       height: auto;
+       
+    }
+
+    .editContainer > .companyDetailsWrapper div .NewContractor1 .formContainer {
+        height: 45vh;
+    }
+   
+}
+
+
 
 @media (min-width:1024px){
 
-    /* edit contractor */
-    .NewContractor1 > .formContainer {
-        overflow-y: scroll;
+    /* contractor index */
+
+    @media (min-width:1024px) and (max-width:1339px){
+
+        .contractorTable {
+            overflow-x: scroll;
+            width: calc(100vw - 248px);
+            height: 58vh;
+        }
+        
+        .contractorTableContainer {
+            width: 1100px;
+            padding-right: 5px;
+        }
+
     }
+
+    
+
+
+    /* edit contractor */
+    
+    .companyDetailsWrapper > div{
+        grid-column-gap: 20px;
+    }
+
+    .editContainer >.companyDetailsWrapper .NewContractor1{
+        height: 52vh;
+    }
+
+    .editDoc > .complianceDocWrapper{
+       height: auto;
+       
+    }
+
+    .editContainer > .companyDetailsWrapper div .NewContractor1 .formContainer {
+        height: 45vh;
+    }
+   
 
     /* add contractor new2 */
 
-    .NewContractor2 > div:nth-child(1){
-        overflow-y: scroll;
+    .AddContractorWrapper{
         height: 280px;
     }
+
+    .NewContractor1, .NewContractor2{
+        height: 62vh;
+    }
+    
+
+    .NewContractor1 > .formContainer{
+        margin-bottom: 24px;
+    }
+
+    .NewContractor1 > .formContainer,.complianceDocWrapper {
+        height: calc(62vh - 114px);
+        overflow-y: scroll;
+    }
+
+    /* @media(min-width:1339px) {
+
+        .NewContractor2 > div:nth-child(1){
+            overflow-y: scroll;
+            height: 280px;
+        }
+
+    } */
+
+   
 }

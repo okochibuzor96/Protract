@@ -303,24 +303,28 @@ function Edit_ProjectLayout() {
 
       <hr/>
 
-      <header>
+      <div className={Newproject.NewProjectLayoutWrapper}>
 
-        {
-          projectsHeader.map((item,i) =>(
-            <div key={i}> 
+        <header>
 
-              {item}
-              
-            </div>
-          ))
-        }
+          {
+            projectsHeader.map((item,i) =>(
+              <div key={i}> 
 
-      </header>
+                {item}
+                
+              </div>
+            ))
+          }
 
-      <div className={Newproject.pageTitle}>{pageTitle}</div>
+        </header>
 
-     
-      {displayPage[currentPage]}
+        <div className={Newproject.pageTitle}>{pageTitle}</div>
+
+      
+        {displayPage[currentPage]}
+
+      </div>
              
       
       

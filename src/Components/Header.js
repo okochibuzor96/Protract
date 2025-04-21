@@ -5,6 +5,7 @@ import { IoMdArrowDropdown } from "react-icons/io";
 import { LiaSearchSolid } from "react-icons/lia";
 import { useNavigate } from 'react-router-dom';
 import { CgMenuBoxed } from "react-icons/cg";
+import { useEffect } from 'react';
 
 function Header() {
 
@@ -12,9 +13,13 @@ function Header() {
 
   const handleClick = ()=>{
     localStorage.removeItem("pwd")
-    localStorage.removeItem("users")
+    localStorage.removeItem("user")
     navigate('/login')
   }
+
+  // useEffect(()=>{
+  //   localStorage.removeItem("questions")
+  // },[])
 
   return (
   

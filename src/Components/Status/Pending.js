@@ -5,13 +5,16 @@ export function Pending() {
   return(
       
     <div className={Status.pending}>
+
       <input
         className={Status.radioInput}
         type="radio"
         value=""
         aria-label="Radio button for following text "
       />
-      <div>Pending</div>
+
+      Pending
+
     </div>
       
   )

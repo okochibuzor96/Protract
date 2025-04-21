@@ -92,7 +92,6 @@
 .pending, .medium{
     display: grid;
     grid-template-columns: 8px 34px;
-
     background: #EF943B;
     width: 59px;
 }

@@ -98,7 +98,7 @@ header > div:nth-child(2) button:nth-child(2), .details > div:nth-child(1) butto
 }
 
 .formContainer{
-    margin-top: 60px;
+    margin-top: 30px;
 }
 
 .formContainer > div:nth-child(1) {
@@ -112,11 +112,6 @@ header > div:nth-child(2) button:nth-child(2), .details > div:nth-child(1) butto
     /* grid-template-columns: repeat(auto-fit, 220px); */
     grid-template-columns: 1fr 1fr;
     grid-column-gap: 20px;
-}
-.RinputContainer > main {
-    display: grid;
-    
-    grid-template-rows: 1fr;
 }
 
 .RinputWrapperDetails{
@@ -337,6 +332,38 @@ input[type=number]::-webkit-outer-spin-button{
 
     .NinputType >div div{
         margin-bottom: 10px;
+    }
+
+}
+
+@media (min-width:601px) and (max-width:1023px) {
+
+    /* evaluation index */
+
+    .newEvaluation3Wrapper{
+       margin-bottom: 18px;
+    }
+
+    /* details */
+
+    .newEvaluation2Wrapper{
+        height: 68vh;
+    }
+
+}
+
+@media (min-width:1024px){
+
+    /* evaluation index */
+
+    .newEvaluation3Wrapper{
+        margin-bottom: 18px;
+    }
+
+    /* details */
+
+    .newEvaluation2Wrapper{
+        height: calc(100vh - 200px);
     }
 
 }

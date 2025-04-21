@@ -102,11 +102,7 @@ function New_Project3(props) {
 
   const {projects, setProjects} = useContext(DataContext)
 
-  const data2 = useMemo(()=>projects.find((item)=> item.id === parseInt(id)),[])
-
-  useEffect(()=>{
-    localStorage.setItem("projects", JSON.stringify(projects))
-  },[projects])
+  const data2 = useMemo(()=>projects?(projects.find((item)=> item.id === parseInt(id))) : (""),[])
 
   const onSubmit = (value) =>{
    
